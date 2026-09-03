@@ -31,7 +31,26 @@
         "eyebrow": "Clinical Efficacy Showcase",
         "heading": "HairRevive™ Anti Hair Fall Shampoo",
         "subheading": "Strengthens cellular roots & activates sustained healthy hair cycles."
-      }
+      },
+      "blocks": {
+        "size_selector": {
+          "type": "size_selector",
+          "settings": {}
+        },
+        "coupon_banner": {
+          "type": "coupon_banner",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "size_selector",
+        "coupon_banner",
+        "buy_buttons"
+      ]
     },
     "routine_regimen": {
       "type": "routine-regimen",

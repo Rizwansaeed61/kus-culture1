@@ -25,9 +25,20 @@
           "type": "price",
           "settings": {}
         },
+        "benefit_circles": {
+          "type": "benefit_circles",
+          "settings": {}
+        },
         "size_selector": {
           "type": "size_selector",
           "settings": {}
+        },
+        "coupon_banner": {
+          "type": "coupon_banner",
+          "settings": {
+            "text": "Buy 3 & Get 15% OFF",
+            "code": "HAIR15"
+          }
         },
         "bundle_pills": {
           "type": "bundle_pills",
@@ -46,7 +57,9 @@
         "title",
         "rating",
         "price",
+        "benefit_circles",
         "size_selector",
+        "coupon_banner",
         "bundle_pills",
         "buy_buttons",
         "trust_badges"

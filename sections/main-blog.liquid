@@ -52,6 +52,28 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+            {% if block.type == 'article_card' %}
+              <div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-surface-container flex flex-col justify-between hover:shadow-md transition-shadow" {{ block.shopify_attributes }}>
+                <div class="relative h-48 w-full overflow-hidden">
+                  <img class="w-full h-full object-cover" alt="{{ block.settings.title }}" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAih3MCDCHt3SxtWNSs3DrYE2O1g64JLAfo5HS46z44S8AIAugY5a_QrExUUSByqB3hCxrjq486Kz_4jKNn6Fyf8InmmRKY1H0MUtDkrFJh2diCR_jhqF71w8KhgNliV69rVVuacgpRF7hPuTcIbLz5Q1Z7S6gqoQHQf1T9ej8glweGAxin7Jge0fAHGMPXzfOtaiqO11D4PGbMjrUUVZkyap5OjV_GFxtBib-Boo1gX9T-HQ46trbS" />
+                  <span class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm text-on-surface text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">{{ block.settings.category | default: 'SCIENCE' }}</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                  <div class="space-y-2">
+                    <span class="text-xs text-on-surface-variant">{{ block.settings.read_time | default: '4 min read' }}</span>
+                    <h4 class="font-serif text-lg font-semibold text-on-surface leading-snug">{{ block.settings.title }}</h4>
+                    <p class="text-xs text-on-surface-variant line-clamp-2">{{ block.settings.excerpt }}</p>
+                  </div>
+                  <a href="{{ block.settings.article_url | default: '/blogs/hair-journal/the-truth-about-hair-fall' }}" class="text-xs font-bold text-on-surface flex items-center gap-1.5 hover:text-secondary">
+                    Read Guide <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                  </a>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
         <!-- Article 1 -->
         <div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-surface-container flex flex-col justify-between hover:shadow-md transition-shadow">
           <div class="relative h-48 w-full overflow-hidden">
@@ -105,6 +127,7 @@
             </a>
           </div>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>

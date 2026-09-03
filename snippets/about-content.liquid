@@ -130,6 +130,32 @@
 <p class="font-body-md text-body-md text-on-surface-variant">Every formulation we release must satisfy all four rigorous benchmarks before reaching your shower.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-spacing-lg">
+{% assign has_custom_pillars = false %}
+{% if section.blocks.size > 0 %}
+  {% for block in section.blocks %}
+    {% if block.type == 'pillar' %}
+      {% assign has_custom_pillars = true %}
+      <div class="p-spacing-xl rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between" {{ block.shopify_attributes }}>
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-secondary-container text-on-surface flex items-center justify-center mb-spacing-lg">
+            <span class="material-symbols-outlined text-[28px]">biotech</span>
+          </div>
+          <span class="font-caption-caps text-caption-caps text-on-surface-variant">Pillar 0{{ forloop.index }}</span>
+          <h3 class="font-headline-md text-headline-md text-on-surface mt-1 mb-spacing-xs">{{ block.settings.title }}</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            {{ block.settings.description }}
+          </p>
+        </div>
+        <div class="pt-spacing-lg mt-spacing-md flex items-center gap-2 text-on-surface font-label-sm text-label-sm uppercase tracking-wider">
+          <span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+          Verified Benchmark
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% unless has_custom_pillars %}
 <!-- Pillar 1 -->
 <div class="p-spacing-xl rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
 <div>
@@ -198,6 +224,7 @@
             Full Disclosed INCI
           </div>
 </div>
+{% endunless %}
 </div>
 </div>
 </section>

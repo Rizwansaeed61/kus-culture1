@@ -18,21 +18,31 @@
 
       <!-- Category Filter Tabs -->
       <div class="pt-4 flex flex-wrap items-center gap-2" id="collectionFilterTabs">
-        <button type="button" onclick="filterCategory('all', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-primary text-on-primary shadow-sm">
-          All Formulas
-        </button>
-        <button type="button" onclick="filterCategory('fall', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
-          Anti Hair Fall Series
-        </button>
-        <button type="button" onclick="filterCategory('scalp', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
-          Scalp Microbiome
-        </button>
-        <button type="button" onclick="filterCategory('hydrate', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
-          Deep Hydration
-        </button>
-        <button type="button" onclick="filterCategory('bundle', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
-          Clinical Regimen Bundles
-        </button>
+        {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+            {% if block.type == 'category_tab' %}
+              <button type="button" onclick="filterCategory('{{ block.settings.filter_key }}', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all {% if forloop.first %}bg-primary text-on-primary{% else %}bg-surface-container-low hover:bg-surface-container text-on-surface{% endif %} shadow-sm" {{ block.shopify_attributes }}>
+                {{ block.settings.title }}
+              </button>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <button type="button" onclick="filterCategory('all', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-primary text-on-primary shadow-sm">
+            All Formulas
+          </button>
+          <button type="button" onclick="filterCategory('fall', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
+            Anti Hair Fall Series
+          </button>
+          <button type="button" onclick="filterCategory('scalp', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
+            Scalp Microbiome
+          </button>
+          <button type="button" onclick="filterCategory('hydrate', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
+            Deep Hydration
+          </button>
+          <button type="button" onclick="filterCategory('bundle', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
+            Clinical Regimen Bundles
+          </button>
+        {% endif %}
       </div>
     </div>
 

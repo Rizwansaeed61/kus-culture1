@@ -168,6 +168,28 @@
 </div>
 <!-- Right Column: Interactive Accordion List -->
 <div class="lg:col-span-8 space-y-spacing-md">
+{% if section.blocks.size > 0 %}
+  {% for block in section.blocks %}
+    {% if block.type == 'faq_item' %}
+      <div class="bg-surface-container-lowest rounded-xl p-spacing-lg shadow-sm transition-all duration-200" data-faq-cat="all" {{ block.shopify_attributes }}>
+        <button aria-expanded="false" class="w-full flex items-center justify-between text-left gap-spacing-md focus:outline-none" onclick="toggleAccordion(this)" type="button">
+          <div class="flex items-center gap-spacing-md">
+            <span class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-on-surface text-[18px]">help_outline</span>
+            </span>
+            <span class="font-headline-sm text-headline-sm text-on-surface">{{ block.settings.question }}</span>
+          </div>
+          <span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+        </button>
+        <div class="pt-spacing-md pl-12 pr-spacing-xs space-y-spacing-sm hidden">
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            {{ block.settings.answer }}
+          </p>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
 <!-- Item 1: How often should I use it? -->
 <div class="bg-surface-container-lowest rounded-xl p-spacing-lg shadow-sm transition-all duration-200" data-faq-cat="routine">
 <button aria-expanded="true" class="w-full flex items-center justify-between text-left gap-spacing-md focus:outline-none" onclick="toggleAccordion(this)" type="button">

@@ -132,227 +132,277 @@
 
       <!-- RIGHT COLUMN: Purchase Decision Center -->
       <div class="lg:col-span-5 space-y-6">
-        <div>
-          <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-secondary-container text-on-surface text-xs font-bold">
-            <span class="w-2 h-2 rounded-full bg-primary"></span>
-            For Hair Fall & Weak Hair
-          </span>
-        </div>
+        {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when '@app' %}
+                <div {{ block.shopify_attributes }}>
+                  {% render block %}
+                </div>
 
-        <div class="space-y-1">
-          <h1 class="font-serif text-3xl sm:text-4xl text-on-surface leading-tight font-semibold">
-            {{ product.title | default: 'HairRevive™ Anti Hair Fall Shampoo' }}
-          </h1>
-          <p class="text-sm text-on-surface-variant">
-            Strengthens Roots & Promotes Healthy Growth with Native Bio-Actives
-          </p>
-        </div>
+              {% when '@theme' %}
+                <div {{ block.shopify_attributes }}>
+                  {% content_for 'block', type: block.type, id: block.id %}
+                </div>
 
-        <!-- Rating Block -->
-        <div class="flex items-center gap-2 pb-1 border-b border-surface-container">
-          <div class="flex items-center text-tertiary-container">
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              {% when 'title' %}
+                <div class="space-y-1" {{ block.shopify_attributes }}>
+                  <div>
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-secondary-container text-on-surface text-xs font-bold mb-2">
+                      <span class="w-2 h-2 rounded-full bg-primary"></span>
+                      For Hair Fall & Weak Hair
+                    </span>
+                  </div>
+                  <h1 class="font-serif text-3xl sm:text-4xl text-on-surface leading-tight font-semibold">
+                    {{ product.title | default: 'HairRevive™ Anti Hair Fall Shampoo' }}
+                  </h1>
+                  <p class="text-sm text-on-surface-variant">
+                    Strengthens Roots & Promotes Healthy Growth with Native Bio-Actives
+                  </p>
+                </div>
+
+              {% when 'rating' %}
+                <div class="flex items-center gap-2 pb-1 border-b border-surface-container" {{ block.shopify_attributes }}>
+                  <div class="flex items-center text-tertiary-container">
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  </div>
+                  <span class="text-sm font-bold text-on-surface">5.0</span>
+                  <a class="text-xs text-on-surface-variant underline hover:text-on-surface transition-colors" href="#reviews-section">
+                    (2,341 Verified Reviews)
+                  </a>
+                </div>
+
+              {% when 'price' %}
+                <div class="flex items-baseline gap-3" {{ block.shopify_attributes }}>
+                  <span class="font-serif text-4xl text-on-surface font-bold" id="display-price">
+                    {{ product.price | default: 2499 | money }}
+                  </span>
+                  {% if product.compare_at_price > product.price %}
+                    <span class="text-base text-outline line-through" id="display-original-price">{{ product.compare_at_price | money }}</span>
+                  {% else %}
+                    <span class="text-base text-outline line-through hidden" id="display-original-price">$29.99</span>
+                  {% endif %}
+                  <span class="hidden px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-xs font-bold uppercase" id="display-savings-tag">Save 10%</span>
+                </div>
+
+              {% when 'benefit_circles' %}
+                <div class="grid grid-cols-4 gap-2 py-2" {{ block.shopify_attributes }}>
+                  <div class="flex flex-col items-center text-center gap-1">
+                    <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+                      <span class="material-symbols-outlined text-[20px]">shield</span>
+                    </div>
+                    <span class="text-[11px] text-on-surface font-medium leading-tight">Fall Control</span>
+                  </div>
+                  <div class="flex flex-col items-center text-center gap-1">
+                    <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+                      <span class="material-symbols-outlined text-[20px]">spa</span>
+                    </div>
+                    <span class="text-[11px] text-on-surface font-medium leading-tight">Growth</span>
+                  </div>
+                  <div class="flex flex-col items-center text-center gap-1">
+                    <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+                      <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+                    </div>
+                    <span class="text-[11px] text-on-surface font-medium leading-tight">Adds Shine</span>
+                  </div>
+                  <div class="flex flex-col items-center text-center gap-1">
+                    <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+                      <span class="material-symbols-outlined text-[20px]">water_drop</span>
+                    </div>
+                    <span class="text-[11px] text-on-surface font-medium leading-tight">Deep Cleanse</span>
+                  </div>
+                </div>
+
+              {% when 'size_selector' %}
+                <div class="space-y-3" {{ block.shopify_attributes }}>
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-on-surface text-xs uppercase tracking-wider">Select Size</span>
+                    <span class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Bigger = better value</span>
+                  </div>
+                  <div class="grid grid-cols-3 gap-3">
+                    <div class="size-card cursor-pointer rounded-2xl bg-surface-container-lowest p-3 text-left flex flex-col justify-between relative shadow-md ring-2 ring-primary transition-all border border-surface-container" id="tier-trial" onclick="selectSize('trial', '$24.99', null, '')">
+                      <div class="w-full h-18 rounded-xl bg-surface-container-low flex items-center justify-center mb-2 p-1">
+                        <img class="h-16 object-contain" alt="500ml size" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpqOjQD96gIhtADxNKjf0Zt_E0hRsozuO6Xna_vvEL4ywGHasFuSxPjqWXNYNNOYMP7OfF4jKthpPxnR6w24bnn4VvCtgpJ6IPq_5fTTiF9N_SpLVLRnlzCwVZ5Lj2RX80XfljxNVeAyk8k7o8FuBTlAR2XuihME9e_3W8zh5lUXQiDSWVwpz0QMfwKb-wbwiU6xmmu1ryKSVfL4KTDUwaMx8VClGeQfG-hxc054tdeEQst7WNsQhR"/>
+                      </div>
+                      <div>
+                        <span class="text-[9px] text-on-surface-variant uppercase font-bold">TRIAL</span>
+                        <p class="font-bold text-on-surface text-sm">500ml</p>
+                        <p class="text-xs text-on-surface font-semibold">$24.99</p>
+                        <p class="text-[10px] text-on-surface-variant">Trial size</p>
+                      </div>
+                    </div>
+                    <div class="size-card cursor-pointer rounded-2xl bg-surface-container-lowest p-3 text-left flex flex-col justify-between relative shadow-sm hover:shadow-md transition-all border border-surface-container" id="tier-popular" onclick="selectSize('popular', '$49.99', '$55.55', 'Save 10%')">
+                      <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-[8px] font-extrabold uppercase whitespace-nowrap shadow-sm">
+                        MOST PURCHASED
+                      </span>
+                      <div class="w-full h-18 rounded-xl bg-surface-container-low flex items-center justify-center mb-2 p-1 mt-1">
+                        <img class="h-16 object-contain" alt="1 Liter duo set" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdUn_B_3TgD52vpLK3_gncp5pX3B5DWMTeo6b9jEQSXO516Hh60caafeLxMpv4Eua4smlkH7f0Gzw0QTQaglLNp29h_PneJ8mBUNTG5IegGUys6qhDluODmaOxj-WDo2f7XYxWkpbSXbgKJlu5jpJzVueJ44LBA-AZ1xU1WEphyE_wuKT19o0RsoagaorCWblb9SuwWeiRJ3Ly9Cd-ygij7KzHkRwdUqZlyR1fdeNDzifZeHZgIwnZ"/>
+                      </div>
+                      <div>
+                        <span class="text-[9px] text-on-surface-variant uppercase font-bold">POPULAR</span>
+                        <p class="font-bold text-on-surface text-sm">1 Liter</p>
+                        <p class="text-xs text-on-surface font-semibold">$49.99</p>
+                        <p class="text-[10px] text-emerald-700 font-bold">Save 10% <span class="line-through text-outline font-normal">$55.55</span></p>
+                      </div>
+                    </div>
+                    <div class="size-card cursor-pointer rounded-2xl bg-surface-container-lowest p-3 text-left flex flex-col justify-between relative shadow-sm hover:shadow-md transition-all border border-surface-container" id="tier-best" onclick="selectSize('best', '$84.99', '$106.24', 'Save 20%')">
+                      <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface text-[8px] font-extrabold uppercase whitespace-nowrap shadow-sm">
+                        BEST VALUE
+                      </span>
+                      <div class="w-full h-18 rounded-xl bg-surface-container-low flex items-center justify-center mb-2 p-1 mt-1">
+                        <img class="h-16 object-contain" alt="1.5 Liter bundle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIMR4jzStSYpoO2FfE5lP3y-A3A646Hw8ORRMMQkBxUzpd-7egjsrddXqsCEnHCqP4GGhX7C2QhQKfotuXlioUtVHmw-6fpsFwR8H0z5qRVc3hpIwRLyZEX1JEXjv-IoeZN9-QEKdR-B8UAoswXYImpt7lvqYegxTZ-qNH8MxNO_l-LjJHUKFw8VC17oWJUf_8uAFJ3TPtiE7-QbpERtfe6zHWpCOlEvIiqric0AYpIVIUbEH1eQbe"/>
+                      </div>
+                      <div>
+                        <span class="text-[9px] text-on-surface-variant uppercase font-bold">VALUE</span>
+                        <p class="font-bold text-on-surface text-sm">1.5 Liter</p>
+                        <p class="text-xs text-on-surface font-semibold">$84.99</p>
+                        <p class="text-[10px] text-emerald-700 font-bold">Save 20% <span class="line-through text-outline font-normal">$106.24</span></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              {% when 'coupon_banner' %}
+                <div onclick="copyCoupon('{{ block.settings.code | default: section.settings.coupon_code | default: 'HAIR15' }}', this.querySelector('button'))" class="cursor-pointer rounded-2xl bg-tertiary-fixed text-on-tertiary-fixed p-4 flex items-center justify-between gap-4 shadow-sm border border-tertiary-fixed-dim hover:opacity-95 transition-opacity" {{ block.shopify_attributes }}>
+                  <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-on-tertiary-fixed/10 flex items-center justify-center flex-shrink-0">
+                      <span class="material-symbols-outlined text-[20px] text-on-tertiary-fixed">percent</span>
+                    </div>
+                    <div>
+                      <p class="text-xs font-bold">{{ block.settings.text | default: section.settings.coupon_text | default: 'Buy 3 & Get 15% OFF' }}</p>
+                      <p class="text-[11px] opacity-90">Use code: <span class="font-bold tracking-wider">{{ block.settings.code | default: section.settings.coupon_code | default: 'HAIR15' }}</span></p>
+                    </div>
+                  </div>
+                  <button type="button" onclick="copyCoupon('{{ block.settings.code | default: section.settings.coupon_code | default: 'HAIR15' }}', this); event.stopPropagation();" class="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-on-tertiary-fixed text-tertiary-fixed text-xs font-bold uppercase hover:opacity-90 transition-all shadow-sm active:scale-95">
+                    <span class="material-symbols-outlined text-[15px]">content_copy</span>
+                    <span>Copy</span>
+                  </button>
+                </div>
+
+              {% when 'bundle_pills' %}
+                <div class="grid grid-cols-3 gap-2" {{ block.shopify_attributes }}>
+                  <button type="button" onclick="applyBundlePill(2, 10)" class="rounded-xl bg-surface-container-low py-2 px-3 text-center border border-surface-container hover:bg-surface-container transition-colors">
+                    <p class="text-xs font-bold text-on-surface">Buy 2</p>
+                    <p class="text-[11px] text-on-surface-variant">Save 10%</p>
+                  </button>
+                  <button type="button" onclick="applyBundlePill(3, 15)" class="rounded-xl bg-surface-container-high py-2 px-3 text-center border border-outline-variant transition-colors">
+                    <p class="text-xs font-bold text-on-surface">Buy 3</p>
+                    <p class="text-[11px] text-on-surface font-semibold">Save 15%</p>
+                  </button>
+                  <button type="button" onclick="applyBundlePill(5, 20)" class="rounded-xl bg-surface-container-low py-2 px-3 text-center border border-surface-container hover:bg-surface-container transition-colors">
+                    <p class="text-xs font-bold text-on-surface">Buy 5</p>
+                    <p class="text-[11px] text-on-surface-variant">Save 20%</p>
+                  </button>
+                </div>
+
+              {% when 'buy_buttons' %}
+                <div class="space-y-2 pt-2" {{ block.shopify_attributes }}>
+                  <button type="button" onclick="shopifyAddToCart('{{ product.selected_or_first_available_variant.id }}')" class="w-full py-4 px-8 rounded-full bg-primary text-on-primary text-xs sm:text-sm font-bold tracking-wider uppercase hover:bg-primary-container transition-all shadow-lg flex items-center justify-center gap-2 group active:scale-[0.99]">
+                    <span id="cta-price-prefix">{{ product.price | default: 2499 | money }}</span>
+                    <span class="opacity-50">|</span>
+                    <span>ADD TO CART</span>
+                    <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                  </button>
+                  <p class="text-center text-xs text-on-surface-variant flex items-center justify-center gap-1.5 pt-1">
+                    <span class="material-symbols-outlined text-[16px] text-secondary">eco</span>
+                    {{ section.settings.trust_text | default: '100% Recyclable Bottle • Carbon Neutral Delivery' }}
+                  </p>
+                </div>
+
+              {% when 'trust_badges' %}
+                <div class="grid grid-cols-2 gap-3 pt-2" {{ block.shopify_attributes }}>
+                  <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
+                    <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
+                      <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+                    </div>
+                    <div>
+                      <p class="text-xs font-bold text-on-surface">Free Shipping</p>
+                      <p class="text-[10px] text-on-surface-variant">On orders $50+</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
+                    <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
+                      <span class="material-symbols-outlined text-[18px]">health_and_safety</span>
+                    </div>
+                    <div>
+                      <p class="text-xs font-bold text-on-surface">Dermatologist</p>
+                      <p class="text-[10px] text-on-surface-variant">Approved formula</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
+                    <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
+                      <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+                    </div>
+                    <div>
+                      <p class="text-xs font-bold text-on-surface">30-Day Returns</p>
+                      <p class="text-[10px] text-on-surface-variant">Money back</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
+                    <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
+                      <span class="material-symbols-outlined text-[18px]">lock</span>
+                    </div>
+                    <div>
+                      <p class="text-xs font-bold text-on-surface">Secure Checkout</p>
+                      <p class="text-[10px] text-on-surface-variant">256-bit SSL</p>
+                    </div>
+                  </div>
+                </div>
+
+              {% when 'custom_liquid' %}
+                <div {{ block.shopify_attributes }}>
+                  {{ block.settings.custom_liquid }}
+                </div>
+            {% endcase %}
+          {% endfor %}
+        {% else %}
+          <!-- Default Fallback if no blocks configured -->
+          <div>
+            <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-secondary-container text-on-surface text-xs font-bold">
+              <span class="w-2 h-2 rounded-full bg-primary"></span>
+              For Hair Fall & Weak Hair
+            </span>
           </div>
-          <span class="text-sm font-bold text-on-surface">5.0</span>
-          <a class="text-xs text-on-surface-variant underline hover:text-on-surface transition-colors" href="#reviews-section">
-            (2,341 Verified Reviews)
-          </a>
-        </div>
-
-        <!-- Price Display -->
-        <div class="flex items-baseline gap-3">
-          <span class="font-serif text-4xl text-on-surface font-bold" id="display-price">
-            {{ product.price | default: 2499 | money }}
-          </span>
-          {% if product.compare_at_price > product.price %}
-            <span class="text-base text-outline line-through" id="display-original-price">{{ product.compare_at_price | money }}</span>
-          {% else %}
-            <span class="text-base text-outline line-through hidden" id="display-original-price">$29.99</span>
-          {% endif %}
-          <span class="hidden px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-xs font-bold uppercase" id="display-savings-tag">Save 10%</span>
-        </div>
-
-        <!-- Micro Benefit Circles -->
-        <div class="grid grid-cols-4 gap-2 py-2">
-          <div class="flex flex-col items-center text-center gap-1">
-            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-              <span class="material-symbols-outlined text-[20px]">shield</span>
-            </div>
-            <span class="text-[11px] text-on-surface font-medium leading-tight">Fall Control</span>
+          <div class="space-y-1">
+            <h1 class="font-serif text-3xl sm:text-4xl text-on-surface leading-tight font-semibold">
+              {{ product.title | default: 'HairRevive™ Anti Hair Fall Shampoo' }}
+            </h1>
+            <p class="text-sm text-on-surface-variant">
+              Strengthens Roots & Promotes Healthy Growth with Native Bio-Actives
+            </p>
           </div>
-          <div class="flex flex-col items-center text-center gap-1">
-            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-              <span class="material-symbols-outlined text-[20px]">spa</span>
+          <div class="flex items-center gap-2 pb-1 border-b border-surface-container">
+            <div class="flex items-center text-tertiary-container">
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
             </div>
-            <span class="text-[11px] text-on-surface font-medium leading-tight">Growth</span>
+            <span class="text-sm font-bold text-on-surface">5.0</span>
+            <a class="text-xs text-on-surface-variant underline hover:text-on-surface transition-colors" href="#reviews-section">
+              (2,341 Verified Reviews)
+            </a>
           </div>
-          <div class="flex flex-col items-center text-center gap-1">
-            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-              <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
-            </div>
-            <span class="text-[11px] text-on-surface font-medium leading-tight">Adds Shine</span>
+          <div class="flex items-baseline gap-3">
+            <span class="font-serif text-4xl text-on-surface font-bold" id="display-price">
+              {{ product.price | default: 2499 | money }}
+            </span>
           </div>
-          <div class="flex flex-col items-center text-center gap-1">
-            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-              <span class="material-symbols-outlined text-[20px]">water_drop</span>
-            </div>
-            <span class="text-[11px] text-on-surface font-medium leading-tight">Deep Cleanse</span>
+          <div class="space-y-2 pt-2">
+            <button type="button" onclick="shopifyAddToCart('{{ product.selected_or_first_available_variant.id }}')" class="w-full py-4 px-8 rounded-full bg-primary text-on-primary text-xs sm:text-sm font-bold tracking-wider uppercase hover:bg-primary-container transition-all shadow-lg flex items-center justify-center gap-2 group">
+              <span id="cta-price-prefix">{{ product.price | default: 2499 | money }}</span>
+              <span class="opacity-50">|</span>
+              <span>ADD TO CART</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
           </div>
-        </div>
-
-        <!-- Size Selector Section -->
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-on-surface text-xs uppercase tracking-wider">Select Size</span>
-            <span class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Bigger = better value</span>
-          </div>
-
-          <!-- 3 Size Tier Cards -->
-          <div class="grid grid-cols-3 gap-3">
-            <!-- Tier 1: 500ml Trial -->
-            <div class="size-card cursor-pointer rounded-2xl bg-surface-container-lowest p-3 text-left flex flex-col justify-between relative shadow-md ring-2 ring-primary transition-all border border-surface-container" id="tier-trial" onclick="selectSize('trial', '$24.99', null, '')">
-              <div class="w-full h-18 rounded-xl bg-surface-container-low flex items-center justify-center mb-2 p-1">
-                <img class="h-16 object-contain" alt="500ml size" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpqOjQD96gIhtADxNKjf0Zt_E0hRsozuO6Xna_vvEL4ywGHasFuSxPjqWXNYNNOYMP7OfF4jKthpPxnR6w24bnn4VvCtgpJ6IPq_5fTTiF9N_SpLVLRnlzCwVZ5Lj2RX80XfljxNVeAyk8k7o8FuBTlAR2XuihME9e_3W8zh5lUXQiDSWVwpz0QMfwKb-wbwiU6xmmu1ryKSVfL4KTDUwaMx8VClGeQfG-hxc054tdeEQst7WNsQhR"/>
-              </div>
-              <div>
-                <span class="text-[9px] text-on-surface-variant uppercase font-bold">TRIAL</span>
-                <p class="font-bold text-on-surface text-sm">500ml</p>
-                <p class="text-xs text-on-surface font-semibold">$24.99</p>
-                <p class="text-[10px] text-on-surface-variant">Trial size</p>
-              </div>
-            </div>
-
-            <!-- Tier 2: 1 Liter Popular -->
-            <div class="size-card cursor-pointer rounded-2xl bg-surface-container-lowest p-3 text-left flex flex-col justify-between relative shadow-sm hover:shadow-md transition-all border border-surface-container" id="tier-popular" onclick="selectSize('popular', '$49.99', '$55.55', 'Save 10%')">
-              <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-[8px] font-extrabold uppercase whitespace-nowrap shadow-sm">
-                MOST PURCHASED
-              </span>
-              <div class="w-full h-18 rounded-xl bg-surface-container-low flex items-center justify-center mb-2 p-1 mt-1">
-                <img class="h-16 object-contain" alt="1 Liter duo set" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdUn_B_3TgD52vpLK3_gncp5pX3B5DWMTeo6b9jEQSXO516Hh60caafeLxMpv4Eua4smlkH7f0Gzw0QTQaglLNp29h_PneJ8mBUNTG5IegGUys6qhDluODmaOxj-WDo2f7XYxWkpbSXbgKJlu5jpJzVueJ44LBA-AZ1xU1WEphyE_wuKT19o0RsoagaorCWblb9SuwWeiRJ3Ly9Cd-ygij7KzHkRwdUqZlyR1fdeNDzifZeHZgIwnZ"/>
-              </div>
-              <div>
-                <span class="text-[9px] text-on-surface-variant uppercase font-bold">POPULAR</span>
-                <p class="font-bold text-on-surface text-sm">1 Liter</p>
-                <p class="text-xs text-on-surface font-semibold">$49.99</p>
-                <p class="text-[10px] text-emerald-700 font-bold">Save 10% <span class="line-through text-outline font-normal">$55.55</span></p>
-              </div>
-            </div>
-
-            <!-- Tier 3: 1.5 Liter Best Value -->
-            <div class="size-card cursor-pointer rounded-2xl bg-surface-container-lowest p-3 text-left flex flex-col justify-between relative shadow-sm hover:shadow-md transition-all border border-surface-container" id="tier-best" onclick="selectSize('best', '$84.99', '$106.24', 'Save 20%')">
-              <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface text-[8px] font-extrabold uppercase whitespace-nowrap shadow-sm">
-                BEST VALUE
-              </span>
-              <div class="w-full h-18 rounded-xl bg-surface-container-low flex items-center justify-center mb-2 p-1 mt-1">
-                <img class="h-16 object-contain" alt="1.5 Liter bundle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIMR4jzStSYpoO2FfE5lP3y-A3A646Hw8ORRMMQkBxUzpd-7egjsrddXqsCEnHCqP4GGhX7C2QhQKfotuXlioUtVHmw-6fpsFwR8H0z5qRVc3hpIwRLyZEX1JEXjv-IoeZN9-QEKdR-B8UAoswXYImpt7lvqYegxTZ-qNH8MxNO_l-LjJHUKFw8VC17oWJUf_8uAFJ3TPtiE7-QbpERtfe6zHWpCOlEvIiqric0AYpIVIUbEH1eQbe"/>
-              </div>
-              <div>
-                <span class="text-[9px] text-on-surface-variant uppercase font-bold">VALUE</span>
-                <p class="font-bold text-on-surface text-sm">1.5 Liter</p>
-                <p class="text-xs text-on-surface font-semibold">$84.99</p>
-                <p class="text-[10px] text-emerald-700 font-bold">Save 20% <span class="line-through text-outline font-normal">$106.24</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Promo Banner -->
-        <div onclick="copyCoupon('{{ section.settings.coupon_code | default: 'HAIR15' }}', this.querySelector('button'))" class="cursor-pointer rounded-2xl bg-tertiary-fixed text-on-tertiary-fixed p-4 flex items-center justify-between gap-4 shadow-sm border border-tertiary-fixed-dim hover:opacity-95 transition-opacity">
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-on-tertiary-fixed/10 flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[20px] text-on-tertiary-fixed">percent</span>
-            </div>
-            <div>
-              <p class="text-xs font-bold">{{ section.settings.coupon_text | default: 'Buy 3 & Get 15% OFF' }}</p>
-              <p class="text-[11px] opacity-90">Use code: <span class="font-bold tracking-wider">{{ section.settings.coupon_code | default: 'HAIR15' }}</span></p>
-            </div>
-          </div>
-          <button type="button" onclick="copyCoupon('{{ section.settings.coupon_code | default: 'HAIR15' }}', this); event.stopPropagation();" class="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-on-tertiary-fixed text-tertiary-fixed text-xs font-bold uppercase hover:opacity-90 transition-all shadow-sm active:scale-95">
-            <span class="material-symbols-outlined text-[15px]">content_copy</span>
-            <span>Copy</span>
-          </button>
-        </div>
-
-        <!-- Volume Multi-Buy Quick Pills -->
-        <div class="grid grid-cols-3 gap-2">
-          <button type="button" onclick="applyBundlePill(2, 10)" class="rounded-xl bg-surface-container-low py-2 px-3 text-center border border-surface-container hover:bg-surface-container transition-colors">
-            <p class="text-xs font-bold text-on-surface">Buy 2</p>
-            <p class="text-[11px] text-on-surface-variant">Save 10%</p>
-          </button>
-          <button type="button" onclick="applyBundlePill(3, 15)" class="rounded-xl bg-surface-container-high py-2 px-3 text-center border border-outline-variant transition-colors">
-            <p class="text-xs font-bold text-on-surface">Buy 3</p>
-            <p class="text-[11px] text-on-surface font-semibold">Save 15%</p>
-          </button>
-          <button type="button" onclick="applyBundlePill(5, 20)" class="rounded-xl bg-surface-container-low py-2 px-3 text-center border border-surface-container hover:bg-surface-container transition-colors">
-            <p class="text-xs font-bold text-on-surface">Buy 5</p>
-            <p class="text-[11px] text-on-surface-variant">Save 20%</p>
-          </button>
-        </div>
-
-        <!-- Primary High-Impact CTA Button -->
-        <div class="space-y-2 pt-2">
-          <button type="button" onclick="shopifyAddToCart('{{ product.selected_or_first_available_variant.id }}')" class="w-full py-4 px-8 rounded-full bg-primary text-on-primary text-xs sm:text-sm font-bold tracking-wider uppercase hover:bg-primary-container transition-all shadow-lg flex items-center justify-center gap-2 group active:scale-[0.99]">
-            <span id="cta-price-prefix">{{ product.price | default: 2499 | money }}</span>
-            <span class="opacity-50">|</span>
-            <span>ADD TO CART</span>
-            <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-          </button>
-          <p class="text-center text-xs text-on-surface-variant flex items-center justify-center gap-1.5 pt-1">
-            <span class="material-symbols-outlined text-[16px] text-secondary">eco</span>
-            {{ section.settings.trust_text | default: '100% Recyclable Bottle • Carbon Neutral Delivery' }}
-          </p>
-        </div>
-
-        <!-- Trust Badges 2x2 Grid -->
-        <div class="grid grid-cols-2 gap-3 pt-2">
-          <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
-            <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
-              <span class="material-symbols-outlined text-[18px]">local_shipping</span>
-            </div>
-            <div>
-              <p class="text-xs font-bold text-on-surface">Free Shipping</p>
-              <p class="text-[10px] text-on-surface-variant">On orders $50+</p>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
-            <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
-              <span class="material-symbols-outlined text-[18px]">health_and_safety</span>
-            </div>
-            <div>
-              <p class="text-xs font-bold text-on-surface">Dermatologist</p>
-              <p class="text-[10px] text-on-surface-variant">Approved formula</p>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
-            <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
-              <span class="material-symbols-outlined text-[18px]">restart_alt</span>
-            </div>
-            <div>
-              <p class="text-xs font-bold text-on-surface">30-Day Returns</p>
-              <p class="text-[10px] text-on-surface-variant">Money back</p>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
-            <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
-              <span class="material-symbols-outlined text-[18px]">lock</span>
-            </div>
-            <div>
-              <p class="text-xs font-bold text-on-surface">Secure Checkout</p>
-              <p class="text-[10px] text-on-surface-variant">256-bit SSL</p>
-            </div>
-          </div>
-        </div>
+        {% endif %}
       </div>
-    </div>
-  </div>
-</section>
 
 <script>
 function selectSize(tier, price, origPrice, savings) {
@@ -434,7 +484,7 @@ function applyBundlePill(count, discount) {
       "type": "text",
       "id": "certification_tag",
       "label": "Certification label",
-      "default": "Australian Made • TGA Certified"
+      "default": "Australian Made \u2022 TGA Certified"
     },
     {
       "type": "checkbox",
@@ -464,7 +514,7 @@ function applyBundlePill(count, discount) {
       "type": "text",
       "id": "trust_text",
       "label": "Guarantees footer text",
-      "default": "100% Recyclable Bottle • Carbon Neutral Delivery"
+      "default": "100% Recyclable Bottle \u2022 Carbon Neutral Delivery"
     }
   ],
   "blocks": [
@@ -517,6 +567,30 @@ function applyBundlePill(count, discount) {
           "type": "liquid",
           "id": "custom_liquid",
           "label": "Custom Liquid"
+        }
+      ]
+    },
+    {
+      "type": "benefit_circles",
+      "name": "Benefit Badges",
+      "limit": 1
+    },
+    {
+      "type": "coupon_banner",
+      "name": "Promo Coupon Banner",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Promo Text",
+          "default": "Buy 3 & Get 15% OFF"
+        },
+        {
+          "type": "text",
+          "id": "code",
+          "label": "Coupon Code",
+          "default": "HAIR15"
         }
       ]
     }

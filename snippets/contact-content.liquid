@@ -26,6 +26,26 @@
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-spacing-3xl items-start">
 <!-- Left Column: Contact Cards & Diagnostic Booking -->
 <div class="lg:col-span-5 space-y-spacing-lg">
+{% assign has_custom_channels = false %}
+{% if section.blocks.size > 0 %}
+  {% for block in section.blocks %}
+    {% if block.type == 'contact_channel' %}
+      {% assign has_custom_channels = true %}
+      <div class="bg-surface-container-lowest rounded-xl p-spacing-xl shadow-sm hover:shadow-md transition-shadow" {{ block.shopify_attributes }}>
+        <div class="flex items-start gap-spacing-md">
+          <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0 text-on-surface">
+            <span class="material-symbols-outlined text-[24px]">support_agent</span>
+          </div>
+          <div class="space-y-spacing-2xs flex-1">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface">{{ block.settings.title }}</h2>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">{{ block.settings.info }}</p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% unless has_custom_channels %}
 <!-- Support Email Card -->
 <div class="bg-surface-container-lowest rounded-xl p-spacing-xl shadow-sm hover:shadow-md transition-shadow">
 <div class="flex items-start gap-spacing-md">
@@ -77,6 +97,7 @@
 </div>
 </div>
 </div>
+{% endunless %}
 <!-- Hair Routine Advisory Booking Box -->
 <div class="bg-gradient-to-br from-surface-container to-secondary-container rounded-xl p-spacing-xl shadow-sm relative overflow-hidden">
 <div class="flex items-start gap-spacing-md relative z-10">

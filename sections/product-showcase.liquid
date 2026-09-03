@@ -70,51 +70,114 @@
           </div>
         </div>
 
-        <!-- 3 Size Tier Options -->
-        <div class="space-y-3">
-          <span class="font-bold text-on-surface text-sm uppercase tracking-wider block">Select Size</span>
-          <div class="grid grid-cols-3 gap-3">
-            <div id="showcase-tier-trial" onclick="selectShowcaseTier('trial', '$24.99')" class="showcase-size-card cursor-pointer rounded-2xl p-3 bg-surface-container-high ring-2 ring-primary transition-all flex flex-col justify-between shadow-md relative">
-              <span class="text-[10px] text-on-surface-variant uppercase font-bold">TRIAL</span>
-              <p class="font-bold text-on-surface text-sm mt-2">500ml</p>
-              <p class="text-sm font-semibold text-on-surface">$24.99</p>
-            </div>
-            <div id="showcase-tier-popular" onclick="selectShowcaseTier('popular', '$49.99')" class="showcase-size-card cursor-pointer rounded-2xl p-3 bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between shadow-sm relative">
-              <span class="text-[10px] text-on-surface-variant uppercase font-bold">POPULAR</span>
-              <p class="font-bold text-on-surface text-sm mt-2">1 Liter</p>
-              <p class="text-sm font-semibold text-on-surface">$49.99</p>
-            </div>
-            <div id="showcase-tier-best" onclick="selectShowcaseTier('best', '$84.99')" class="showcase-size-card cursor-pointer rounded-2xl p-3 bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between shadow-sm relative">
-              <span class="text-[10px] text-on-surface-variant uppercase font-bold">BEST VALUE</span>
-              <p class="font-bold text-on-surface text-sm mt-2">1.5 Liter</p>
-              <p class="text-sm font-semibold text-on-surface">$84.99</p>
+        {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when '@app' %}
+                <div {{ block.shopify_attributes }}>
+                  {% render block %}
+                </div>
+              {% when '@theme' %}
+                <div {{ block.shopify_attributes }}>
+                  {% content_for 'block', type: block.type, id: block.id %}
+                </div>
+              {% when 'size_selector' %}
+                <!-- 3 Size Tier Options -->
+                <div class="space-y-3" {{ block.shopify_attributes }}>
+                  <span class="font-bold text-on-surface text-sm uppercase tracking-wider block">Select Size</span>
+                  <div class="grid grid-cols-3 gap-3">
+                    <div id="showcase-tier-trial" onclick="selectShowcaseTier('trial', '$24.99')" class="showcase-size-card cursor-pointer rounded-2xl p-3 bg-surface-container-high ring-2 ring-primary transition-all flex flex-col justify-between shadow-md relative">
+                      <span class="text-[10px] text-on-surface-variant uppercase font-bold">TRIAL</span>
+                      <p class="font-bold text-on-surface text-sm mt-2">500ml</p>
+                      <p class="text-sm font-semibold text-on-surface">$24.99</p>
+                    </div>
+                    <div id="showcase-tier-popular" onclick="selectShowcaseTier('popular', '$49.99')" class="showcase-size-card cursor-pointer rounded-2xl p-3 bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between shadow-sm relative">
+                      <span class="text-[10px] text-on-surface-variant uppercase font-bold">POPULAR</span>
+                      <p class="font-bold text-on-surface text-sm mt-2">1 Liter</p>
+                      <p class="text-sm font-semibold text-on-surface">$49.99</p>
+                    </div>
+                    <div id="showcase-tier-best" onclick="selectShowcaseTier('best', '$84.99')" class="showcase-size-card cursor-pointer rounded-2xl p-3 bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between shadow-sm relative">
+                      <span class="text-[10px] text-on-surface-variant uppercase font-bold">BEST VALUE</span>
+                      <p class="font-bold text-on-surface text-sm mt-2">1.5 Liter</p>
+                      <p class="text-sm font-semibold text-on-surface">$84.99</p>
+                    </div>
+                  </div>
+                </div>
+              {% when 'coupon_banner' %}
+                <!-- Promo Discount Banner -->
+                <div onclick="copyCoupon('HAIR15', document.getElementById('showcase-copy-btn'))" class="bg-tertiary-fixed/40 border border-tertiary-fixed rounded-2xl p-4 flex items-center justify-between gap-3 shadow-sm cursor-pointer hover:bg-tertiary-fixed/60 transition-colors" {{ block.shopify_attributes }}>
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed flex-shrink-0 shadow-sm">
+                      <span class="material-symbols-outlined text-[20px]">percent</span>
+                    </div>
+                    <div>
+                      <p class="text-sm font-bold text-on-surface">Buy 3 & Get 15% OFF</p>
+                      <p class="text-xs text-on-surface-variant">Code: <span class="font-bold text-on-surface tracking-wider">HAIR15</span></p>
+                    </div>
+                  </div>
+                  <button id="showcase-copy-btn" type="button" onclick="copyCoupon('HAIR15', this); event.stopPropagation();" class="inline-flex items-center gap-1.5 bg-surface text-on-surface px-4 py-2 rounded-full text-xs font-bold shadow-sm hover:bg-surface-container transition-all active:scale-95">
+                    <span class="material-symbols-outlined text-[15px]">content_copy</span>
+                    <span>Copy</span>
+                  </button>
+                </div>
+              {% when 'buy_buttons' %}
+                <!-- Add to cart CTA -->
+                <div {{ block.shopify_attributes }}>
+                  <button type="button" onclick="shopifyAddToCart('{{ current_product.selected_or_first_available_variant.id }}')"
+                          class="w-full bg-primary text-on-primary font-bold text-sm sm:text-base uppercase tracking-wider py-4 px-8 rounded-full shadow-lg hover:bg-primary-container transition-all flex items-center justify-center gap-3 active:scale-[0.99]">
+                    <span>ADD TO CART</span>
+                    <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+                  </button>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        {% else %}
+          <!-- 3 Size Tier Options -->
+          <div class="space-y-3">
+            <span class="font-bold text-on-surface text-sm uppercase tracking-wider block">Select Size</span>
+            <div class="grid grid-cols-3 gap-3">
+              <div id="showcase-tier-trial" onclick="selectShowcaseTier('trial', '$24.99')" class="showcase-size-card cursor-pointer rounded-2xl p-3 bg-surface-container-high ring-2 ring-primary transition-all flex flex-col justify-between shadow-md relative">
+                <span class="text-[10px] text-on-surface-variant uppercase font-bold">TRIAL</span>
+                <p class="font-bold text-on-surface text-sm mt-2">500ml</p>
+                <p class="text-sm font-semibold text-on-surface">$24.99</p>
+              </div>
+              <div id="showcase-tier-popular" onclick="selectShowcaseTier('popular', '$49.99')" class="showcase-size-card cursor-pointer rounded-2xl p-3 bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between shadow-sm relative">
+                <span class="text-[10px] text-on-surface-variant uppercase font-bold">POPULAR</span>
+                <p class="font-bold text-on-surface text-sm mt-2">1 Liter</p>
+                <p class="text-sm font-semibold text-on-surface">$49.99</p>
+              </div>
+              <div id="showcase-tier-best" onclick="selectShowcaseTier('best', '$84.99')" class="showcase-size-card cursor-pointer rounded-2xl p-3 bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between shadow-sm relative">
+                <span class="text-[10px] text-on-surface-variant uppercase font-bold">BEST VALUE</span>
+                <p class="font-bold text-on-surface text-sm mt-2">1.5 Liter</p>
+                <p class="text-sm font-semibold text-on-surface">$84.99</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Promo Discount Banner -->
-        <div onclick="copyCoupon('HAIR15', document.getElementById('showcase-copy-btn'))" class="bg-tertiary-fixed/40 border border-tertiary-fixed rounded-2xl p-4 flex items-center justify-between gap-3 shadow-sm cursor-pointer hover:bg-tertiary-fixed/60 transition-colors">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed flex-shrink-0 shadow-sm">
-              <span class="material-symbols-outlined text-[20px]">percent</span>
+          <!-- Promo Discount Banner -->
+          <div onclick="copyCoupon('HAIR15', document.getElementById('showcase-copy-btn'))" class="bg-tertiary-fixed/40 border border-tertiary-fixed rounded-2xl p-4 flex items-center justify-between gap-3 shadow-sm cursor-pointer hover:bg-tertiary-fixed/60 transition-colors">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed flex-shrink-0 shadow-sm">
+                <span class="material-symbols-outlined text-[20px]">percent</span>
+              </div>
+              <div>
+                <p class="text-sm font-bold text-on-surface">Buy 3 & Get 15% OFF</p>
+                <p class="text-xs text-on-surface-variant">Code: <span class="font-bold text-on-surface tracking-wider">HAIR15</span></p>
+              </div>
             </div>
-            <div>
-              <p class="text-sm font-bold text-on-surface">Buy 3 & Get 15% OFF</p>
-              <p class="text-xs text-on-surface-variant">Code: <span class="font-bold text-on-surface tracking-wider">HAIR15</span></p>
-            </div>
+            <button id="showcase-copy-btn" type="button" onclick="copyCoupon('HAIR15', this); event.stopPropagation();" class="inline-flex items-center gap-1.5 bg-surface text-on-surface px-4 py-2 rounded-full text-xs font-bold shadow-sm hover:bg-surface-container transition-all active:scale-95">
+              <span class="material-symbols-outlined text-[15px]">content_copy</span>
+              <span>Copy</span>
+            </button>
           </div>
-          <button id="showcase-copy-btn" type="button" onclick="copyCoupon('HAIR15', this); event.stopPropagation();" class="inline-flex items-center gap-1.5 bg-surface text-on-surface px-4 py-2 rounded-full text-xs font-bold shadow-sm hover:bg-surface-container transition-all active:scale-95">
-            <span class="material-symbols-outlined text-[15px]">content_copy</span>
-            <span>Copy</span>
+
+          <!-- Add to cart CTA -->
+          <button type="button" onclick="shopifyAddToCart('{{ current_product.selected_or_first_available_variant.id }}')"
+                  class="w-full bg-primary text-on-primary font-bold text-sm sm:text-base uppercase tracking-wider py-4 px-8 rounded-full shadow-lg hover:bg-primary-container transition-all flex items-center justify-center gap-3 active:scale-[0.99]">
+            <span>ADD TO CART</span>
+            <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
           </button>
-        </div>
-
-        <!-- Add to cart CTA -->
-        <button type="button" onclick="shopifyAddToCart('{{ current_product.selected_or_first_available_variant.id }}')"
-                class="w-full bg-primary text-on-primary font-bold text-sm sm:text-base uppercase tracking-wider py-4 px-8 rounded-full shadow-lg hover:bg-primary-container transition-all flex items-center justify-center gap-3 active:scale-[0.99]">
-          <span>ADD TO CART</span>
-          <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
-        </button>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -124,13 +187,57 @@
 {
   "name": "Product showcase",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow Text", "default": "Clinical Efficacy Showcase" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "HairRevive™ Anti Hair Fall Shampoo" },
-    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Strengthens cellular roots & activates sustained healthy hair cycles." },
-    { "type": "product", "id": "product", "label": "Select Featured Product" }
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Clinical Efficacy Showcase"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "HairRevive\u2122 Anti Hair Fall Shampoo"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Strengthens cellular roots & activates sustained healthy hair cycles."
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Featured Product"
+    }
   ],
   "presets": [
-    { "name": "Product showcase" }
+    {
+      "name": "Product showcase"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "size_selector",
+      "name": "Size Selector",
+      "limit": 1
+    },
+    {
+      "type": "coupon_banner",
+      "name": "Promo Coupon Banner",
+      "limit": 1
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Buy Buttons",
+      "limit": 1
+    }
   ]
 }
 {% endschema %}
