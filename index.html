@@ -760,15 +760,40 @@
   }
 
   function copyCode(code) {
-    navigator.clipboard?.writeText(code).then(() => {
-      const btn = document.getElementById('copyBtn');
+    const couponCode = code || 'HAIR15';
+    const btn = document.getElementById('copyBtn') || event?.target?.closest('button');
+    
+    function showSuccess() {
       if (btn) {
-        btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Copied!</span>';
+        btn.innerHTML = '<span class="material-symbols-outlined text-[16px] text-emerald-600">check</span><span class="text-emerald-700 font-bold">Copied!</span>';
+        btn.classList.add('bg-emerald-100');
         setTimeout(() => {
           btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">content_copy</span><span>Copy</span>';
-        }, 2000);
+          btn.classList.remove('bg-emerald-100');
+        }, 3000);
       }
-    });
+    }
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(couponCode).then(showSuccess).catch(() => {
+        fallbackCopy(couponCode);
+        showSuccess();
+      });
+    } else {
+      fallbackCopy(couponCode);
+      showSuccess();
+    }
+
+    function fallbackCopy(text) {
+      try {
+        const inp = document.createElement('input');
+        inp.value = text;
+        document.body.appendChild(inp);
+        inp.select();
+        document.execCommand('copy');
+        document.body.removeChild(inp);
+      } catch(e) {}
+    }
   }
 
   function toggleFaq(id) {

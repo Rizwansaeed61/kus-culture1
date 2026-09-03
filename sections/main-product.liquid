@@ -261,7 +261,7 @@
         </div>
 
         <!-- Promo Banner -->
-        <div class="rounded-2xl bg-tertiary-fixed text-on-tertiary-fixed p-4 flex items-center justify-between gap-4 shadow-sm border border-tertiary-fixed-dim">
+        <div onclick="copyCoupon('{{ section.settings.coupon_code | default: 'HAIR15' }}', this.querySelector('button'))" class="cursor-pointer rounded-2xl bg-tertiary-fixed text-on-tertiary-fixed p-4 flex items-center justify-between gap-4 shadow-sm border border-tertiary-fixed-dim hover:opacity-95 transition-opacity">
           <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-full bg-on-tertiary-fixed/10 flex items-center justify-center flex-shrink-0">
               <span class="material-symbols-outlined text-[20px] text-on-tertiary-fixed">percent</span>
@@ -271,8 +271,8 @@
               <p class="text-[11px] opacity-90">Use code: <span class="font-bold tracking-wider">{{ section.settings.coupon_code | default: 'HAIR15' }}</span></p>
             </div>
           </div>
-          <button type="button" onclick="copyCoupon('{{ section.settings.coupon_code | default: 'HAIR15' }}')" class="flex items-center gap-1 px-3 py-1 rounded-full bg-on-tertiary-fixed text-tertiary-fixed text-[11px] font-bold uppercase hover:opacity-90 transition-opacity">
-            <span class="material-symbols-outlined text-[14px]">content_copy</span>
+          <button type="button" onclick="copyCoupon('{{ section.settings.coupon_code | default: 'HAIR15' }}', this); event.stopPropagation();" class="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-on-tertiary-fixed text-tertiary-fixed text-xs font-bold uppercase hover:opacity-90 transition-all shadow-sm active:scale-95">
+            <span class="material-symbols-outlined text-[15px]">content_copy</span>
             <span>Copy</span>
           </button>
         </div>
@@ -404,8 +404,12 @@ function selectGalleryThumb(index) {
 }
 
 function applyBundlePill(count, discount) {
-  alert('Applied volume tier: ' + count + ' bottles (' + discount + '% OFF)');
-  openCartDrawer();
+  const code = count >= 3 ? 'HAIR15' : 'HAIR10';
+  copyCoupon(code);
+  showKusToast('✓ Volume Tier: ' + count + ' bottles (' + discount + '% OFF applied at checkout)');
+  setTimeout(() => {
+    openCartDrawer();
+  }, 600);
 }
 </script>
 
