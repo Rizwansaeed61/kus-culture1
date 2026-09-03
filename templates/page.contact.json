@@ -14,14 +14,14 @@
           "type": "contact_channel",
           "settings": {
             "title": "Email Assistance",
-            "info": "24–48h response window"
+            "info": "24\u201348h response window"
           }
         },
         "channel-2": {
           "type": "contact_channel",
           "settings": {
             "title": "Live Chat Concierge",
-            "info": "Mon–Fri: 9am–6pm AEST"
+            "info": "Mon\u2013Fri: 9am\u20136pm AEST"
           }
         },
         "channel-3": {
@@ -32,11 +32,55 @@
           }
         }
       },
-      "block_order": ["channel-1", "channel-2", "channel-3"]
+      "block_order": [
+        "channel-1",
+        "channel-2",
+        "channel-3"
+      ]
     },
     "trust_guarantee": {
       "type": "trust-guarantee",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "t1": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "local_shipping",
+            "title": "Free Shipping",
+            "subtitle": "On orders over +"
+          }
+        },
+        "t2": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "verified_user",
+            "title": "Dermatologist",
+            "subtitle": "Approved formula"
+          }
+        },
+        "t3": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "published_with_changes",
+            "title": "30-Day Returns",
+            "subtitle": "Money back guarantee"
+          }
+        },
+        "t4": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure Checkout",
+            "subtitle": "256-bit SSL encryption"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
     }
   },
   "order": [

@@ -7,41 +7,60 @@
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
-        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-          <span class="material-symbols-outlined text-[22px]">nature</span>
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when '@app' %}
+              <div {{ block.shopify_attributes }}>{% render block %}</div>
+            {% when '@theme' %}
+              <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
+            {% when 'active_card' %}
+              <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3" {{ block.shopify_attributes }}>
+                <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+                  <span class="material-symbols-outlined text-[22px]">{{ block.settings.icon | default: 'biotech' }}</span>
+                </div>
+                <h4 class="font-bold text-on-surface text-base">{{ block.settings.name }}</h4>
+                <p class="text-xs text-on-surface-variant leading-relaxed">{{ block.settings.description }}</p>
+                {% if block.settings.badge != blank %}
+                  <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">{{ block.settings.badge }}</span>
+                {% endif %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+      {% else %}
+        <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
+          <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+            <span class="material-symbols-outlined text-[22px]">nature</span>
+          </div>
+          <h4 class="font-bold text-on-surface text-base">Organic Rosemary Oil</h4>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Clinically demonstrated to promote hair micro-circulation equivalent to 2% minoxidil without systemic side effects.</p>
+          <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Roots Vitality • Micro-Circulation</span>
         </div>
-        <h4 class="font-bold text-on-surface text-base">Organic Rosemary Oil</h4>
-        <p class="text-xs text-on-surface-variant leading-relaxed">Clinically demonstrated to promote hair micro-circulation equivalent to 2% minoxidil without systemic side effects.</p>
-        <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Roots Vitality • Micro-Circulation</span>
-      </div>
-
-      <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
-        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-          <span class="material-symbols-outlined text-[22px]">biotech</span>
+        <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
+          <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+            <span class="material-symbols-outlined text-[22px]">biotech</span>
+          </div>
+          <h4 class="font-bold text-on-surface text-base">Biotinoyl Tripeptide-1</h4>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Reinforces structural anchoring of the follicle sheath, mitigating early shedding and mechanical brush breakage.</p>
+          <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Sheath Anchoring • Zero Breakage</span>
         </div>
-        <h4 class="font-bold text-on-surface text-base">Biotinoyl Tripeptide-1</h4>
-        <p class="text-xs text-on-surface-variant leading-relaxed">Reinforces structural anchoring of the follicle sheath, mitigating early shedding and mechanical brush breakage.</p>
-        <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Sheath Anchoring • Zero Breakage</span>
-      </div>
-
-      <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
-        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-          <span class="material-symbols-outlined text-[22px]">energy_savings_leaf</span>
+        <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
+          <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+            <span class="material-symbols-outlined text-[22px]">energy_savings_leaf</span>
+          </div>
+          <h4 class="font-bold text-on-surface text-base">Kakadu Plum Extract</h4>
+          <p class="text-xs text-on-surface-variant leading-relaxed">The world's richest known source of Vitamin C. Scavenges environmental free radicals to preserve youthful scalp collagen matrix.</p>
+          <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Antioxidant Guard • Collagen Shield</span>
         </div>
-        <h4 class="font-bold text-on-surface text-base">Kakadu Plum Extract</h4>
-        <p class="text-xs text-on-surface-variant leading-relaxed">The world's richest known source of Vitamin C. Scavenges environmental free radicals to preserve youthful scalp collagen matrix.</p>
-        <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Antioxidant Guard • Collagen Shield</span>
-      </div>
-
-      <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
-        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-          <span class="material-symbols-outlined text-[22px]">water_drop</span>
+        <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
+          <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+            <span class="material-symbols-outlined text-[22px]">water_drop</span>
+          </div>
+          <h4 class="font-bold text-on-surface text-base">Aloe Vera Hydrosol</h4>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Restores physiological 5.5 pH balance to irritated scalps, eliminating dry flake inflammation and balancing excess natural oils.</p>
+          <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Soothing pH 5.5 • Anti-Irritation</span>
         </div>
-        <h4 class="font-bold text-on-surface text-base">Aloe Vera Hydrosol</h4>
-        <p class="text-xs text-on-surface-variant leading-relaxed">Restores physiological 5.5 pH balance to irritated scalps, eliminating dry flake inflammation and balancing excess natural oils.</p>
-        <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Soothing pH 5.5 • Anti-Irritation</span>
-      </div>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -49,13 +68,44 @@
 {% schema %}
 {
   "name": "Science actives",
+  "tag": "section",
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow Text", "default": "Cellular Trichology" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Pure Australian Actives & Clinical Peptides" },
     { "type": "text", "id": "subheading", "label": "Subheading", "default": "Every droplet is calibrated to nourish without stripping or suffocating the scalp microbiome." }
   ],
+  "blocks": [
+    { "type": "@app" },
+    { "type": "@theme" },
+    {
+      "type": "active_card",
+      "name": "Botanical Active Card",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Material Icon Name", "default": "biotech" },
+        { "type": "text", "id": "name", "label": "Active Name", "default": "Australian Botanical Active" },
+        { "type": "textarea", "id": "description", "label": "Clinical Description", "default": "Clinically proven to reinforce cellular health and protect follicular vitality." },
+        { "type": "text", "id": "badge", "label": "Bottom Tag", "default": "Purity Verified • Clinical Grade" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "active_card", "settings": { "icon": "nature", "name": "Organic Rosemary Oil", "description": "Clinically demonstrated to promote hair micro-circulation equivalent to 2% minoxidil without systemic side effects.", "badge": "Roots Vitality • Micro-Circulation" } },
+      { "type": "active_card", "settings": { "icon": "biotech", "name": "Biotinoyl Tripeptide-1", "description": "Reinforces structural anchoring of the follicle sheath, mitigating early shedding and mechanical brush breakage.", "badge": "Sheath Anchoring • Zero Breakage" } },
+      { "type": "active_card", "settings": { "icon": "energy_savings_leaf", "name": "Kakadu Plum Extract", "description": "The world's richest known source of Vitamin C. Scavenges environmental free radicals to preserve youthful scalp collagen matrix.", "badge": "Antioxidant Guard • Collagen Shield" } },
+      { "type": "active_card", "settings": { "icon": "water_drop", "name": "Aloe Vera Hydrosol", "description": "Restores physiological 5.5 pH balance to irritated scalps, eliminating dry flake inflammation and balancing excess natural oils.", "badge": "Soothing pH 5.5 • Anti-Irritation" } }
+    ]
+  },
   "presets": [
-    { "name": "Science actives" }
+    {
+      "name": "Science actives",
+      "blocks": [
+        { "type": "active_card", "settings": { "icon": "nature", "name": "Organic Rosemary Oil", "description": "Clinically demonstrated to promote hair micro-circulation equivalent to 2% minoxidil without systemic side effects.", "badge": "Roots Vitality • Micro-Circulation" } },
+        { "type": "active_card", "settings": { "icon": "biotech", "name": "Biotinoyl Tripeptide-1", "description": "Reinforces structural anchoring of the follicle sheath, mitigating early shedding and mechanical brush breakage.", "badge": "Sheath Anchoring • Zero Breakage" } },
+        { "type": "active_card", "settings": { "icon": "energy_savings_leaf", "name": "Kakadu Plum Extract", "description": "The world's richest known source of Vitamin C. Scavenges environmental free radicals to preserve youthful scalp collagen matrix.", "badge": "Antioxidant Guard • Collagen Shield" } },
+        { "type": "active_card", "settings": { "icon": "water_drop", "name": "Aloe Vera Hydrosol", "description": "Restores physiological 5.5 pH balance to irritated scalps, eliminating dry flake inflammation and balancing excess natural oils.", "badge": "Soothing pH 5.5 • Anti-Irritation" } }
+      ]
+    }
   ]
 }
 {% endschema %}

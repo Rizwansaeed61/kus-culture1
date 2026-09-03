@@ -1,9 +1,25 @@
 <div class="w-full bg-primary-container text-surface px-4 py-2">
   <div class="max-w-7xl mx-auto flex items-center justify-center">
-    <p class="text-xs uppercase tracking-wider text-center text-surface font-semibold flex items-center gap-2">
-      <span class="inline-block w-1.5 h-1.5 rounded-full bg-tertiary-fixed animate-ping"></span>
-      {{ section.settings.text | default: 'DERMATOLOGIST APPROVED • FREE SHIPPING OVER $50 • 30-DAY MONEY-BACK GUARANTEE' }}
-    </p>
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'announcement' %}
+            <p class="text-xs uppercase tracking-wider text-center text-surface font-semibold flex items-center gap-2" {{ block.shopify_attributes }}>
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-tertiary-fixed animate-ping"></span>
+              {% if block.settings.link != blank %}
+                <a href="{{ block.settings.link }}" class="hover:underline">{{ block.settings.text }}</a>
+              {% else %}
+                <span>{{ block.settings.text }}</span>
+              {% endif %}
+            </p>
+        {% endcase %}
+      {% endfor %}
+    {% else %}
+      <p class="text-xs uppercase tracking-wider text-center text-surface font-semibold flex items-center gap-2">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-tertiary-fixed animate-ping"></span>
+        {{ section.settings.text | default: 'DERMATOLOGIST APPROVED • FREE SHIPPING OVER $50 • 30-DAY MONEY-BACK GUARANTEE' }}
+      </p>
+    {% endif %}
   </div>
 </div>
 
@@ -14,13 +30,50 @@
     {
       "type": "text",
       "id": "text",
-      "label": "Announcement Text",
+      "label": "Fallback Text",
       "default": "DERMATOLOGIST APPROVED • FREE SHIPPING OVER $50 • 30-DAY MONEY-BACK GUARANTEE"
     }
   ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Announcement Text",
+          "default": "DERMATOLOGIST APPROVED • FREE SHIPPING OVER $50 • 30-DAY MONEY-BACK GUARANTEE"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Optional Link"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "announcement",
+        "settings": {
+          "text": "DERMATOLOGIST APPROVED • FREE SHIPPING OVER $50 • 30-DAY MONEY-BACK GUARANTEE"
+        }
+      }
+    ]
+  },
   "presets": [
     {
-      "name": "Announcement bar"
+      "name": "Announcement bar",
+      "blocks": [
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "DERMATOLOGIST APPROVED • FREE SHIPPING OVER $50 • 30-DAY MONEY-BACK GUARANTEE"
+          }
+        }
+      ]
     }
   ]
 }

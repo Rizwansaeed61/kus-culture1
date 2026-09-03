@@ -1,37 +1,54 @@
 <section class="w-full bg-surface-container-lowest py-12 border-y border-surface-container">
   <div class="max-w-5xl mx-auto px-6">
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-center">
-      <div class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm">
-        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-          <span class="material-symbols-outlined text-[24px]">shield</span>
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when '@app' %}
+              <div {{ block.shopify_attributes }}>{% render block %}</div>
+            {% when '@theme' %}
+              <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
+            {% when 'benefit_item' %}
+              <div class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm" {{ block.shopify_attributes }}>
+                <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+                  <span class="material-symbols-outlined text-[24px]">{{ block.settings.icon | default: 'shield' }}</span>
+                </div>
+                <span class="font-bold text-on-surface text-sm sm:text-base">{{ block.settings.title }}</span>
+                <p class="text-xs text-on-surface-variant">{{ block.settings.subtitle }}</p>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      {% else %}
+        <!-- Default Fallback -->
+        <div class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+            <span class="material-symbols-outlined text-[24px]">shield</span>
+          </div>
+          <span class="font-bold text-on-surface text-sm sm:text-base">Hair Fall Control</span>
+          <p class="text-xs text-on-surface-variant">Fortifies roots & anchors shafts</p>
         </div>
-        <span class="font-bold text-on-surface text-sm sm:text-base">{{ section.settings.b1_title | default: 'Hair Fall Control' }}</span>
-        <p class="text-xs text-on-surface-variant">{{ section.settings.b1_sub | default: 'Fortifies roots & anchors shafts' }}</p>
-      </div>
-
-      <div class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm">
-        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-          <span class="material-symbols-outlined text-[24px]">spa</span>
+        <div class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+            <span class="material-symbols-outlined text-[24px]">spa</span>
+          </div>
+          <span class="font-bold text-on-surface text-sm sm:text-base">Growth Support</span>
+          <p class="text-xs text-on-surface-variant">Stimulates dormant micro-follicles</p>
         </div>
-        <span class="font-bold text-on-surface text-sm sm:text-base">{{ section.settings.b2_title | default: 'Growth Support' }}</span>
-        <p class="text-xs text-on-surface-variant">{{ section.settings.b2_sub | default: 'Stimulates dormant micro-follicles' }}</p>
-      </div>
-
-      <div class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm">
-        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-          <span class="material-symbols-outlined text-[24px]">flare</span>
+        <div class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+            <span class="material-symbols-outlined text-[24px]">flare</span>
+          </div>
+          <span class="font-bold text-on-surface text-sm sm:text-base">Adds Mirror Shine</span>
+          <p class="text-xs text-on-surface-variant">Locks cuticle moisture without weight</p>
         </div>
-        <span class="font-bold text-on-surface text-sm sm:text-base">{{ section.settings.b3_title | default: 'Adds Mirror Shine' }}</span>
-        <p class="text-xs text-on-surface-variant">{{ section.settings.b3_sub | default: 'Locks cuticle moisture without weight' }}</p>
-      </div>
-
-      <div class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm">
-        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
-          <span class="material-symbols-outlined text-[24px]">opacity</span>
+        <div class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+            <span class="material-symbols-outlined text-[24px]">opacity</span>
+          </div>
+          <span class="font-bold text-on-surface text-sm sm:text-base">Deep Cleanse</span>
+          <p class="text-xs text-on-surface-variant">Dissolves sebum & residue buildup</p>
         </div>
-        <span class="font-bold text-on-surface text-sm sm:text-base">{{ section.settings.b4_title | default: 'Deep Cleanse' }}</span>
-        <p class="text-xs text-on-surface-variant">{{ section.settings.b4_sub | default: 'Dissolves sebum & residue buildup' }}</p>
-      </div>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -39,18 +56,38 @@
 {% schema %}
 {
   "name": "Benefit circles",
-  "settings": [
-    { "type": "text", "id": "b1_title", "label": "Benefit 1 Title", "default": "Hair Fall Control" },
-    { "type": "text", "id": "b1_sub", "label": "Benefit 1 Sub", "default": "Fortifies roots & anchors shafts" },
-    { "type": "text", "id": "b2_title", "label": "Benefit 2 Title", "default": "Growth Support" },
-    { "type": "text", "id": "b2_sub", "label": "Benefit 2 Sub", "default": "Stimulates dormant micro-follicles" },
-    { "type": "text", "id": "b3_title", "label": "Benefit 3 Title", "default": "Adds Mirror Shine" },
-    { "type": "text", "id": "b3_sub", "label": "Benefit 3 Sub", "default": "Locks cuticle moisture without weight" },
-    { "type": "text", "id": "b4_title", "label": "Benefit 4 Title", "default": "Deep Cleanse" },
-    { "type": "text", "id": "b4_sub", "label": "Benefit 4 Sub", "default": "Dissolves sebum & residue buildup" }
+  "tag": "section",
+  "blocks": [
+    { "type": "@app" },
+    { "type": "@theme" },
+    {
+      "type": "benefit_item",
+      "name": "Benefit Badge",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Material Icon Name", "default": "shield" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Hair Fall Control" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Fortifies roots & anchors shafts" }
+      ]
+    }
   ],
+  "default": {
+    "blocks": [
+      { "type": "benefit_item", "settings": { "icon": "shield", "title": "Hair Fall Control", "subtitle": "Fortifies roots & anchors shafts" } },
+      { "type": "benefit_item", "settings": { "icon": "spa", "title": "Growth Support", "subtitle": "Stimulates dormant micro-follicles" } },
+      { "type": "benefit_item", "settings": { "icon": "flare", "title": "Adds Mirror Shine", "subtitle": "Locks cuticle moisture without weight" } },
+      { "type": "benefit_item", "settings": { "icon": "opacity", "title": "Deep Cleanse", "subtitle": "Dissolves sebum & residue buildup" } }
+    ]
+  },
   "presets": [
-    { "name": "Benefit circles" }
+    {
+      "name": "Benefit circles",
+      "blocks": [
+        { "type": "benefit_item", "settings": { "icon": "shield", "title": "Hair Fall Control", "subtitle": "Fortifies roots & anchors shafts" } },
+        { "type": "benefit_item", "settings": { "icon": "spa", "title": "Growth Support", "subtitle": "Stimulates dormant micro-follicles" } },
+        { "type": "benefit_item", "settings": { "icon": "flare", "title": "Adds Mirror Shine", "subtitle": "Locks cuticle moisture without weight" } },
+        { "type": "benefit_item", "settings": { "icon": "opacity", "title": "Deep Cleanse", "subtitle": "Dissolves sebum & residue buildup" } }
+      ]
+    }
   ]
 }
 {% endschema %}

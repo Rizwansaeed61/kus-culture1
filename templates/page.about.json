@@ -28,11 +28,15 @@
           "type": "pillar",
           "settings": {
             "title": "Microbiome Defense",
-            "description": "All formulas are calibrated to pH 5.2–5.5, preserving natural lipid acid mantle defense against flakes, irritation, and premature follicular shedding."
+            "description": "All formulas are calibrated to pH 5.2\u20135.5, preserving natural lipid acid mantle defense against flakes, irritation, and premature follicular shedding."
           }
         }
       },
-      "block_order": ["pillar-1", "pillar-2", "pillar-3"]
+      "block_order": [
+        "pillar-1",
+        "pillar-2",
+        "pillar-3"
+      ]
     },
     "routine_regimen": {
       "type": "routine-regimen",
@@ -40,7 +44,47 @@
     },
     "trust_guarantee": {
       "type": "trust-guarantee",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "t1": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "local_shipping",
+            "title": "Free Shipping",
+            "subtitle": "On orders over +"
+          }
+        },
+        "t2": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "verified_user",
+            "title": "Dermatologist",
+            "subtitle": "Approved formula"
+          }
+        },
+        "t3": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "published_with_changes",
+            "title": "30-Day Returns",
+            "subtitle": "Money back guarantee"
+          }
+        },
+        "t4": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure Checkout",
+            "subtitle": "256-bit SSL encryption"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
     },
     "testimonials_ugc": {
       "type": "testimonials-ugc",

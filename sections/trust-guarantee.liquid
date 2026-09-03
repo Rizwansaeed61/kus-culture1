@@ -1,45 +1,63 @@
 <section class="w-full bg-surface-container-low py-12 border-y border-surface-container">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-surface-container">
-        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
-          <span class="material-symbols-outlined text-[24px]">local_shipping</span>
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when '@app' %}
+              <div {{ block.shopify_attributes }}>{% render block %}</div>
+            {% when '@theme' %}
+              <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
+            {% when 'trust_item' %}
+              <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-surface-container" {{ block.shopify_attributes }}>
+                <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
+                  <span class="material-symbols-outlined text-[24px]">{{ block.settings.icon | default: 'verified_user' }}</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-on-surface text-sm">{{ block.settings.title }}</h4>
+                  <p class="text-xs text-on-surface-variant">{{ block.settings.subtitle }}</p>
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      {% else %}
+        <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-surface-container">
+          <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
+            <span class="material-symbols-outlined text-[24px]">local_shipping</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-on-surface text-sm">Free Shipping</h4>
+            <p class="text-xs text-on-surface-variant">On orders over $50+</p>
+          </div>
         </div>
-        <div>
-          <h4 class="font-bold text-on-surface text-sm">{{ section.settings.t1_title | default: 'Free Shipping' }}</h4>
-          <p class="text-xs text-on-surface-variant">{{ section.settings.t1_sub | default: 'On orders over $50+' }}</p>
+        <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-surface-container">
+          <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
+            <span class="material-symbols-outlined text-[24px]">verified_user</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-on-surface text-sm">Dermatologist</h4>
+            <p class="text-xs text-on-surface-variant">Approved formula</p>
+          </div>
         </div>
-      </div>
-
-      <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-surface-container">
-        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
-          <span class="material-symbols-outlined text-[24px]">verified_user</span>
+        <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-surface-container">
+          <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
+            <span class="material-symbols-outlined text-[24px]">published_with_changes</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-on-surface text-sm">30-Day Returns</h4>
+            <p class="text-xs text-on-surface-variant">Money back guarantee</p>
+          </div>
         </div>
-        <div>
-          <h4 class="font-bold text-on-surface text-sm">{{ section.settings.t2_title | default: 'Dermatologist' }}</h4>
-          <p class="text-xs text-on-surface-variant">{{ section.settings.t2_sub | default: 'Approved formula' }}</p>
+        <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-surface-container">
+          <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
+            <span class="material-symbols-outlined text-[24px]">lock</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-on-surface text-sm">Secure Checkout</h4>
+            <p class="text-xs text-on-surface-variant">256-bit SSL encryption</p>
+          </div>
         </div>
-      </div>
-
-      <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-surface-container">
-        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
-          <span class="material-symbols-outlined text-[24px]">published_with_changes</span>
-        </div>
-        <div>
-          <h4 class="font-bold text-on-surface text-sm">{{ section.settings.t3_title | default: '30-Day Returns' }}</h4>
-          <p class="text-xs text-on-surface-variant">{{ section.settings.t3_sub | default: 'Money back guarantee' }}</p>
-        </div>
-      </div>
-
-      <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-surface-container">
-        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
-          <span class="material-symbols-outlined text-[24px]">lock</span>
-        </div>
-        <div>
-          <h4 class="font-bold text-on-surface text-sm">{{ section.settings.t4_title | default: 'Secure Checkout' }}</h4>
-          <p class="text-xs text-on-surface-variant">{{ section.settings.t4_sub | default: '256-bit SSL encryption' }}</p>
-        </div>
-      </div>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -47,18 +65,38 @@
 {% schema %}
 {
   "name": "Trust guarantee",
-  "settings": [
-    { "type": "text", "id": "t1_title", "label": "Tile 1 Title", "default": "Free Shipping" },
-    { "type": "text", "id": "t1_sub", "label": "Tile 1 Sub", "default": "On orders over $50+" },
-    { "type": "text", "id": "t2_title", "label": "Tile 2 Title", "default": "Dermatologist" },
-    { "type": "text", "id": "t2_sub", "label": "Tile 2 Sub", "default": "Approved formula" },
-    { "type": "text", "id": "t3_title", "label": "Tile 3 Title", "default": "30-Day Returns" },
-    { "type": "text", "id": "t3_sub", "label": "Tile 3 Sub", "default": "Money back guarantee" },
-    { "type": "text", "id": "t4_title", "label": "Tile 4 Title", "default": "Secure Checkout" },
-    { "type": "text", "id": "t4_sub", "label": "Tile 4 Sub", "default": "256-bit SSL encryption" }
+  "tag": "section",
+  "blocks": [
+    { "type": "@app" },
+    { "type": "@theme" },
+    {
+      "type": "trust_item",
+      "name": "Trust Guarantee Item",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Material Icon Name", "default": "verified_user" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Free Shipping" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "On orders over $50+" }
+      ]
+    }
   ],
+  "default": {
+    "blocks": [
+      { "type": "trust_item", "settings": { "icon": "local_shipping", "title": "Free Shipping", "subtitle": "On orders over $50+" } },
+      { "type": "trust_item", "settings": { "icon": "verified_user", "title": "Dermatologist", "subtitle": "Approved formula" } },
+      { "type": "trust_item", "settings": { "icon": "published_with_changes", "title": "30-Day Returns", "subtitle": "Money back guarantee" } },
+      { "type": "trust_item", "settings": { "icon": "lock", "title": "Secure Checkout", "subtitle": "256-bit SSL encryption" } }
+    ]
+  },
   "presets": [
-    { "name": "Trust guarantee" }
+    {
+      "name": "Trust guarantee",
+      "blocks": [
+        { "type": "trust_item", "settings": { "icon": "local_shipping", "title": "Free Shipping", "subtitle": "On orders over $50+" } },
+        { "type": "trust_item", "settings": { "icon": "verified_user", "title": "Dermatologist", "subtitle": "Approved formula" } },
+        { "type": "trust_item", "settings": { "icon": "published_with_changes", "title": "30-Day Returns", "subtitle": "Money back guarantee" } },
+        { "type": "trust_item", "settings": { "icon": "lock", "title": "Secure Checkout", "subtitle": "256-bit SSL encryption" } }
+      ]
+    }
   ]
 }
 {% endschema %}

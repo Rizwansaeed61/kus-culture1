@@ -18,11 +18,54 @@
           "settings": {}
         }
       },
-      "block_order": ["author", "share"]
+      "block_order": [
+        "author",
+        "share"
+      ]
     },
     "trust_guarantee": {
       "type": "trust-guarantee",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "t1": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "local_shipping",
+            "title": "Free Shipping",
+            "subtitle": "On orders over +"
+          }
+        },
+        "t2": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "verified_user",
+            "title": "Dermatologist",
+            "subtitle": "Approved formula"
+          }
+        },
+        "t3": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "published_with_changes",
+            "title": "30-Day Returns",
+            "subtitle": "Money back guarantee"
+          }
+        },
+        "t4": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure Checkout",
+            "subtitle": "256-bit SSL encryption"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
     }
   },
   "order": [

@@ -2,13 +2,14 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex items-center justify-between pb-8">
       <div>
-        <span class="text-xs uppercase text-secondary font-bold tracking-wider">Social Proof</span>
+        <span class="text-xs uppercase text-secondary font-bold tracking-wider">{{ section.settings.eyebrow | default: 'Social Proof' }}</span>
         <h2 class="font-serif text-3xl text-on-surface font-semibold">{{ section.settings.heading | default: 'What Customers Say' }}</h2>
       </div>
       <a class="text-sm font-bold text-on-surface-variant hover:text-on-surface underline" href="#reviews">See all 2,341 reviews</a>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- Rating Summary Card -->
       <div class="lg:col-span-4 bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-surface-container space-y-4">
         <div class="flex items-baseline gap-2">
           <span class="font-serif text-5xl font-bold text-on-surface">4.9</span>
@@ -42,6 +43,7 @@
         </div>
       </div>
 
+      <!-- Testimonials / UGC Dynamic Blocks Column -->
       <div class="lg:col-span-8 bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-surface-container space-y-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="relative rounded-2xl overflow-hidden h-60 bg-surface-container">
@@ -58,15 +60,36 @@
           </div>
         </div>
 
-        <div class="pt-2 space-y-2">
-          <blockquote class="font-serif text-lg text-on-surface font-semibold italic">
-            "{{ section.settings.quote | default: 'My hair fall reduced visibly in 3 weeks. It smells fresh, clean and does not dry my scalp.' }}"
-          </blockquote>
-          <div class="flex items-center gap-2 pt-1">
-            <span class="material-symbols-outlined text-[18px] text-emerald-600 font-bold">check_circle</span>
-            <span class="text-xs font-bold text-on-surface">{{ section.settings.author | default: 'Verified Purchaser • Priya M.' }}</span>
+        {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when '@app' %}
+                <div {{ block.shopify_attributes }}>{% render block %}</div>
+              {% when '@theme' %}
+                <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
+              {% when 'testimonial' %}
+                <div class="pt-2 space-y-2 border-t border-surface-container first:border-t-0" {{ block.shopify_attributes }}>
+                  <blockquote class="font-serif text-lg text-on-surface font-semibold italic">
+                    "{{ block.settings.quote }}"
+                  </blockquote>
+                  <div class="flex items-center gap-2 pt-1">
+                    <span class="material-symbols-outlined text-[18px] text-emerald-600 font-bold">check_circle</span>
+                    <span class="text-xs font-bold text-on-surface">{{ block.settings.author }}</span>
+                  </div>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        {% else %}
+          <div class="pt-2 space-y-2">
+            <blockquote class="font-serif text-lg text-on-surface font-semibold italic">
+              "{{ section.settings.quote | default: 'My hair fall reduced visibly in 3 weeks. It smells fresh, clean and does not dry my scalp.' }}"
+            </blockquote>
+            <div class="flex items-center gap-2 pt-1">
+              <span class="material-symbols-outlined text-[18px] text-emerald-600 font-bold">check_circle</span>
+              <span class="text-xs font-bold text-on-surface">{{ section.settings.author | default: 'Verified Purchaser • Priya M.' }}</span>
+            </div>
           </div>
-        </div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -75,13 +98,38 @@
 {% schema %}
 {
   "name": "Customer reviews",
+  "tag": "section",
   "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow Text", "default": "Social Proof" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "What Customers Say" },
-    { "type": "text", "id": "quote", "label": "Featured Review Quote", "default": "My hair fall reduced visibly in 3 weeks. It smells fresh, clean and does not dry my scalp." },
-    { "type": "text", "id": "author", "label": "Review Author", "default": "Verified Purchaser • Priya M." }
+    { "type": "text", "id": "quote", "label": "Default Review Quote", "default": "My hair fall reduced visibly in 3 weeks. It smells fresh, clean and does not dry my scalp." },
+    { "type": "text", "id": "author", "label": "Default Review Author", "default": "Verified Purchaser • Priya M." }
   ],
+  "blocks": [
+    { "type": "@app" },
+    { "type": "@theme" },
+    {
+      "type": "testimonial",
+      "name": "Customer Review",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Customer Review Quote", "default": "My hair fall reduced visibly in 3 weeks. It smells fresh, clean and does not dry my scalp." },
+        { "type": "text", "id": "author", "label": "Author & Location", "default": "Verified Purchaser • Priya M." }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "testimonial", "settings": { "quote": "My hair fall reduced visibly in 3 weeks. It smells fresh, clean and does not dry my scalp.", "author": "Verified Purchaser • Priya M. (Melbourne)" } },
+      { "type": "testimonial", "settings": { "quote": "Noticeable new baby hair around my hairline after 6 weeks of using the shampoo and serum duo.", "author": "Verified Purchaser • Chloe S. (Sydney)" } }
+    ]
+  },
   "presets": [
-    { "name": "Customer reviews" }
+    {
+      "name": "Customer reviews",
+      "blocks": [
+        { "type": "testimonial", "settings": { "quote": "My hair fall reduced visibly in 3 weeks. It smells fresh, clean and does not dry my scalp.", "author": "Verified Purchaser • Priya M. (Melbourne)" } }
+      ]
+    }
   ]
 }
 {% endschema %}

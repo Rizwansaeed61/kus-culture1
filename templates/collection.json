@@ -46,7 +46,13 @@
           }
         }
       },
-      "block_order": ["tab-1", "tab-2", "tab-3", "tab-4", "tab-5"]
+      "block_order": [
+        "tab-1",
+        "tab-2",
+        "tab-3",
+        "tab-4",
+        "tab-5"
+      ]
     },
     "routine_regimen": {
       "type": "routine-regimen",
@@ -54,7 +60,47 @@
     },
     "trust_guarantee": {
       "type": "trust-guarantee",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "t1": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "local_shipping",
+            "title": "Free Shipping",
+            "subtitle": "On orders over +"
+          }
+        },
+        "t2": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "verified_user",
+            "title": "Dermatologist",
+            "subtitle": "Approved formula"
+          }
+        },
+        "t3": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "published_with_changes",
+            "title": "30-Day Returns",
+            "subtitle": "Money back guarantee"
+          }
+        },
+        "t4": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure Checkout",
+            "subtitle": "256-bit SSL encryption"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
     },
     "testimonials_ugc": {
       "type": "testimonials-ugc",
@@ -72,7 +118,7 @@
           "type": "faq_item",
           "settings": {
             "question": "How often should I use it?",
-            "answer": "3–4 times per week is ideal for most hair types. Gentle enough for daily use thanks to our sulfate-free botanical formulation that respects the natural scalp lipid barrier."
+            "answer": "3\u20134 times per week is ideal for most hair types. Gentle enough for daily use thanks to our sulfate-free botanical formulation that respects the natural scalp lipid barrier."
           }
         },
         "faq-2": {
@@ -90,7 +136,11 @@
           }
         }
       },
-      "block_order": ["faq-1", "faq-2", "faq-3"]
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3"
+      ]
     }
   },
   "order": [

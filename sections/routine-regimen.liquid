@@ -8,58 +8,81 @@
           <p class="text-sm text-on-surface-variant mt-1">{{ section.settings.subheading | default: 'Stronger hair • Less breakage • Faster follicular results' }}</p>
         </div>
         <div class="bg-surface-container px-4 py-1.5 rounded-full">
-          <span class="text-xs text-on-surface font-bold">Full 60-Day Regimen Protocol</span>
+          <span class="text-xs text-on-surface font-bold">{{ section.settings.badge | default: 'Full 60-Day Regimen Protocol' }}</span>
         </div>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 items-center">
-        <!-- Step 1 -->
-        <div class="bg-surface-container-low rounded-2xl p-4 text-center flex flex-col items-center justify-between h-full shadow-sm border border-surface-container">
-          <span class="text-[10px] text-on-surface-variant uppercase font-bold">STEP 1: CLEANSE</span>
-          <div class="h-32 w-full flex items-center justify-center my-2">
-            <img class="h-28 w-auto object-contain" alt="Shampoo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV51M6ojHiSvkdDDXCsaSFvNjR81TFd0vBnUFU7CDlOCVX4vVeEnCJjbprMVSF4cAcBTRBpzuVMm6fwuAI0ckhS0kzDCzdgU5l8KADp1YOEscjwfaSVyFi2Q7TJZUjdW31UYnz6aCCl_IryTqYD0XwEUymxXC8urdvfnZXb57gq76rQVsFDhPyqDj6leyssiZ6A-LcmHBgEUrQ0V94Xy9aA9POmF8C5HJvXfZs9e_U7T7jMzdJJOQ9"/>
+        {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when '@app' %}
+                <div {{ block.shopify_attributes }}>{% render block %}</div>
+              {% when '@theme' %}
+                <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
+              {% when 'step' %}
+                <div class="bg-surface-container-low rounded-2xl p-4 text-center flex flex-col items-center justify-between h-full shadow-sm border border-surface-container" {{ block.shopify_attributes }}>
+                  <span class="text-[10px] text-on-surface-variant uppercase font-bold">{{ block.settings.step_label }}</span>
+                  <div class="h-32 w-full flex items-center justify-center my-2">
+                    {% if block.settings.image != blank %}
+                      <img class="h-28 w-auto object-contain" alt="{{ block.settings.title }}" src="{{ block.settings.image | image_url: width: 240 }}"/>
+                    {% else %}
+                      <img class="h-28 w-auto object-contain" alt="{{ block.settings.title }}" src="{{ block.settings.fallback_image | default: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAV51M6ojHiSvkdDDXCsaSFvNjR81TFd0vBnUFU7CDlOCVX4vVeEnCJjbprMVSF4cAcBTRBpzuVMm6fwuAI0ckhS0kzDCzdgU5l8KADp1YOEscjwfaSVyFi2Q7TJZUjdW31UYnz6aCCl_IryTqYD0XwEUymxXC8urdvfnZXb57gq76rQVsFDhPyqDj6leyssiZ6A-LcmHBgEUrQ0V94Xy9aA9POmF8C5HJvXfZs9e_U7T7jMzdJJOQ9' }}"/>
+                    {% endif %}
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-on-surface text-sm">{{ block.settings.title }}</h4>
+                    <p class="text-xs text-on-surface-variant">{{ block.settings.subtitle }}</p>
+                  </div>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        {% else %}
+          <!-- Step 1 -->
+          <div class="bg-surface-container-low rounded-2xl p-4 text-center flex flex-col items-center justify-between h-full shadow-sm border border-surface-container">
+            <span class="text-[10px] text-on-surface-variant uppercase font-bold">STEP 1: CLEANSE</span>
+            <div class="h-32 w-full flex items-center justify-center my-2">
+              <img class="h-28 w-auto object-contain" alt="Shampoo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV51M6ojHiSvkdDDXCsaSFvNjR81TFd0vBnUFU7CDlOCVX4vVeEnCJjbprMVSF4cAcBTRBpzuVMm6fwuAI0ckhS0kzDCzdgU5l8KADp1YOEscjwfaSVyFi2Q7TJZUjdW31UYnz6aCCl_IryTqYD0XwEUymxXC8urdvfnZXb57gq76rQVsFDhPyqDj6leyssiZ6A-LcmHBgEUrQ0V94Xy9aA9POmF8C5HJvXfZs9e_U7T7jMzdJJOQ9"/>
+            </div>
+            <div>
+              <h4 class="font-bold text-on-surface text-sm">Shampoo</h4>
+              <p class="text-xs text-on-surface-variant">Follicle Pre-Cleanser</p>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-on-surface text-sm">Shampoo</h4>
-            <p class="text-xs text-on-surface-variant">Follicle Pre-Cleanser</p>
+          <!-- Step 2 -->
+          <div class="bg-surface-container-low rounded-2xl p-4 text-center flex flex-col items-center justify-between h-full shadow-sm border border-surface-container">
+            <span class="text-[10px] text-on-surface-variant uppercase font-bold">STEP 2: HYDRATE</span>
+            <div class="h-32 w-full flex items-center justify-center my-2">
+              <img class="h-28 w-auto object-contain" alt="Conditioner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6Ch6JhvqWpjEmLKH3RnIYV5p4b0-yw8smXCXncRroeKINvitHZaaMtw5T21jm_5bBb9Ox_zkVz8z83cALejUyo1b0ZEWhe8gG98OHujcCacXGIJZZOhtYyKMMQP1EJvWTbCpVBNufggQYh6O5hC_diTEjf2J_JMyzh02gAie_3JmRG8ehCTaUk3FzGhvDDGHEhMcJ-ZfPIga7rihYyFdPLquroeRm3Fr-7kJ_0IXzH94b6OJ_qZRf"/>
+            </div>
+            <div>
+              <h4 class="font-bold text-on-surface text-sm">Conditioner</h4>
+              <p class="text-xs text-on-surface-variant">Cuticle Repair Balm</p>
+            </div>
           </div>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="bg-surface-container-low rounded-2xl p-4 text-center flex flex-col items-center justify-between h-full shadow-sm border border-surface-container">
-          <span class="text-[10px] text-on-surface-variant uppercase font-bold">STEP 2: HYDRATE</span>
-          <div class="h-32 w-full flex items-center justify-center my-2">
-            <img class="h-28 w-auto object-contain" alt="Conditioner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6Ch6JhvqWpjEmLKH3RnIYV5p4b0-yw8smXCXncRroeKINvitHZaaMtw5T21jm_5bBb9Ox_zkVz8z83cALejUyo1b0ZEWhe8gG98OHujcCacXGIJZZOhtYyKMMQP1EJvWTbCpVBNufggQYh6O5hC_diTEjf2J_JMyzh02gAie_3JmRG8ehCTaUk3FzGhvDDGHEhMcJ-ZfPIga7rihYyFdPLquroeRm3Fr-7kJ_0IXzH94b6OJ_qZRf"/>
+          <!-- Step 3 -->
+          <div class="bg-surface-container-low rounded-2xl p-4 text-center flex flex-col items-center justify-between h-full shadow-sm border border-surface-container">
+            <span class="text-[10px] text-on-surface-variant uppercase font-bold">STEP 3: ACTIVATE</span>
+            <div class="h-32 w-full flex items-center justify-center my-2">
+              <img class="h-28 w-auto object-contain" alt="Serum" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVNzjwzlMRN0DczAP2JeEJYV7ZDAAyU1lyoeILwo_8tzFPAHO52jhGOC08dtWfFoysw5Z-PMn-rXMr4HHnVfgyI0pvwpEo-YV51hrQXyc0kC2yPE5iqRfRSrSUtsbXdksgh5ZASI-cMiZQVFT1auQWklpT9kUQNs_fr6GZBiAHVonokHLHRPaMMiHDS2Dg2AiY2QFFvcBNDVYLR5LZTgqTYmrCVEC6s4eHbClaQDsiOaDWQf1I1Pfk"/>
+            </div>
+            <div>
+              <h4 class="font-bold text-on-surface text-sm">Serum</h4>
+              <p class="text-xs text-on-surface-variant">Follicle Stem Elixir</p>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-on-surface text-sm">Conditioner</h4>
-            <p class="text-xs text-on-surface-variant">Cuticle Repair Balm</p>
+          <!-- Step 4 -->
+          <div class="bg-surface-container-low rounded-2xl p-4 text-center flex flex-col items-center justify-between h-full shadow-sm border border-surface-container">
+            <span class="text-[10px] text-on-surface-variant uppercase font-bold">STEP 4: SHIELD</span>
+            <div class="h-32 w-full flex items-center justify-center my-2">
+              <img class="h-28 w-auto object-contain" alt="Scalp Tx" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ0BD35Xcufmf5UrQjeAtwMs90jWTsuS763ho15iKiCfE7Sn7WCZFhyRz19ZmtGidASZlsXiwKo5D5qir84AUB9GuOX0xxgpTH8FT_1t0FyfmHIRtaQW0UH62o6Fpyol5p_5Mzqol2_Cq8884l6CxrnkBkPKPjFEUMVdTScLbAEyy9v1GVkOPsPK8UVlbPi55zsB0pih3tOIyZsXkMuVRZ4OhZnreUyl7D911AZj12rvwITbF9w_fh"/>
+            </div>
+            <div>
+              <h4 class="font-bold text-on-surface text-sm">Scalp Tx</h4>
+              <p class="text-xs text-on-surface-variant">Microbiome Barrier</p>
+            </div>
           </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="bg-surface-container-low rounded-2xl p-4 text-center flex flex-col items-center justify-between h-full shadow-sm border border-surface-container">
-          <span class="text-[10px] text-on-surface-variant uppercase font-bold">STEP 3: ACTIVATE</span>
-          <div class="h-32 w-full flex items-center justify-center my-2">
-            <img class="h-28 w-auto object-contain" alt="Serum" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVNzjwzlMRN0DczAP2JeEJYV7ZDAAyU1lyoeILwo_8tzFPAHO52jhGOC08dtWfFoysw5Z-PMn-rXMr4HHnVfgyI0pvwpEo-YV51hrQXyc0kC2yPE5iqRfRSrSUtsbXdksgh5ZASI-cMiZQVFT1auQWklpT9kUQNs_fr6GZBiAHVonokHLHRPaMMiHDS2Dg2AiY2QFFvcBNDVYLR5LZTgqTYmrCVEC6s4eHbClaQDsiOaDWQf1I1Pfk"/>
-          </div>
-          <div>
-            <h4 class="font-bold text-on-surface text-sm">Serum</h4>
-            <p class="text-xs text-on-surface-variant">Follicle Stem Elixir</p>
-          </div>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="bg-surface-container-low rounded-2xl p-4 text-center flex flex-col items-center justify-between h-full shadow-sm border border-surface-container">
-          <span class="text-[10px] text-on-surface-variant uppercase font-bold">STEP 4: SHIELD</span>
-          <div class="h-32 w-full flex items-center justify-center my-2">
-            <img class="h-28 w-auto object-contain" alt="Scalp Tx" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ0BD35Xcufmf5UrQjeAtwMs90jWTsuS763ho15iKiCfE7Sn7WCZFhyRz19ZmtGidASZlsXiwKo5D5qir84AUB9GuOX0xxgpTH8FT_1t0FyfmHIRtaQW0UH62o6Fpyol5p_5Mzqol2_Cq8884l6CxrnkBkPKPjFEUMVdTScLbAEyy9v1GVkOPsPK8UVlbPi55zsB0pih3tOIyZsXkMuVRZ4OhZnreUyl7D911AZj12rvwITbF9w_fh"/>
-          </div>
-          <div>
-            <h4 class="font-bold text-on-surface text-sm">Scalp Tx</h4>
-            <p class="text-xs text-on-surface-variant">Microbiome Barrier</p>
-          </div>
-        </div>
+        {% endif %}
       </div>
 
       <!-- Action Bar -->
@@ -84,13 +107,45 @@
 {% schema %}
 {
   "name": "Routine regimen",
+  "tag": "section",
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow Text", "default": "Synergistic 4-Step Regimen" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Complete Your Hair Growth Routine" },
-    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Stronger hair • Less breakage • Faster follicular results" }
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Stronger hair • Less breakage • Faster follicular results" },
+    { "type": "text", "id": "badge", "label": "Top Right Badge", "default": "Full 60-Day Regimen Protocol" }
   ],
+  "blocks": [
+    { "type": "@app" },
+    { "type": "@theme" },
+    {
+      "type": "step",
+      "name": "Regimen Step",
+      "settings": [
+        { "type": "text", "id": "step_label", "label": "Step Label", "default": "STEP 1: CLEANSE" },
+        { "type": "text", "id": "title", "label": "Product Title", "default": "Shampoo" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Follicle Pre-Cleanser" },
+        { "type": "image_picker", "id": "image", "label": "Step Image" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "step", "settings": { "step_label": "STEP 1: CLEANSE", "title": "Shampoo", "subtitle": "Follicle Pre-Cleanser" } },
+      { "type": "step", "settings": { "step_label": "STEP 2: HYDRATE", "title": "Conditioner", "subtitle": "Cuticle Repair Balm" } },
+      { "type": "step", "settings": { "step_label": "STEP 3: ACTIVATE", "title": "Serum", "subtitle": "Follicle Stem Elixir" } },
+      { "type": "step", "settings": { "step_label": "STEP 4: SHIELD", "title": "Scalp Tx", "subtitle": "Microbiome Barrier" } }
+    ]
+  },
   "presets": [
-    { "name": "Routine regimen" }
+    {
+      "name": "Routine regimen",
+      "blocks": [
+        { "type": "step", "settings": { "step_label": "STEP 1: CLEANSE", "title": "Shampoo", "subtitle": "Follicle Pre-Cleanser" } },
+        { "type": "step", "settings": { "step_label": "STEP 2: HYDRATE", "title": "Conditioner", "subtitle": "Cuticle Repair Balm" } },
+        { "type": "step", "settings": { "step_label": "STEP 3: ACTIVATE", "title": "Serum", "subtitle": "Follicle Stem Elixir" } },
+        { "type": "step", "settings": { "step_label": "STEP 4: SHIELD", "title": "Scalp Tx", "subtitle": "Microbiome Barrier" } }
+      ]
+    }
   ]
 }
 {% endschema %}

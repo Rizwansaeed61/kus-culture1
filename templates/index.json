@@ -4,13 +4,55 @@
       "type": "hero",
       "settings": {
         "badge": "Clinical Clean Hair Care",
-        "rating_badge": "★ 4.9 (2,341 Verified Reviews)",
+        "rating_badge": "\u2605 4.9 (2,341 Verified Reviews)",
         "eyebrow": "Australian Botanical Science",
         "heading": "Clinical Science Meets Clean Botanical Luxury",
         "body": "Targeted hair ecology formulas clinically proven to reduce hair fall by 89% and restore thick, voluminous density from follicular root to tip. Dermatologist-approved, hormone-safe, and salon-grade.",
         "cta_label": "Shop Collection",
         "cta_link": "#bestseller-suite"
-      }
+      },
+      "blocks": {
+        "badge": {
+          "type": "badge",
+          "settings": {
+            "badge": "Clinical Clean Hair Care",
+            "rating_badge": "\u2605 4.9 (2,341 Verified Reviews)"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "eyebrow": "Australian Botanical Science",
+            "heading": "Clinical Science Meets Clean Botanical Luxury"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Targeted hair ecology formulas clinically proven to reduce hair fall by 89% and restore thick, voluminous density from follicular root to tip. Dermatologist-approved, hormone-safe, and salon-grade."
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label_1": "Shop Collection",
+            "link_1": "#bestseller-suite",
+            "label_2": "Take 60s Hair Diagnostic",
+            "link_2": "#hair-quiz"
+          }
+        },
+        "tags": {
+          "type": "tags",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "badge",
+        "heading",
+        "text",
+        "button",
+        "tags"
+      ]
     },
     "benefit_circles": {
       "type": "benefit-circles",
@@ -23,13 +65,53 @@
         "b3_sub": "Locks cuticle moisture without weight",
         "b4_title": "Deep Cleanse",
         "b4_sub": "Dissolves sebum & residue buildup"
-      }
+      },
+      "blocks": {
+        "b1": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "shield",
+            "title": "Hair Fall Control",
+            "subtitle": "Fortifies roots & anchors shafts"
+          }
+        },
+        "b2": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "spa",
+            "title": "Growth Support",
+            "subtitle": "Stimulates dormant micro-follicles"
+          }
+        },
+        "b3": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "flare",
+            "title": "Adds Mirror Shine",
+            "subtitle": "Locks cuticle moisture without weight"
+          }
+        },
+        "b4": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "opacity",
+            "title": "Deep Cleanse",
+            "subtitle": "Dissolves sebum & residue buildup"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
     },
     "product_showcase": {
       "type": "product-showcase",
       "settings": {
         "eyebrow": "Clinical Efficacy Showcase",
-        "heading": "HairRevive™ Anti Hair Fall Shampoo",
+        "heading": "HairRevive\u2122 Anti Hair Fall Shampoo",
         "subheading": "Strengthens cellular roots & activates sustained healthy hair cycles."
       },
       "blocks": {
@@ -57,8 +139,48 @@
       "settings": {
         "eyebrow": "Synergistic 4-Step Regimen",
         "heading": "Complete Your Hair Growth Routine",
-        "subheading": "Stronger hair • Less breakage • Faster follicular results"
-      }
+        "subheading": "Stronger hair \u2022 Less breakage \u2022 Faster follicular results"
+      },
+      "blocks": {
+        "step1": {
+          "type": "step",
+          "settings": {
+            "step_label": "STEP 1: CLEANSE",
+            "title": "Shampoo",
+            "subtitle": "Follicle Pre-Cleanser"
+          }
+        },
+        "step2": {
+          "type": "step",
+          "settings": {
+            "step_label": "STEP 2: HYDRATE",
+            "title": "Conditioner",
+            "subtitle": "Cuticle Repair Balm"
+          }
+        },
+        "step3": {
+          "type": "step",
+          "settings": {
+            "step_label": "STEP 3: ACTIVATE",
+            "title": "Serum",
+            "subtitle": "Follicle Stem Elixir"
+          }
+        },
+        "step4": {
+          "type": "step",
+          "settings": {
+            "step_label": "STEP 4: SHIELD",
+            "title": "Scalp Tx",
+            "subtitle": "Microbiome Barrier"
+          }
+        }
+      },
+      "block_order": [
+        "step1",
+        "step2",
+        "step3",
+        "step4"
+      ]
     },
     "science_actives": {
       "type": "science-actives",
@@ -66,7 +188,51 @@
         "eyebrow": "Cellular Trichology",
         "heading": "Pure Australian Actives & Clinical Peptides",
         "subheading": "Every droplet is calibrated to nourish without stripping or suffocating the scalp microbiome."
-      }
+      },
+      "blocks": {
+        "act1": {
+          "type": "active_card",
+          "settings": {
+            "icon": "nature",
+            "name": "Organic Rosemary Oil",
+            "description": "Clinically demonstrated to promote hair micro-circulation equivalent to 2% minoxidil without systemic side effects.",
+            "badge": "Roots Vitality \u2022 Micro-Circulation"
+          }
+        },
+        "act2": {
+          "type": "active_card",
+          "settings": {
+            "icon": "biotech",
+            "name": "Biotinoyl Tripeptide-1",
+            "description": "Reinforces structural anchoring of the follicle sheath, mitigating early shedding and mechanical brush breakage.",
+            "badge": "Sheath Anchoring \u2022 Zero Breakage"
+          }
+        },
+        "act3": {
+          "type": "active_card",
+          "settings": {
+            "icon": "energy_savings_leaf",
+            "name": "Kakadu Plum Extract",
+            "description": "The world's richest known source of Vitamin C. Scavenges environmental free radicals to preserve youthful scalp collagen matrix.",
+            "badge": "Antioxidant Guard \u2022 Collagen Shield"
+          }
+        },
+        "act4": {
+          "type": "active_card",
+          "settings": {
+            "icon": "water_drop",
+            "name": "Aloe Vera Hydrosol",
+            "description": "Restores physiological 5.5 pH balance to irritated scalps, eliminating dry flake inflammation and balancing excess natural oils.",
+            "badge": "Soothing pH 5.5 \u2022 Anti-Irritation"
+          }
+        }
+      },
+      "block_order": [
+        "act1",
+        "act2",
+        "act3",
+        "act4"
+      ]
     },
     "trust_guarantee": {
       "type": "trust-guarantee",
@@ -79,22 +245,108 @@
         "t3_sub": "Money back guarantee",
         "t4_title": "Secure Checkout",
         "t4_sub": "256-bit SSL encryption"
-      }
+      },
+      "blocks": {
+        "t1": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "local_shipping",
+            "title": "Free Shipping",
+            "subtitle": "On orders over $50+"
+          }
+        },
+        "t2": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "verified_user",
+            "title": "Dermatologist",
+            "subtitle": "Approved formula"
+          }
+        },
+        "t3": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "published_with_changes",
+            "title": "30-Day Returns",
+            "subtitle": "Money back guarantee"
+          }
+        },
+        "t4": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure Checkout",
+            "subtitle": "256-bit SSL encryption"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
     },
     "testimonials_ugc": {
       "type": "testimonials-ugc",
       "settings": {
         "heading": "What Customers Say",
         "quote": "My hair fall reduced visibly in 3 weeks. It smells fresh, clean and does not dry my scalp.",
-        "author": "Verified Purchaser • Priya M."
-      }
+        "author": "Verified Purchaser \u2022 Priya M."
+      },
+      "blocks": {
+        "rev1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "My hair fall reduced visibly in 3 weeks. It smells fresh, clean and does not dry my scalp.",
+            "author": "Verified Purchaser \u2022 Priya M. (Melbourne)"
+          }
+        },
+        "rev2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Noticeable new baby hair around my hairline after 6 weeks of using the shampoo and serum duo.",
+            "author": "Verified Purchaser \u2022 Chloe S. (Sydney)"
+          }
+        }
+      },
+      "block_order": [
+        "rev1",
+        "rev2"
+      ]
     },
     "hair_quiz_callout": {
       "type": "hair-quiz-callout",
       "settings": {
         "heading": "Find Your Custom Hair Care Regimen",
         "subheading": "Take our 60-second diagnostic formulated by Australian dermatologists to pinpoint your scalp type, shed factors, and targeted active botanical balance."
-      }
+      },
+      "blocks": {
+        "h": {
+          "type": "heading",
+          "settings": {
+            "eyebrow": "Personalized Trichology",
+            "heading": "Find Your Custom Hair Care Regimen"
+          }
+        },
+        "t": {
+          "type": "text",
+          "settings": {
+            "text": "Take our 60-second diagnostic formulated by Australian dermatologists to pinpoint your scalp type, shed factors, and targeted active botanical balance."
+          }
+        },
+        "b": {
+          "type": "button",
+          "settings": {
+            "button_label": "Start 60-Second Diagnostic"
+          }
+        }
+      },
+      "block_order": [
+        "h",
+        "t",
+        "b"
+      ]
     },
     "faq_accordion": {
       "type": "faq-accordion",
@@ -107,7 +359,7 @@
           "type": "faq_item",
           "settings": {
             "question": "How often should I use it?",
-            "answer": "3–4 times per week is ideal for most hair types. Gentle enough for daily use thanks to our sulfate-free botanical formulation that respects the natural scalp lipid barrier."
+            "answer": "3\u20134 times per week is ideal for most hair types. Gentle enough for daily use thanks to our sulfate-free botanical formulation that respects the natural scalp lipid barrier."
           }
         },
         "faq-2": {
@@ -132,7 +384,12 @@
           }
         }
       },
-      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4"]
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4"
+      ]
     }
   },
   "order": [
