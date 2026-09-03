@@ -40,7 +40,22 @@
 
       <!-- Desktop Navigation Menu -->
       <nav class="hidden lg:flex items-center gap-6">
-        {% if section.settings.use_kus_navigation %}
+        {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when '@app' %}
+                <div {{ block.shopify_attributes }}>{% render block %}</div>
+              {% when '@theme' %}
+                <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
+              {% when 'navigation_link' %}
+                <a href="{{ block.settings.url | default: '#' }}" class="text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors" {{ block.shopify_attributes }}>
+                  {{ block.settings.title }}
+                </a>
+              {% when 'custom_liquid' %}
+                <div {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
+            {% endcase %}
+          {% endfor %}
+        {% elsif section.settings.use_kus_navigation %}
           <a href="{{ routes.root_url }}" class="text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors {% if request.page_type == 'index' %}bg-secondary-container text-on-surface font-bold rounded-full px-4 py-1.5 shadow-sm{% endif %}">
             Home
           </a>
@@ -133,6 +148,42 @@ function toggleMobileMenu() {
       "id": "menu",
       "label": "Custom Menu (Fallback if option above is unchecked)",
       "default": "main-menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "navigation_link",
+      "name": "Navigation Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Link Text",
+          "default": "Shop"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link Destination"
+        }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom Liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom Liquid"
+        }
+      ]
     }
   ]
 }

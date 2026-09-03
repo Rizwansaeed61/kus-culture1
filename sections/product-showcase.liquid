@@ -53,36 +53,35 @@
         </div>
       </div>
 
-      <!-- Right Buy Box -->
+      <!-- Right Buy Box with Dynamic Blocks -->
       <div class="lg:col-span-6 space-y-6 bg-surface-container-lowest p-6 sm:p-8 rounded-3xl shadow-sm border border-surface-container">
-        <div class="space-y-2">
-          <div class="inline-flex items-center gap-2 bg-secondary-container text-on-surface px-3 py-1 rounded-full text-xs font-bold">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-            For Hair Fall & Weak Hair
-          </div>
-          <h3 class="font-serif text-2xl sm:text-3xl text-on-surface font-semibold pt-1">
-            {{ current_product.title | default: 'HairRevive™ Anti Hair Fall Shampoo' }}
-          </h3>
-          <div class="flex items-baseline gap-3 pt-1">
-            <span class="font-serif text-3xl sm:text-4xl text-on-surface font-bold" id="shopify-active-price">
-              {{ current_product.price | default: 2499 | money }}
-            </span>
-          </div>
-        </div>
-
         {% if section.blocks.size > 0 %}
           {% for block in section.blocks %}
             {% case block.type %}
               {% when '@app' %}
-                <div {{ block.shopify_attributes }}>
-                  {% render block %}
-                </div>
+                <div {{ block.shopify_attributes }}>{% render block %}</div>
               {% when '@theme' %}
-                <div {{ block.shopify_attributes }}>
-                  {% content_for 'block', type: block.type, id: block.id %}
+                <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
+
+              {% when 'badge' %}
+                <div class="inline-flex items-center gap-2 bg-secondary-container text-on-surface px-3 py-1 rounded-full text-xs font-bold" {{ block.shopify_attributes }}>
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  {{ block.settings.badge | default: 'For Hair Fall & Weak Hair' }}
                 </div>
+
+              {% when 'title' %}
+                <h3 class="font-serif text-2xl sm:text-3xl text-on-surface font-semibold pt-1" {{ block.shopify_attributes }}>
+                  {{ current_product.title | default: 'HairRevive™ Anti Hair Fall Shampoo' }}
+                </h3>
+
+              {% when 'price' %}
+                <div class="flex items-baseline gap-3 pt-1" {{ block.shopify_attributes }}>
+                  <span class="font-serif text-3xl sm:text-4xl text-on-surface font-bold" id="shopify-active-price">
+                    {{ current_product.price | default: 2499 | money }}
+                  </span>
+                </div>
+
               {% when 'size_selector' %}
-                <!-- 3 Size Tier Options -->
                 <div class="space-y-3" {{ block.shopify_attributes }}>
                   <span class="font-bold text-on-surface text-sm uppercase tracking-wider block">Select Size</span>
                   <div class="grid grid-cols-3 gap-3">
@@ -103,8 +102,8 @@
                     </div>
                   </div>
                 </div>
+
               {% when 'coupon_banner' %}
-                <!-- Promo Discount Banner -->
                 <div onclick="copyCoupon('HAIR15', document.getElementById('showcase-copy-btn'))" class="bg-tertiary-fixed/40 border border-tertiary-fixed rounded-2xl p-4 flex items-center justify-between gap-3 shadow-sm cursor-pointer hover:bg-tertiary-fixed/60 transition-colors" {{ block.shopify_attributes }}>
                   <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed flex-shrink-0 shadow-sm">
@@ -120,8 +119,8 @@
                     <span>Copy</span>
                   </button>
                 </div>
+
               {% when 'buy_buttons' %}
-                <!-- Add to cart CTA -->
                 <div {{ block.shopify_attributes }}>
                   <button type="button" onclick="shopifyAddToCart('{{ current_product.selected_or_first_available_variant.id }}')"
                           class="w-full bg-primary text-on-primary font-bold text-sm sm:text-base uppercase tracking-wider py-4 px-8 rounded-full shadow-lg hover:bg-primary-container transition-all flex items-center justify-center gap-3 active:scale-[0.99]">
@@ -129,9 +128,29 @@
                     <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
                   </button>
                 </div>
+
+              {% when 'custom_liquid' %}
+                <div {{ block.shopify_attributes }}>
+                  {{ block.settings.custom_liquid }}
+                </div>
             {% endcase %}
           {% endfor %}
         {% else %}
+          <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 bg-secondary-container text-on-surface px-3 py-1 rounded-full text-xs font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              For Hair Fall & Weak Hair
+            </div>
+            <h3 class="font-serif text-2xl sm:text-3xl text-on-surface font-semibold pt-1">
+              {{ current_product.title | default: 'HairRevive™ Anti Hair Fall Shampoo' }}
+            </h3>
+            <div class="flex items-baseline gap-3 pt-1">
+              <span class="font-serif text-3xl sm:text-4xl text-on-surface font-bold" id="shopify-active-price">
+                {{ current_product.price | default: 2499 | money }}
+              </span>
+            </div>
+          </div>
+
           <!-- 3 Size Tier Options -->
           <div class="space-y-3">
             <span class="font-bold text-on-surface text-sm uppercase tracking-wider block">Select Size</span>
@@ -186,6 +205,7 @@
 {% schema %}
 {
   "name": "Product showcase",
+  "tag": "section",
   "settings": [
     {
       "type": "text",
@@ -197,7 +217,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "HairRevive\u2122 Anti Hair Fall Shampoo"
+      "default": "HairRevive™ Anti Hair Fall Shampoo"
     },
     {
       "type": "text",
@@ -211,17 +231,35 @@
       "label": "Select Featured Product"
     }
   ],
-  "presets": [
-    {
-      "name": "Product showcase"
-    }
-  ],
   "blocks": [
     {
       "type": "@app"
     },
     {
       "type": "@theme"
+    },
+    {
+      "type": "badge",
+      "name": "Benefit Badge",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge Text",
+          "default": "For Hair Fall & Weak Hair"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "Product Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Product Price",
+      "limit": 1
     },
     {
       "type": "size_selector",
@@ -237,6 +275,40 @@
       "type": "buy_buttons",
       "name": "Buy Buttons",
       "limit": 1
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom Liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom Liquid"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "badge" },
+      { "type": "title" },
+      { "type": "price" },
+      { "type": "size_selector" },
+      { "type": "coupon_banner" },
+      { "type": "buy_buttons" }
+    ]
+  },
+  "presets": [
+    {
+      "name": "Product showcase",
+      "blocks": [
+        { "type": "badge" },
+        { "type": "title" },
+        { "type": "price" },
+        { "type": "size_selector" },
+        { "type": "coupon_banner" },
+        { "type": "buy_buttons" }
+      ]
     }
   ]
 }

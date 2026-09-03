@@ -115,6 +115,20 @@
         "subheading": "Strengthens cellular roots & activates sustained healthy hair cycles."
       },
       "blocks": {
+        "badge": {
+          "type": "badge",
+          "settings": {
+            "badge": "For Hair Fall & Weak Hair"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
         "size_selector": {
           "type": "size_selector",
           "settings": {}
@@ -129,6 +143,9 @@
         }
       },
       "block_order": [
+        "badge",
+        "title",
+        "price",
         "size_selector",
         "coupon_banner",
         "buy_buttons"

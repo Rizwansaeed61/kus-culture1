@@ -7,19 +7,62 @@
     </div>
 
     <div class="space-y-3">
-      {% for block in section.blocks %}
-        <div class="bg-surface-container-lowest rounded-2xl p-5 shadow-sm border border-surface-container" {{ block.shopify_attributes }}>
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when '@app' %}
+              <div {{ block.shopify_attributes }}>{% render block %}</div>
+            {% when '@theme' %}
+              <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
+            {% when 'faq_item' %}
+              <div class="bg-surface-container-lowest rounded-2xl p-5 shadow-sm border border-surface-container" {{ block.shopify_attributes }}>
+                <details class="group cursor-pointer">
+                  <summary class="flex items-center justify-between font-semibold text-on-surface text-base list-none">
+                    <span>{{ block.settings.question }}</span>
+                    <span class="material-symbols-outlined text-[20px] text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+                  </summary>
+                  <div class="pt-3 text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+                    {{ block.settings.answer }}
+                  </div>
+                </details>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      {% else %}
+        <div class="bg-surface-container-lowest rounded-2xl p-5 shadow-sm border border-surface-container">
           <details class="group cursor-pointer">
             <summary class="flex items-center justify-between font-semibold text-on-surface text-base list-none">
-              <span>{{ block.settings.question }}</span>
+              <span>How often should I use it?</span>
               <span class="material-symbols-outlined text-[20px] text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
             </summary>
             <div class="pt-3 text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-              {{ block.settings.answer }}
+              3–4 times per week is ideal for most hair types. Gentle enough for daily use thanks to our sulfate-free botanical formulation that respects the natural scalp lipid barrier.
             </div>
           </details>
         </div>
-      {% endfor %}
+        <div class="bg-surface-container-lowest rounded-2xl p-5 shadow-sm border border-surface-container">
+          <details class="group cursor-pointer">
+            <summary class="flex items-center justify-between font-semibold text-on-surface text-base list-none">
+              <span>Is it suitable for colored hair?</span>
+              <span class="material-symbols-outlined text-[20px] text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="pt-3 text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              Yes, 100%. All KUS CULTURE formulas are color-safe, keratin-safe, and free of stripping sulfates and harsh parabens.
+            </div>
+          </details>
+        </div>
+        <div class="bg-surface-container-lowest rounded-2xl p-5 shadow-sm border border-surface-container">
+          <details class="group cursor-pointer">
+            <summary class="flex items-center justify-between font-semibold text-on-surface text-base list-none">
+              <span>When will I see results?</span>
+              <span class="material-symbols-outlined text-[20px] text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="pt-3 text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              Most users notice reduced shedding and hair trapped in brushes within 14 to 21 days. Noticeable new baby hair growth and thickening typically appear after 6 to 8 weeks.
+            </div>
+          </details>
+        </div>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -27,20 +70,55 @@
 {% schema %}
 {
   "name": "FAQ accordion",
+  "tag": "section",
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "Everything You Need to Know" },
     { "type": "text", "id": "subheading", "label": "Subheading", "default": "Science-backed answers to your hair and scalp questions." }
   ],
   "blocks": [
+    { "type": "@app" },
+    { "type": "@theme" },
     {
       "type": "faq_item",
       "name": "FAQ Item",
       "settings": [
         { "type": "text", "id": "question", "label": "Question", "default": "How often should I use it?" },
-        { "type": "textarea", "id": "answer", "label": "Answer", "default": "3–4 times per week is ideal for most hair types. Gentle enough for daily use thanks to our sulfate-free botanical formulation." }
+        { "type": "textarea", "id": "answer", "label": "Answer", "default": "3–4 times per week is ideal for most hair types. Gentle enough for daily use thanks to our sulfate-free botanical formulation that respects the natural scalp lipid barrier." }
       ]
     }
   ],
+  "default": {
+    "blocks": [
+      {
+        "type": "faq_item",
+        "settings": {
+          "question": "How often should I use it?",
+          "answer": "3–4 times per week is ideal for most hair types. Gentle enough for daily use thanks to our sulfate-free botanical formulation that respects the natural scalp lipid barrier."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "question": "Is it suitable for colored hair?",
+          "answer": "Yes, 100%. All KUS CULTURE formulas are color-safe, keratin-safe, and free of stripping sulfates and harsh parabens."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "question": "When will I see results?",
+          "answer": "Most users notice reduced shedding and hair trapped in brushes within 14 to 21 days. Noticeable new baby hair growth and thickening typically appear after 6 to 8 weeks."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "question": "Is it safe for sensitive scalps?",
+          "answer": "Formulated specifically for reactive scalps with aloe hydrosol and anti-inflammatory Australian botanical extracts. Dermatologist-tested, hypoallergenic, and non-comedogenic."
+        }
+      }
+    ]
+  },
   "presets": [
     {
       "name": "FAQ accordion",
