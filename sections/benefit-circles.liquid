@@ -6,8 +6,6 @@
           {% case block.type %}
             {% when '@app' %}
               <div {{ block.shopify_attributes }}>{% render block %}</div>
-            {% when '@theme' %}
-              <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
             {% when 'benefit_item' %}
               <div class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm" {{ block.shopify_attributes }}>
                 <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
@@ -59,7 +57,6 @@
   "tag": "section",
   "blocks": [
     { "type": "@app" },
-    { "type": "@theme" },
     {
       "type": "benefit_item",
       "name": "Benefit Badge",

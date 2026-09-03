@@ -9,9 +9,7 @@
                 {% render block %}
               </div>
 
-            {% when '@theme' %}
               <div class="lg:col-span-12" {{ block.shopify_attributes }}>
-                {% content_for 'block', type: block.type, id: block.id %}
               </div>
 
             {% when 'brand_information' %}
@@ -216,7 +214,6 @@
       "type": "@app"
     },
     {
-      "type": "@theme"
     },
     {
       "type": "brand_information",

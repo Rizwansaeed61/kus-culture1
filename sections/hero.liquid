@@ -11,11 +11,6 @@
                   {% render block %}
                 </div>
 
-              {% when '@theme' %}
-                <div {{ block.shopify_attributes }}>
-                  {% content_for 'block', type: block.type, id: block.id %}
-                </div>
-
               {% when 'badge' %}
                 <div class="flex flex-wrap items-center gap-2" {{ block.shopify_attributes }}>
                   <span class="inline-flex items-center gap-1.5 bg-surface-container px-3.5 py-1 rounded-full text-xs uppercase tracking-wider text-on-surface font-semibold shadow-sm">
@@ -150,7 +145,6 @@
   ],
   "blocks": [
     { "type": "@app" },
-    { "type": "@theme" },
     {
       "type": "badge",
       "name": "Badge & Rating",

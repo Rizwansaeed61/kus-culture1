@@ -6,8 +6,6 @@
           {% case block.type %}
             {% when '@app' %}
               <div {{ block.shopify_attributes }}>{% render block %}</div>
-            {% when '@theme' %}
-              <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
             {% when 'trust_item' %}
               <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-surface-container" {{ block.shopify_attributes }}>
                 <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
@@ -68,7 +66,6 @@
   "tag": "section",
   "blocks": [
     { "type": "@app" },
-    { "type": "@theme" },
     {
       "type": "trust_item",
       "name": "Trust Guarantee Item",

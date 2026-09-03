@@ -12,8 +12,6 @@
           {% case block.type %}
             {% when '@app' %}
               <div {{ block.shopify_attributes }}>{% render block %}</div>
-            {% when '@theme' %}
-              <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
             {% when 'active_card' %}
               <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3" {{ block.shopify_attributes }}>
                 <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
@@ -76,7 +74,6 @@
   ],
   "blocks": [
     { "type": "@app" },
-    { "type": "@theme" },
     {
       "type": "active_card",
       "name": "Botanical Active Card",

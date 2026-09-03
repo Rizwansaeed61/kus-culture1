@@ -5,8 +5,6 @@
         {% case block.type %}
           {% when '@app' %}
             <div {{ block.shopify_attributes }}>{% render block %}</div>
-          {% when '@theme' %}
-            <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
           {% when 'heading' %}
             <div class="space-y-2" {{ block.shopify_attributes }}>
               {% if block.settings.eyebrow != blank %}
@@ -53,7 +51,6 @@
   ],
   "blocks": [
     { "type": "@app" },
-    { "type": "@theme" },
     {
       "type": "heading",
       "name": "Heading",

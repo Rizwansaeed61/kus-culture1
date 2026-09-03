@@ -140,9 +140,7 @@
                   {% render block %}
                 </div>
 
-              {% when '@theme' %}
                 <div {{ block.shopify_attributes }}>
-                  {% content_for 'block', type: block.type, id: block.id %}
                 </div>
 
               {% when 'title' %}
@@ -522,7 +520,6 @@ function applyBundlePill(count, discount) {
       "type": "@app"
     },
     {
-      "type": "@theme"
     },
     {
       "type": "title",

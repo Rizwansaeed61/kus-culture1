@@ -60,8 +60,6 @@
             {% case block.type %}
               {% when '@app' %}
                 <div {{ block.shopify_attributes }}>{% render block %}</div>
-              {% when '@theme' %}
-                <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
 
               {% when 'badge' %}
                 <div class="inline-flex items-center gap-2 bg-secondary-container text-on-surface px-3 py-1 rounded-full text-xs font-bold" {{ block.shopify_attributes }}>
@@ -236,7 +234,6 @@
       "type": "@app"
     },
     {
-      "type": "@theme"
     },
     {
       "type": "badge",

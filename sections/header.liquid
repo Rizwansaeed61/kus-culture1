@@ -45,8 +45,6 @@
             {% case block.type %}
               {% when '@app' %}
                 <div {{ block.shopify_attributes }}>{% render block %}</div>
-              {% when '@theme' %}
-                <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
               {% when 'navigation_link' %}
                 <a href="{{ block.settings.url | default: '#' }}" class="text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors" {{ block.shopify_attributes }}>
                   {{ block.settings.title }}
@@ -155,7 +153,6 @@ function toggleMobileMenu() {
       "type": "@app"
     },
     {
-      "type": "@theme"
     },
     {
       "type": "navigation_link",

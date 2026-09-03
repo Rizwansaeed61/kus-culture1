@@ -12,8 +12,6 @@
           {% case block.type %}
             {% when '@app' %}
               <div {{ block.shopify_attributes }}>{% render block %}</div>
-            {% when '@theme' %}
-              <div {{ block.shopify_attributes }}>{% content_for 'block', type: block.type, id: block.id %}</div>
             {% when 'faq_item' %}
               <div class="bg-surface-container-lowest rounded-2xl p-5 shadow-sm border border-surface-container" {{ block.shopify_attributes }}>
                 <details class="group cursor-pointer">
@@ -77,7 +75,6 @@
   ],
   "blocks": [
     { "type": "@app" },
-    { "type": "@theme" },
     {
       "type": "faq_item",
       "name": "FAQ Item",
