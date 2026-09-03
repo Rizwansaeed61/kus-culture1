@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-faq",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "Answers to Your Scalp Ecology & Routine Questions",
+        "search_placeholder": "Search questions by keyword...",
+        "support_email": "concierge@kusculture.com",
+        "support_hours": "Mon-Fri: 9am - 5pm AEST"
+      },
+      "blocks": {
+        "faq-1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How often should I use the HairRevive Shampoo?",
+            "answer": "We recommend using it 3 to 4 times per week for optimal follicular stimulation without stripping natural scalp lipids.",
+            "category": "routine"
+          }
+        },
+        "faq-2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is the formula safe for color-treated or bleached hair?",
+            "answer": "Yes, 100%. Our formulations are sulfate-free, keratin-safe, and color-protective.",
+            "category": "ingredients"
+          }
+        },
+        "faq-3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does shipping take within Australia?",
+            "answer": "Orders are dispatched within 24 hours from Melbourne. Express delivery takes 1-3 business days.",
+            "category": "shipping"
+          }
+        },
+        "faq-4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does the 30-Day Money-Back Guarantee work?",
+            "answer": "If you are not fully satisfied with your results within 30 days of delivery, return the bottle for a full product refund.",
+            "category": "guarantee"
+          }
+        }
+      },
+      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4"]
+    },
+    "routine_regimen": {
+      "type": "routine-regimen",
+      "settings": {}
+    },
+    "trust_guarantee": {
+      "type": "trust-guarantee",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "routine_regimen",
+    "trust_guarantee"
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "badge": "Clinical Clean Hair Care",
+        "rating_badge": "★ 4.9 (2,341 Verified Reviews)",
+        "eyebrow": "Australian Botanical Science",
+        "heading": "Clinical Science Meets Clean Botanical Luxury",
+        "body": "Targeted hair ecology formulas clinically proven to reduce hair fall by 89% and restore thick, voluminous density from follicular root to tip. Dermatologist-approved, hormone-safe, and salon-grade.",
+        "cta_label": "Shop Collection",
+        "cta_link": "#bestseller-suite"
+      }
+    },
+    "benefit_circles": {
+      "type": "benefit-circles",
+      "settings": {
+        "b1_title": "Hair Fall Control",
+        "b1_sub": "Fortifies roots & anchors shafts",
+        "b2_title": "Growth Support",
+        "b2_sub": "Stimulates dormant micro-follicles",
+        "b3_title": "Adds Mirror Shine",
+        "b3_sub": "Locks cuticle moisture without weight",
+        "b4_title": "Deep Cleanse",
+        "b4_sub": "Dissolves sebum & residue buildup"
+      }
+    },
+    "product_showcase": {
+      "type": "product-showcase",
+      "settings": {
+        "eyebrow": "Clinical Efficacy Showcase",
+        "heading": "HairRevive™ Anti Hair Fall Shampoo",
+        "subheading": "Strengthens cellular roots & activates sustained healthy hair cycles."
+      }
+    },
+    "routine_regimen": {
+      "type": "routine-regimen",
+      "settings": {
+        "eyebrow": "Synergistic 4-Step Regimen",
+        "heading": "Complete Your Hair Growth Routine",
+        "subheading": "Stronger hair • Less breakage • Faster follicular results"
+      }
+    },
+    "science_actives": {
+      "type": "science-actives",
+      "settings": {
+        "eyebrow": "Cellular Trichology",
+        "heading": "Pure Australian Actives & Clinical Peptides",
+        "subheading": "Every droplet is calibrated to nourish without stripping or suffocating the scalp microbiome."
+      }
+    },
+    "trust_guarantee": {
+      "type": "trust-guarantee",
+      "settings": {
+        "t1_title": "Free Shipping",
+        "t1_sub": "On orders over $50+",
+        "t2_title": "Dermatologist",
+        "t2_sub": "Approved formula",
+        "t3_title": "30-Day Returns",
+        "t3_sub": "Money back guarantee",
+        "t4_title": "Secure Checkout",
+        "t4_sub": "256-bit SSL encryption"
+      }
+    },
+    "testimonials_ugc": {
+      "type": "testimonials-ugc",
+      "settings": {
+        "heading": "What Customers Say",
+        "quote": "My hair fall reduced visibly in 3 weeks. It smells fresh, clean and does not dry my scalp.",
+        "author": "Verified Purchaser • Priya M."
+      }
+    },
+    "hair_quiz_callout": {
+      "type": "hair-quiz-callout",
+      "settings": {
+        "heading": "Find Your Custom Hair Care Regimen",
+        "subheading": "Take our 60-second diagnostic formulated by Australian dermatologists to pinpoint your scalp type, shed factors, and targeted active botanical balance."
+      }
+    },
+    "faq_accordion": {
+      "type": "faq-accordion",
+      "settings": {
+        "heading": "Everything You Need to Know",
+        "subheading": "Science-backed answers to your hair and scalp questions."
+      },
+      "blocks": {
+        "faq-1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How often should I use it?",
+            "answer": "3–4 times per week is ideal for most hair types. Gentle enough for daily use thanks to our sulfate-free botanical formulation that respects the natural scalp lipid barrier."
+          }
+        },
+        "faq-2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it suitable for colored hair?",
+            "answer": "Yes, 100%. All KUS CULTURE formulas are color-safe, keratin-safe, and free of stripping sulfates and harsh parabens."
+          }
+        },
+        "faq-3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When will I see results?",
+            "answer": "Most users notice reduced shedding and hair trapped in brushes within 14 to 21 days. Noticeable new baby hair growth and thickening typically appear after 6 to 8 weeks."
+          }
+        },
+        "faq-4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it safe for sensitive scalps?",
+            "answer": "Formulated specifically for reactive scalps with aloe hydrosol and anti-inflammatory Australian botanical extracts. Dermatologist-tested, hypoallergenic, and non-comedogenic."
+          }
+        }
+      },
+      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4"]
+    }
+  },
+  "order": [
+    "hero",
+    "benefit_circles",
+    "product_showcase",
+    "routine_regimen",
+    "science_actives",
+    "trust_guarantee",
+    "testimonials_ugc",
+    "hair_quiz_callout",
+    "faq_accordion"
+  ]
+}

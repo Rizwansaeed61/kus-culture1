@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "settings": {
+        "heading": "Your Hair Care Ritual Bag",
+        "subheading": "Review your clinical formulas before proceeding to encrypted checkout.",
+        "empty_title": "Your Ritual Bag is Empty",
+        "empty_text": "Discover our targeted Australian active formulations to begin your 21-day hair density journey."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

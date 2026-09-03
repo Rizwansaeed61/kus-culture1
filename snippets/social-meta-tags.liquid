@@ -1,0 +1,25 @@
+{% comment %}
+  Scents 'N Stories - Open Graph and Twitter Card Meta Tags
+{% endcomment %}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title | default: shop.name }}">
+<meta property="og:type" content="{% if template.name == 'product' %}product{% else %}website{% endif %}">
+<meta property="og:description" content="{{ page_description | default: shop.description | default: 'Scents N Stories Luxury Artisanal Parfumerie' | escape }}">
+
+{% if template.name == 'product' %}
+  <meta property="og:price:amount" content="{{ product.price | money_without_currency | remove: ',' }}">
+  <meta property="og:price:currency" content="{{ cart.currency.iso_code | default: 'PKR' }}">
+  {% if product.featured_image %}
+    <meta property="og:image" content="http:{{ product.featured_image | image_url: width: 1200 }}">
+    <meta property="og:image:secure_url" content="https:{{ product.featured_image | image_url: width: 1200 }}">
+  {% endif %}
+{% elsif page_image %}
+  <meta property="og:image" content="http:{{ page_image | image_url: width: 1200 }}">
+  <meta property="og:image:secure_url" content="https:{{ page_image | image_url: width: 1200 }}">
+{% endif %}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title | default: shop.name }}">
+<meta name="twitter:description" content="{{ page_description | default: shop.description | escape }}">

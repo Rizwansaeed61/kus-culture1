@@ -1,0 +1,121 @@
+<section class="hero-section w-full relative overflow-hidden bg-gradient-to-b from-surface-container-low via-surface to-surface-container-low py-12 lg:py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 bg-surface-container px-3.5 py-1 rounded-full text-xs uppercase tracking-wider text-on-surface font-semibold shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            {{ section.settings.badge | default: 'Clinical Clean Hair Care' }}
+          </span>
+          <span class="inline-flex items-center gap-1 bg-surface-variant text-on-surface px-3.5 py-1 rounded-full text-xs uppercase tracking-wider font-semibold shadow-sm">
+            {{ section.settings.rating_badge | default: '★ 4.9 (2,341 Verified Reviews)' }}
+          </span>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-sm tracking-widest text-on-surface-variant uppercase font-semibold">{{ section.settings.eyebrow | default: 'Australian Botanical Science' }}</p>
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-on-surface tracking-tight leading-tight">
+            {{ section.settings.heading | default: 'Clinical Science Meets Clean Botanical Luxury' }}
+          </h1>
+        </div>
+
+        <p class="text-base sm:text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+          {{ section.settings.body | default: 'Targeted hair ecology formulas clinically proven to reduce hair fall by 89% and restore thick, voluminous density from follicular root to tip. Dermatologist-approved, hormone-safe, and salon-grade.' }}
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="{{ section.settings.cta_link | default: '#bestseller-suite' }}" class="inline-flex items-center justify-center gap-2 bg-primary text-on-primary font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-lg hover:bg-primary-container transition-all">
+            <span>{{ section.settings.cta_label | default: 'Shop Collection' }}</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </a>
+          <a href="#hair-quiz" class="inline-flex items-center justify-center gap-2 bg-surface-container text-on-surface font-bold text-sm px-7 py-4 rounded-full hover:bg-surface-container-high transition-all shadow-sm">
+            <span class="material-symbols-outlined text-[18px] text-tertiary">quiz</span>
+            <span>Take 60s Hair Diagnostic</span>
+          </a>
+        </div>
+
+        <div class="pt-3 flex flex-wrap items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 bg-surface-container-lowest px-3.5 py-1 rounded-full text-on-surface text-xs shadow-sm">
+            <span class="material-symbols-outlined text-[14px]">science</span>
+            Dermatologist Tested
+          </span>
+          <span class="inline-flex items-center gap-1.5 bg-tertiary-fixed text-on-tertiary-fixed px-3.5 py-1 rounded-full text-xs font-bold shadow-sm">
+            <span class="material-symbols-outlined text-[14px]">shield</span>
+            Sulfate-Free
+          </span>
+          <span class="inline-flex items-center gap-1.5 bg-surface-container-lowest px-3.5 py-1 rounded-full text-on-surface text-xs shadow-sm">
+            <span class="material-symbols-outlined text-[14px]">water_drop</span>
+            Safe For Colored Hair
+          </span>
+          <span class="inline-flex items-center gap-1.5 bg-surface-container-lowest px-3.5 py-1 rounded-full text-on-surface text-xs shadow-sm">
+            <span class="material-symbols-outlined text-[14px]">eco</span>
+            Made in Australia
+          </span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 relative">
+        <div class="relative mx-auto max-w-md bg-gradient-to-b from-surface-container-low via-surface-container-lowest to-surface-variant rounded-3xl p-6 shadow-xl overflow-hidden border border-surface-container">
+          <div class="absolute top-4 left-4 z-10">
+            <span class="inline-flex items-center gap-1 bg-primary text-on-primary px-3 py-1 rounded-full text-[11px] tracking-wider uppercase font-bold shadow-md">
+              <span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+              BESTSELLER #1
+            </span>
+          </div>
+
+          <div class="pt-8 pb-4 flex flex-col items-center justify-center">
+            <div class="relative w-full max-w-[280px] h-[340px] flex items-center justify-center">
+              {% if section.settings.image != blank %}
+                <img class="relative z-10 h-full w-auto object-contain drop-shadow-2xl" src="{{ section.settings.image | image_url: width: 600 }}" alt="{{ section.settings.heading }}"/>
+              {% else %}
+                <img class="relative z-10 h-full w-auto object-contain drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFCR5RYUEWtEvP01b_APRd4TmRQCmm8fj7LR5TxKDIlAprC8TLOJyYpDD6xW_tulRoQF95ZTZ1e6Q877YaiYcjBaPWej6RAzcP592WD7MOJcFMxzM6_l1U-8GzXNzUcHybWbYWCSmLAFSV16Zv5ZCtJswcIrt2uaOObILBILYed2uXtBbmev8dfKQY4ClNfwVb00DexL7sdyJ6HASj-qxWwTaYp7xevk3DXjpPGYL_rbxietzICsZA" alt="KUS CULTURE Bottle"/>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="flex items-center justify-center">
+            <div class="inline-flex items-center gap-2 bg-surface/90 backdrop-blur-md px-4 py-1.5 rounded-full shadow-md">
+              <span class="material-symbols-outlined text-[16px] text-on-surface">visibility</span>
+              <span class="text-xs text-on-surface font-semibold">218 viewing right now</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 bg-surface-container-lowest/80 backdrop-blur-sm rounded-2xl p-3 grid grid-cols-3 gap-2 text-center border border-surface-container">
+            <div>
+              <p class="text-lg font-bold text-on-surface">-89%</p>
+              <p class="text-[11px] text-on-surface-variant font-medium">Hair Fall</p>
+            </div>
+            <div class="bg-surface-container-low rounded-xl py-1">
+              <p class="text-lg font-bold text-on-surface">3x</p>
+              <p class="text-[11px] text-on-surface-variant font-medium">Follicle Density</p>
+            </div>
+            <div>
+              <p class="text-lg font-bold text-on-surface">21 Days</p>
+              <p class="text-[11px] text-on-surface-variant font-medium">Visible Roots</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Top Badge", "default": "Clinical Clean Hair Care" },
+    { "type": "text", "id": "rating_badge", "label": "Rating Badge", "default": "★ 4.9 (2,341 Verified Reviews)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow Text", "default": "Australian Botanical Science" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Clinical Science Meets Clean Botanical Luxury" },
+    { "type": "textarea", "id": "body", "label": "Description", "default": "Targeted hair ecology formulas clinically proven to reduce hair fall by 89% and restore thick, voluminous density from follicular root to tip." },
+    { "type": "text", "id": "cta_label", "label": "Button Label", "default": "Shop Collection" },
+    { "type": "url", "id": "cta_link", "label": "Button Link" },
+    { "type": "image_picker", "id": "image", "label": "Hero Product Image" }
+  ],
+  "presets": [
+    { "name": "Hero" }
+  ]
+}
+{% endschema %}

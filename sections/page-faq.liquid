@@ -1,0 +1,78 @@
+{% render 'faq-content' %}
+
+{% schema %}
+{
+  "name": "FAQ page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Answers to Your Scalp Ecology & Routine Questions"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search Placeholder",
+      "default": "Search questions by keyword..."
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "label": "Support Email",
+      "default": "concierge@kusculture.com"
+    },
+    {
+      "type": "text",
+      "id": "support_hours",
+      "label": "Support Hours",
+      "default": "Mon-Fri: 9am - 5pm AEST"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How often should I use the HairRevive Shampoo?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "We recommend using it 3 to 4 times per week for optimal follicular stimulation."
+        },
+        {
+          "type": "select",
+          "id": "category",
+          "label": "Category",
+          "options": [
+            { "value": "routine", "label": "Hair Fall & Routine" },
+            { "value": "ingredients", "label": "Ingredients & Safety" },
+            { "value": "shipping", "label": "Shipping & Delivery" },
+            { "value": "guarantee", "label": "Returns & Guarantee" }
+          ],
+          "default": "routine"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

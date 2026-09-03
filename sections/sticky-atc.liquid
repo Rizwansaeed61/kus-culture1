@@ -1,0 +1,20 @@
+<div id="shopify-sticky-atc" class="fixed bottom-4 left-4 right-4 z-40 max-w-lg mx-auto md:hidden transform translate-y-full transition-transform duration-300 pointer-events-none">
+  <div class="pointer-events-auto bg-surface/95 backdrop-blur-xl rounded-full p-1.5 shadow-2xl border border-surface-container">
+    <button type="button" onclick="openCartDrawer()" class="w-full bg-primary text-on-primary font-bold text-xs uppercase tracking-wider py-3.5 px-6 rounded-full shadow-md flex items-center justify-center gap-2">
+      <span>{{ section.settings.price | default: '$24.99' }}</span>
+      <span class="opacity-40">|</span>
+      <span>{{ section.settings.button_text | default: 'ADD TO CART' }}</span>
+      <span class="material-symbols-outlined text-[16px]">shopping_bag</span>
+    </button>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sticky cart bar",
+  "settings": [
+    { "type": "text", "id": "price", "label": "Price Display", "default": "$24.99" },
+    { "type": "text", "id": "button_text", "label": "Button Text", "default": "ADD TO CART" }
+  ]
+}
+{% endschema %}

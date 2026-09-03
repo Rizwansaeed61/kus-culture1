@@ -1,0 +1,342 @@
+<section class="w-full bg-surface py-6 sm:py-10" id="product-fallback-stage">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <!-- Breadcrumbs & Batch Indicator -->
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <nav aria-label="Breadcrumb" class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+        <a class="hover:text-on-surface transition-colors" href="{{ routes.root_url }}">Home</a>
+        <span>/</span>
+        <a class="hover:text-on-surface transition-colors" href="{{ routes.all_products_collection_url }}">Hair Care</a>
+        <span>/</span>
+        <span class="text-on-surface font-semibold">HairRevive™ Anti Hair Fall Shampoo</span>
+      </nav>
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-secondary"></span>
+          Clinical Batch #KC-884
+        </span>
+        <span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
+          Australian Made • TGA Certified
+        </span>
+      </div>
+    </div>
+
+    <!-- Main Desktop 2-Column Product Stage -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      
+      <!-- LEFT COLUMN: Media Gallery & Clinical Metrics -->
+      <div class="lg:col-span-7 space-y-6">
+        <!-- Primary Showcase Bottle Canvas -->
+        <div class="relative w-full rounded-3xl bg-surface-container-low overflow-hidden shadow-sm aspect-[4/5] flex items-center justify-center border border-surface-container">
+          <div class="absolute inset-0 bg-gradient-to-b from-surface-container via-transparent to-surface-container-low opacity-60 pointer-events-none"></div>
+
+          <!-- Badges Stack -->
+          <div class="absolute top-4 left-4 z-10 flex flex-col items-start gap-2">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-primary text-on-primary text-[11px] uppercase tracking-wider font-bold shadow-md">
+              <span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+              BESTSELLER
+            </span>
+          </div>
+
+          <!-- Dermatological Claims Pills -->
+          <div class="absolute top-4 right-4 z-10 flex flex-col items-end gap-2">
+            <span class="px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-xs font-bold shadow-sm">
+              Sulfate Free
+            </span>
+            <span class="px-3 py-1 rounded-full bg-surface-container-lowest text-on-surface text-xs font-semibold shadow-sm">
+              Dermatologist Tested
+            </span>
+            <span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-xs">
+              Safe for Colored Hair
+            </span>
+          </div>
+
+          <!-- Hero Bottle Photographic Placement -->
+          <div class="relative w-full h-full p-8 flex items-center justify-center">
+            <img id="main-product-img-fb" class="w-full h-full max-h-[500px] object-contain drop-shadow-2xl transition-all duration-300 hover:scale-105" alt="HairRevive Shampoo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFCR5RYUEWtEvP01b_APRd4TmRQCmm8fj7LR5TxKDIlAprC8TLOJyYpDD6xW_tulRoQF95ZTZ1e6Q877YaiYcjBaPWej6RAzcP592WD7MOJcFMxzM6_l1U-8GzXNzUcHybWbYWCSmLAFSV16Zv5ZCtJswcIrt2uaOObILBILYed2uXtBbmev8dfKQY4ClNfwVb00DexL7sdyJ6HASj-qxWwTaYp7xevk3DXjpPGYL_rbxietzICsZA"/>
+          </div>
+
+          <!-- Live Viewer Badge -->
+          <div class="absolute bottom-4 left-4 z-10">
+            <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md shadow-sm">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-error"></span>
+              </span>
+              <span class="material-symbols-outlined text-[16px] text-on-surface">visibility</span>
+              <span class="text-xs text-on-surface font-bold">218 viewing today</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thumbnail Carousel Strip -->
+        <div class="grid grid-cols-4 gap-3">
+          <button type="button" onclick="selectGalleryThumbFallback(0)" class="thumb-btn-fb relative rounded-2xl overflow-hidden aspect-square bg-surface-container-high ring-2 ring-primary p-2 transition-all flex items-center justify-center shadow-sm">
+            <img class="w-full h-full object-contain" alt="Bottle frontal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFCR5RYUEWtEvP01b_APRd4TmRQCmm8fj7LR5TxKDIlAprC8TLOJyYpDD6xW_tulRoQF95ZTZ1e6Q877YaiYcjBaPWej6RAzcP592WD7MOJcFMxzM6_l1U-8GzXNzUcHybWbYWCSmLAFSV16Zv5ZCtJswcIrt2uaOObILBILYed2uXtBbmev8dfKQY4ClNfwVb00DexL7sdyJ6HASj-qxWwTaYp7xevk3DXjpPGYL_rbxietzICsZA"/>
+          </button>
+          <button type="button" onclick="selectGalleryThumbFallback(1)" class="thumb-btn-fb relative rounded-2xl overflow-hidden aspect-square bg-surface-container-low p-2 hover:bg-surface-container transition-all flex items-center justify-center shadow-sm">
+            <img class="w-full h-full object-cover rounded-xl" alt="Lather foam texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5dPLbl_9AspIv7g5qv71UWpGLU9i0urV_7FJmao-Tf2CGl0JiCjkxBa38ZVMvAItOV8bImmwc1NLde_H0_LGMeX1hBSUnf6wMTG6qf9D90sxd3Jm6hocybSOu450MbOW1DWjDq811Jyk9A1TOO3ux9hX0WMA08gRy8wXKBb6ORN7-EMs8Cz5prLCLSgSt4P0sBrzSsyD6_3unVbllJ4WAKKe1cvop4egQ38OB9koIWLwOkQK57PeK"/>
+          </button>
+          <button type="button" onclick="selectGalleryThumbFallback(2)" class="thumb-btn-fb relative rounded-2xl overflow-hidden aspect-square bg-surface-container-low p-2 hover:bg-surface-container transition-all flex items-center justify-center shadow-sm">
+            <img class="w-full h-full object-contain" alt="Two bottles 1 Liter pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAyGZyDTaBPqqbr5mqoKMdrWI282v2mca-Nze1_lZPuIDuzO3W1rwHJ9imDLbj-VRcFnHPwjqliYxsnQn8092BdKau_BrzQz-I46onNrM1_8CIP4L3A1Ocw6fAix6C9OenDlrj-cH9C8zxk0Bttdr96oxmv5exkAVMPc4F-0Rz_rrZ8v3DEH5V8LWy7dVCFpN6dgLUJCjmLtwNhNMJ0VNd8wJ07u4Y6XTk8gfqFXm7dlpueMUE6Y_Y"/>
+          </button>
+          <button type="button" onclick="selectGalleryThumbFallback(3)" class="thumb-btn-fb relative rounded-2xl overflow-hidden aspect-square bg-surface-container-low p-2 hover:bg-surface-container transition-all flex items-center justify-center shadow-sm">
+            <img class="w-full h-full object-cover rounded-xl" alt="Customer unboxing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqr6iU4TOOAPfMrnxEUwMEvrBKs6wSFoWwlI6OW5IxmWOO9XaTPl21warGA9hP8m2EPi9-75afPTkusvNNvgCCDeKDEUtKZfP1XyynorcIjZ6ApFC2_Py4X0kjxHksOLnQIwYKKYsO1HvtlEdJkNNgx0AJKQKANelFAnBjRdgkgABu4cYOZSeIH9lOM953PqOWHOWMU3G61tYdets-KxQgeih2zBGPMlySc2QQESPF8E85IP96uokb"/>
+          </button>
+        </div>
+
+        <!-- Efficacy & Clinical Results Panel -->
+        <div class="rounded-3xl bg-surface-container-low p-6 sm:p-8 space-y-6 border border-surface-container shadow-sm">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-[11px] uppercase tracking-wider text-secondary font-bold">Clinical Study Data</span>
+              <h3 class="font-serif text-xl text-on-surface font-semibold">Measured 28-Day Scalp Results</h3>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-surface-container-high text-xs text-on-surface font-semibold">n = 142 Participants</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4">
+            <div class="rounded-2xl bg-surface-container-lowest p-4 flex flex-col items-center text-center shadow-sm border border-surface-container">
+              <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                <path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+                <path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="92, 100" stroke-linecap="round" stroke-width="3"></path>
+              </svg>
+              <span class="font-serif text-xl text-on-surface -mt-11 font-bold">92%</span>
+              <span class="text-[11px] text-on-surface-variant mt-6 leading-tight">Less hair in brush after 3 weeks</span>
+            </div>
+
+            <div class="rounded-2xl bg-surface-container-lowest p-4 flex flex-col items-center text-center shadow-sm border border-surface-container">
+              <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                <path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+                <path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="96, 100" stroke-linecap="round" stroke-width="3"></path>
+              </svg>
+              <span class="font-serif text-xl text-on-surface -mt-11 font-bold">96%</span>
+              <span class="text-[11px] text-on-surface-variant mt-6 leading-tight">Reported zero scalp dryness</span>
+            </div>
+
+            <div class="rounded-2xl bg-surface-container-lowest p-4 flex flex-col items-center text-center shadow-sm border border-surface-container">
+              <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                <path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+                <path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="88, 100" stroke-linecap="round" stroke-width="3"></path>
+              </svg>
+              <span class="font-serif text-xl text-on-surface -mt-11 font-bold">88%</span>
+              <span class="text-[11px] text-on-surface-variant mt-6 leading-tight">Increased volume & elasticity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Purchase Decision Center -->
+      <div class="lg:col-span-5 space-y-6">
+        <div>
+          <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-secondary-container text-on-surface text-xs font-bold">
+            <span class="w-2 h-2 rounded-full bg-primary"></span>
+            For Hair Fall & Weak Hair
+          </span>
+        </div>
+
+        <div class="space-y-1">
+          <h1 class="font-serif text-3xl sm:text-4xl text-on-surface leading-tight font-semibold">
+            HairRevive™ Anti Hair Fall Shampoo
+          </h1>
+          <p class="text-sm text-on-surface-variant">
+            Strengthens Roots & Promotes Healthy Growth with Native Bio-Actives
+          </p>
+        </div>
+
+        <!-- Rating Block -->
+        <div class="flex items-center gap-2 pb-1 border-b border-surface-container">
+          <div class="flex items-center text-tertiary-container">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <span class="text-sm font-bold text-on-surface">5.0</span>
+          <span class="text-xs text-on-surface-variant">
+            (2,341 Verified Reviews)
+          </span>
+        </div>
+
+        <!-- Price Display -->
+        <div class="flex items-baseline gap-3">
+          <span class="font-serif text-4xl text-on-surface font-bold" id="display-price-fb">$24.99</span>
+          <span class="text-base text-outline line-through hidden" id="display-original-price-fb">$29.99</span>
+          <span class="hidden px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-xs font-bold uppercase" id="display-savings-tag-fb">Save 10%</span>
+        </div>
+
+        <!-- Micro Benefit Circles -->
+        <div class="grid grid-cols-4 gap-2 py-2">
+          <div class="flex flex-col items-center text-center gap-1">
+            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+              <span class="material-symbols-outlined text-[20px]">shield</span>
+            </div>
+            <span class="text-[11px] text-on-surface font-medium leading-tight">Fall Control</span>
+          </div>
+          <div class="flex flex-col items-center text-center gap-1">
+            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+              <span class="material-symbols-outlined text-[20px]">spa</span>
+            </div>
+            <span class="text-[11px] text-on-surface font-medium leading-tight">Growth</span>
+          </div>
+          <div class="flex flex-col items-center text-center gap-1">
+            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+              <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+            </div>
+            <span class="text-[11px] text-on-surface font-medium leading-tight">Adds Shine</span>
+          </div>
+          <div class="flex flex-col items-center text-center gap-1">
+            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+              <span class="material-symbols-outlined text-[20px]">water_drop</span>
+            </div>
+            <span class="text-[11px] text-on-surface font-medium leading-tight">Deep Cleanse</span>
+          </div>
+        </div>
+
+        <!-- Size Selector Section -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-on-surface text-xs uppercase tracking-wider">Select Size</span>
+            <span class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Bigger = better value</span>
+          </div>
+
+          <!-- 3 Size Tier Cards -->
+          <div class="grid grid-cols-3 gap-3">
+            <div class="size-card-fb cursor-pointer rounded-2xl bg-surface-container-lowest p-3 text-left flex flex-col justify-between relative shadow-md ring-2 ring-primary transition-all border border-surface-container" id="tier-trial-fb" onclick="selectSizeFB('trial', '$24.99', null, '')">
+              <div class="w-full h-18 rounded-xl bg-surface-container-low flex items-center justify-center mb-2 p-1">
+                <img class="h-16 object-contain" alt="500ml size" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpqOjQD96gIhtADxNKjf0Zt_E0hRsozuO6Xna_vvEL4ywGHasFuSxPjqWXNYNNOYMP7OfF4jKthpPxnR6w24bnn4VvCtgpJ6IPq_5fTTiF9N_SpLVLRnlzCwVZ5Lj2RX80XfljxNVeAyk8k7o8FuBTlAR2XuihME9e_3W8zh5lUXQiDSWVwpz0QMfwKb-wbwiU6xmmu1ryKSVfL4KTDUwaMx8VClGeQfG-hxc054tdeEQst7WNsQhR"/>
+              </div>
+              <div>
+                <span class="text-[9px] text-on-surface-variant uppercase font-bold">TRIAL</span>
+                <p class="font-bold text-on-surface text-sm">500ml</p>
+                <p class="text-xs text-on-surface font-semibold">$24.99</p>
+              </div>
+            </div>
+
+            <div class="size-card-fb cursor-pointer rounded-2xl bg-surface-container-lowest p-3 text-left flex flex-col justify-between relative shadow-sm hover:shadow-md transition-all border border-surface-container" id="tier-popular-fb" onclick="selectSizeFB('popular', '$49.99', '$55.55', 'Save 10%')">
+              <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-[8px] font-extrabold uppercase whitespace-nowrap shadow-sm">
+                MOST PURCHASED
+              </span>
+              <div class="w-full h-18 rounded-xl bg-surface-container-low flex items-center justify-center mb-2 p-1 mt-1">
+                <img class="h-16 object-contain" alt="1 Liter duo set" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdUn_B_3TgD52vpLK3_gncp5pX3B5DWMTeo6b9jEQSXO516Hh60caafeLxMpv4Eua4smlkH7f0Gzw0QTQaglLNp29h_PneJ8mBUNTG5IegGUys6qhDluODmaOxj-WDo2f7XYxWkpbSXbgKJlu5jpJzVueJ44LBA-AZ1xU1WEphyE_wuKT19o0RsoagaorCWblb9SuwWeiRJ3Ly9Cd-ygij7KzHkRwdUqZlyR1fdeNDzifZeHZgIwnZ"/>
+              </div>
+              <div>
+                <span class="text-[9px] text-on-surface-variant uppercase font-bold">POPULAR</span>
+                <p class="font-bold text-on-surface text-sm">1 Liter</p>
+                <p class="text-xs text-on-surface font-semibold">$49.99</p>
+              </div>
+            </div>
+
+            <div class="size-card-fb cursor-pointer rounded-2xl bg-surface-container-lowest p-3 text-left flex flex-col justify-between relative shadow-sm hover:shadow-md transition-all border border-surface-container" id="tier-best-fb" onclick="selectSizeFB('best', '$84.99', '$106.24', 'Save 20%')">
+              <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface text-[8px] font-extrabold uppercase whitespace-nowrap shadow-sm">
+                BEST VALUE
+              </span>
+              <div class="w-full h-18 rounded-xl bg-surface-container-low flex items-center justify-center mb-2 p-1 mt-1">
+                <img class="h-16 object-contain" alt="1.5 Liter bundle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIMR4jzStSYpoO2FfE5lP3y-A3A646Hw8ORRMMQkBxUzpd-7egjsrddXqsCEnHCqP4GGhX7C2QhQKfotuXlioUtVHmw-6fpsFwR8H0z5qRVc3hpIwRLyZEX1JEXjv-IoeZN9-QEKdR-B8UAoswXYImpt7lvqYegxTZ-qNH8MxNO_l-LjJHUKFw8VC17oWJUf_8uAFJ3TPtiE7-QbpERtfe6zHWpCOlEvIiqric0AYpIVIUbEH1eQbe"/>
+              </div>
+              <div>
+                <span class="text-[9px] text-on-surface-variant uppercase font-bold">VALUE</span>
+                <p class="font-bold text-on-surface text-sm">1.5 Liter</p>
+                <p class="text-xs text-on-surface font-semibold">$84.99</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Promo Banner -->
+        <div class="rounded-2xl bg-tertiary-fixed text-on-tertiary-fixed p-4 flex items-center justify-between gap-4 shadow-sm border border-tertiary-fixed-dim">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-on-tertiary-fixed/10 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-[20px] text-on-tertiary-fixed">percent</span>
+            </div>
+            <div>
+              <p class="text-xs font-bold">Buy 3 & Get 15% OFF</p>
+              <p class="text-[11px] opacity-90">Use code: <span class="font-bold tracking-wider">HAIR15</span></p>
+            </div>
+          </div>
+          <button type="button" onclick="copyCoupon('HAIR15')" class="flex items-center gap-1 px-3 py-1 rounded-full bg-on-tertiary-fixed text-tertiary-fixed text-[11px] font-bold uppercase hover:opacity-90 transition-opacity">
+            <span class="material-symbols-outlined text-[14px]">content_copy</span>
+            <span>Copy</span>
+          </button>
+        </div>
+
+        <!-- Primary High-Impact CTA Button -->
+        <div class="space-y-2 pt-2">
+          <button type="button" onclick="openCartDrawer()" class="w-full py-4 px-8 rounded-full bg-primary text-on-primary text-xs sm:text-sm font-bold tracking-wider uppercase hover:bg-primary-container transition-all shadow-lg flex items-center justify-center gap-2 group active:scale-[0.99]">
+            <span id="cta-price-prefix-fb">$24.99</span>
+            <span class="opacity-50">|</span>
+            <span>ADD TO CART</span>
+            <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </button>
+          <p class="text-center text-xs text-on-surface-variant flex items-center justify-center gap-1.5 pt-1">
+            <span class="material-symbols-outlined text-[16px] text-secondary">eco</span>
+            100% Recyclable Bottle • Carbon Neutral Delivery
+          </p>
+        </div>
+
+        <!-- Trust Badges 2x2 Grid -->
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
+            <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
+              <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-on-surface">Free Shipping</p>
+              <p class="text-[10px] text-on-surface-variant">On orders $50+</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
+            <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface flex-shrink-0">
+              <span class="material-symbols-outlined text-[18px]">health_and_safety</span>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-on-surface">Dermatologist</p>
+              <p class="text-[10px] text-on-surface-variant">Approved formula</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function selectSizeFB(tier, price, origPrice, savings) {
+  document.querySelectorAll('.size-card-fb').forEach(card => {
+    card.classList.remove('ring-2', 'ring-primary', 'shadow-md');
+    card.classList.add('shadow-sm');
+  });
+  const el = document.getElementById('tier-' + tier + '-fb');
+  if (el) {
+    el.classList.add('ring-2', 'ring-primary', 'shadow-md');
+  }
+  const dp = document.getElementById('display-price-fb');
+  const cp = document.getElementById('cta-price-prefix-fb');
+  if (dp) dp.textContent = price;
+  if (cp) cp.textContent = price;
+}
+
+function selectGalleryThumbFallback(index) {
+  const images = [
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuBFCR5RYUEWtEvP01b_APRd4TmRQCmm8fj7LR5TxKDIlAprC8TLOJyYpDD6xW_tulRoQF95ZTZ1e6Q877YaiYcjBaPWej6RAzcP592WD7MOJcFMxzM6_l1U-8GzXNzUcHybWbYWCSmLAFSV16Zv5ZCtJswcIrt2uaOObILBILYed2uXtBbmev8dfKQY4ClNfwVb00DexL7sdyJ6HASj-qxWwTaYp7xevk3DXjpPGYL_rbxietzICsZA",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuA5dPLbl_9AspIv7g5qv71UWpGLU9i0urV_7FJmao-Tf2CGl0JiCjkxBa38ZVMvAItOV8bImmwc1NLde_H0_LGMeX1hBSUnf6wMTG6qf9D90sxd3Jm6hocybSOu450MbOW1DWjDq811Jyk9A1TOO3ux9hX0WMA08gRy8wXKBb6ORN7-EMs8Cz5prLCLSgSt4P0sBrzSsyD6_3unVbllJ4WAKKe1cvop4egQ38OB9koIWLwOkQK57PeK",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuDAyGZyDTaBPqqbr5mqoKMdrWI282v2mca-Nze1_lZPuIDuzO3W1rwHJ9imDLbj-VRcFnHPwjqliYxsnQn8092BdKau_BrzQz-I46onNrM1_8CIP4L3A1Ocw6fAix6C9OenDlrj-cH9C8zxk0Bttdr96oxmv5exkAVMPc4F-0Rz_rrZ8v3DEH5V8LWy7dVCFpN6dgLUJCjmLtwNhNMJ0VNd8wJ07u4Y6XTk8gfqFXm7dlpueMUE6Y_Y",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuCqr6iU4TOOAPfMrnxEUwMEvrBKs6wSFoWwlI6OW5IxmWOO9XaTPl21warGA9hP8m2EPi9-75afPTkusvNNvgCCDeKDEUtKZfP1XyynorcIjZ6ApFC2_Py4X0kjxHksOLnQIwYKKYsO1HvtlEdJkNNgx0AJKQKANelFAnBjRdgkgABu4cYOZSeIH9lOM953PqOWHOWMU3G61tYdets-KxQgeih2zBGPMlySc2QQESPF8E85IP96uokb"
+  ];
+  const mainImg = document.getElementById('main-product-img-fb');
+  if (mainImg && images[index]) {
+    mainImg.src = images[index];
+  }
+  document.querySelectorAll('.thumb-btn-fb').forEach((btn, i) => {
+    if (i === index) {
+      btn.classList.add('ring-2', 'ring-primary', 'bg-surface-container-high');
+      btn.classList.remove('bg-surface-container-low');
+    } else {
+      btn.classList.remove('ring-2', 'ring-primary', 'bg-surface-container-high');
+      btn.classList.add('bg-surface-container-low');
+    }
+  });
+}
+</script>

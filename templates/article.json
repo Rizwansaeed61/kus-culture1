@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-article",
+      "settings": {
+        "show_reading_time": true,
+        "reading_time": "6 min read",
+        "author_name": "Dr. Sarah Vance, Ph.D.",
+        "author_role": "Cellular Scalp Biologist & Trichologist"
+      },
+      "blocks": {
+        "author": {
+          "type": "author_box",
+          "settings": {}
+        },
+        "share": {
+          "type": "social_share",
+          "settings": {}
+        }
+      },
+      "block_order": ["author", "share"]
+    },
+    "trust_guarantee": {
+      "type": "trust-guarantee",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "trust_guarantee"
+  ]
+}

@@ -1,0 +1,52 @@
+{% render 'blog-article-content' %}
+
+{% schema %}
+{
+  "name": "Article content",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_reading_time",
+      "label": "Show reading time",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "reading_time",
+      "label": "Reading time",
+      "default": "6 min read"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author Name",
+      "default": "Dr. Sarah Vance, Ph.D."
+    },
+    {
+      "type": "text",
+      "id": "author_role",
+      "label": "Author Credentials",
+      "default": "Cellular Scalp Biologist & Trichologist"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "author_box",
+      "name": "Author Biography",
+      "limit": 1
+    },
+    {
+      "type": "social_share",
+      "name": "Social Share Buttons",
+      "limit": 1
+    }
+  ]
+}
+{% endschema %}

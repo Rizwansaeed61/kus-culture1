@@ -1,0 +1,49 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "KUS CULTURE Clean Science",
+    "theme_version": "1.1.0",
+    "theme_author": "Rizwan Saeed",
+    "theme_documentation_url": "https://github.com/Rizwansaeed61/kus-culture",
+    "theme_support_url": "https://github.com/Rizwansaeed61/kus-culture"
+  },
+  {
+    "name": "Brand Identity",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary Accent Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Surface Background Color",
+        "default": "#f8f9ff"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram URL",
+        "default": "https://instagram.com/kusculture"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok URL",
+        "default": "https://tiktok.com/@kusculture"
+      }
+    ]
+  }
+]

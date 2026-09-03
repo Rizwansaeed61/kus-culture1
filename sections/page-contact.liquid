@@ -1,0 +1,66 @@
+{% render 'contact-content' %}
+
+{% schema %}
+{
+  "name": "Contact page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Contact Concierge Desk"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Have an inquiry regarding formulas, custom orders, or your hair journey? Our trichology team in Melbourne is here to assist."
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "label": "Support Email",
+      "default": "concierge@kusculture.com"
+    },
+    {
+      "type": "text",
+      "id": "chat_status",
+      "label": "Live Chat Status",
+      "default": "Live Specialists Available (9am-6pm AEST)"
+    },
+    {
+      "type": "textarea",
+      "id": "hq_address",
+      "label": "HQ Address",
+      "default": "42 Botanical Way, South Yarra, Melbourne VIC 3141, Australia"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "contact_channel",
+      "name": "Support Channel Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Channel Title",
+          "default": "Email Support"
+        },
+        {
+          "type": "text",
+          "id": "info",
+          "label": "Details/Hours",
+          "default": "concierge@kusculture.com"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "heading": "The Hair Journal & Scalp Science",
+        "subheading": "Explore clinical dermatology research, native Australian active botanicals, and empirical guides for restoring follicular density.",
+        "badge_text": "Hair Science & Clinical Journal",
+        "featured_label": "FEATURED PROTOCOL"
+      },
+      "blocks": {
+        "article-1": {
+          "type": "article_card",
+          "settings": {
+            "title": "How to Layer Scalp Serums: AM vs PM Routines",
+            "category": "SERUM SCIENCE",
+            "read_time": "4 min read",
+            "excerpt": "Why water-based peptide formulas must precede botanical oil concentrates."
+          }
+        },
+        "article-2": {
+          "type": "article_card",
+          "settings": {
+            "title": "Why Sulfate-Free is Non-Negotiable for Color-Treated Hair",
+            "category": "COLOR CARE",
+            "read_time": "5 min read",
+            "excerpt": "Spectroscopic analysis shows sulfates strip pigment molecules 3.8x faster."
+          }
+        },
+        "article-3": {
+          "type": "article_card",
+          "settings": {
+            "title": "Wild-Harvested Kakadu Plum: The World's Richest Vitamin C Source",
+            "category": "INGREDIENTS",
+            "read_time": "7 min read",
+            "excerpt": "Cellular antioxidants protect delicate follicular matrix DNA against UV oxidation."
+          }
+        }
+      },
+      "block_order": ["article-1", "article-2", "article-3"]
+    },
+    "trust_guarantee": {
+      "type": "trust-guarantee",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "trust_guarantee"
+  ]
+}

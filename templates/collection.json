@@ -1,0 +1,104 @@
+{
+  "sections": {
+    "grid": {
+      "type": "collection-grid",
+      "settings": {
+        "heading": "Hair Care Collection & Shop",
+        "subheading": "Targeted follicular trichology, microbiome-safe scalp balms, and cold-pressed Australian native botanicals formulated to halt shedding and restore density.",
+        "badge_text": "Clinical Laboratory Series",
+        "origin_text": "Melbourne, Australia",
+        "products_per_page": 12
+      },
+      "blocks": {
+        "tab-1": {
+          "type": "category_tab",
+          "settings": {
+            "title": "All Formulas",
+            "filter_key": "all"
+          }
+        },
+        "tab-2": {
+          "type": "category_tab",
+          "settings": {
+            "title": "Anti Hair Fall Series",
+            "filter_key": "fall"
+          }
+        },
+        "tab-3": {
+          "type": "category_tab",
+          "settings": {
+            "title": "Scalp Microbiome",
+            "filter_key": "scalp"
+          }
+        },
+        "tab-4": {
+          "type": "category_tab",
+          "settings": {
+            "title": "Deep Hydration",
+            "filter_key": "hydrate"
+          }
+        },
+        "tab-5": {
+          "type": "category_tab",
+          "settings": {
+            "title": "Clinical Regimen Bundles",
+            "filter_key": "bundle"
+          }
+        }
+      },
+      "block_order": ["tab-1", "tab-2", "tab-3", "tab-4", "tab-5"]
+    },
+    "routine_regimen": {
+      "type": "routine-regimen",
+      "settings": {}
+    },
+    "trust_guarantee": {
+      "type": "trust-guarantee",
+      "settings": {}
+    },
+    "testimonials_ugc": {
+      "type": "testimonials-ugc",
+      "settings": {}
+    },
+    "hair_quiz_callout": {
+      "type": "hair-quiz-callout",
+      "settings": {}
+    },
+    "faq_accordion": {
+      "type": "faq-accordion",
+      "settings": {},
+      "blocks": {
+        "faq-1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How often should I use it?",
+            "answer": "3–4 times per week is ideal for most hair types. Gentle enough for daily use thanks to our sulfate-free botanical formulation that respects the natural scalp lipid barrier."
+          }
+        },
+        "faq-2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it suitable for colored hair?",
+            "answer": "Yes, 100%. All KUS CULTURE formulas are color-safe, keratin-safe, and free of stripping sulfates and harsh parabens."
+          }
+        },
+        "faq-3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When will I see results?",
+            "answer": "Most users notice reduced shedding and hair trapped in brushes within 14 to 21 days. Noticeable new baby hair growth and thickening typically appear after 6 to 8 weeks."
+          }
+        }
+      },
+      "block_order": ["faq-1", "faq-2", "faq-3"]
+    }
+  },
+  "order": [
+    "grid",
+    "routine_regimen",
+    "trust_guarantee",
+    "testimonials_ugc",
+    "hair_quiz_callout",
+    "faq_accordion"
+  ]
+}

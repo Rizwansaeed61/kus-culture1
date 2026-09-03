@@ -1,0 +1,61 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-about",
+      "settings": {
+        "hero_badge": "Australian Clean Trichology",
+        "hero_heading": "Rooted in Botany. Proven by Science.",
+        "hero_subheading": "KUS CULTURE was born in Melbourne from a simple realization: conventional hair care too often strips the scalp microbiome with sulfates or coats it in heavy silicones. We bio-engineered a clinical clean alternative.",
+        "founder_name": "Dr. Elena Karras, Ph.D.",
+        "founder_title": "Founder & Chief Trichologist"
+      },
+      "blocks": {
+        "pillar-1": {
+          "type": "pillar",
+          "settings": {
+            "title": "Targeted Peptides",
+            "description": "We formulate with Biotinoyl Tripeptide-1 and Copper GHK-Cu peptides that strengthen the laminin-5 sheath anchoring hair shafts into the dermis."
+          }
+        },
+        "pillar-2": {
+          "type": "pillar",
+          "settings": {
+            "title": "Native Australian Botanicals",
+            "description": "Sustainably harvested Australian Kakadu Plum, Organic Rosemary CO2 extract, and Macadamia lipids provide bio-available antioxidants without synthetic perfume."
+          }
+        },
+        "pillar-3": {
+          "type": "pillar",
+          "settings": {
+            "title": "Microbiome Defense",
+            "description": "All formulas are calibrated to pH 5.2–5.5, preserving natural lipid acid mantle defense against flakes, irritation, and premature follicular shedding."
+          }
+        }
+      },
+      "block_order": ["pillar-1", "pillar-2", "pillar-3"]
+    },
+    "routine_regimen": {
+      "type": "routine-regimen",
+      "settings": {}
+    },
+    "trust_guarantee": {
+      "type": "trust-guarantee",
+      "settings": {}
+    },
+    "testimonials_ugc": {
+      "type": "testimonials-ugc",
+      "settings": {}
+    },
+    "hair_quiz_callout": {
+      "type": "hair-quiz-callout",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "routine_regimen",
+    "trust_guarantee",
+    "testimonials_ugc",
+    "hair_quiz_callout"
+  ]
+}

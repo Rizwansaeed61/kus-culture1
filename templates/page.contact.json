@@ -1,0 +1,46 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-contact",
+      "settings": {
+        "heading": "Contact Concierge Desk",
+        "subheading": "Have an inquiry regarding formulas, custom orders, or your hair journey? Our trichology team in Melbourne is here to assist.",
+        "support_email": "concierge@kusculture.com",
+        "chat_status": "Live Specialists Available (9am-6pm AEST)",
+        "hq_address": "42 Botanical Way, South Yarra, Melbourne VIC 3141, Australia"
+      },
+      "blocks": {
+        "channel-1": {
+          "type": "contact_channel",
+          "settings": {
+            "title": "Email Assistance",
+            "info": "24–48h response window"
+          }
+        },
+        "channel-2": {
+          "type": "contact_channel",
+          "settings": {
+            "title": "Live Chat Concierge",
+            "info": "Mon–Fri: 9am–6pm AEST"
+          }
+        },
+        "channel-3": {
+          "type": "contact_channel",
+          "settings": {
+            "title": "Melbourne Laboratories",
+            "info": "South Yarra, VIC 3141"
+          }
+        }
+      },
+      "block_order": ["channel-1", "channel-2", "channel-3"]
+    },
+    "trust_guarantee": {
+      "type": "trust-guarantee",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "trust_guarantee"
+  ]
+}

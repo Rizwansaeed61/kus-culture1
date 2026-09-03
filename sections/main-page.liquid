@@ -1,0 +1,55 @@
+{% case page.handle %}
+  {% when 'about', 'about-us' %}
+    {% render 'about-content' %}
+  {% when 'faq', 'faqs', 'frequently-asked-questions' %}
+    {% render 'faq-content' %}
+  {% when 'contact', 'contact-us' %}
+    {% render 'contact-content' %}
+  {% else %}
+    <section class="w-full bg-surface py-12 lg:py-16">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center space-y-3 pb-8">
+          <h1 class="font-serif text-3xl sm:text-4xl text-on-surface font-semibold">
+            {{ page.title }}
+          </h1>
+        </div>
+        <div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-surface-container text-xs sm:text-sm text-on-surface-variant leading-relaxed space-y-4">
+          {{ page.content }}
+        </div>
+      </div>
+    </section>
+{% endcase %}
+
+{% schema %}
+{
+  "name": "Page content",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show page title",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "content_width",
+      "label": "Content Container Width",
+      "options": [
+        { "value": "max-w-3xl", "label": "Narrow" },
+        { "value": "max-w-4xl", "label": "Standard" },
+        { "value": "max-w-6xl", "label": "Wide" }
+      ],
+      "default": "max-w-4xl"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,80 @@
+<div id="shopify-cart-overlay" class="cart-drawer-overlay" onclick="closeCartDrawer()"></div>
+
+<aside id="shopify-cart-drawer" class="cart-drawer">
+  <div class="p-4 bg-surface-container-low flex items-center justify-between border-b border-surface-container">
+    <div class="flex items-center gap-2">
+      <span class="font-bold text-on-surface text-base">Shopping Bag</span>
+      <span class="text-xs text-on-surface-variant font-semibold">({{ cart.item_count }})</span>
+    </div>
+    <button type="button" onclick="closeCartDrawer()" aria-label="Close bag" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container text-on-surface transition-colors">
+      <span class="material-symbols-outlined text-[20px]">close</span>
+    </button>
+  </div>
+
+  <!-- Free Shipping Meter -->
+  <div class="p-4 bg-surface border-b border-surface-container">
+    {% assign free_shipping_threshold = 5000 %}
+    {% assign current_subtotal = cart.total_price %}
+    {% assign remaining = free_shipping_threshold | minus: current_subtotal %}
+    
+    <div class="text-xs text-center mb-2 text-on-surface-variant">
+      {% if remaining <= 0 %}
+        <span class="text-emerald-700 font-bold flex items-center gap-1 justify-center">
+          <span class="material-symbols-outlined text-[16px]">celebration</span> Free Express Delivery Unlocked!
+        </span>
+      {% else %}
+        Add <strong class="text-on-surface">{{ remaining | money }}</strong> more for <strong>FREE Express Shipping</strong>
+      {% endif %}
+    </div>
+    <div class="shipping-bar-bg">
+      <div class="shipping-bar-fill {% if remaining <= 0 %}bg-emerald-600{% endif %}" style="width: {% if remaining <= 0 %}100{% else %}{{ current_subtotal | times: 100 | divided_by: free_shipping_threshold }}{% endif %}%;"></div>
+    </div>
+  </div>
+
+  <!-- Cart Items List -->
+  <div class="flex-1 overflow-y-auto px-4 py-2">
+    {% if cart.item_count == 0 %}
+      <div class="flex flex-col items-center justify-center py-16 text-center text-on-surface-variant">
+        <span class="material-symbols-outlined text-[54px] text-surface-container-high mb-3">shopping_bag</span>
+        <p class="font-bold text-on-surface text-base mb-1">Your bag is empty</p>
+        <p class="text-xs mb-6 max-w-xs">Discover our clinical botanical hair formulas designed to revive scalp and strand density.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="bg-primary text-on-primary font-bold text-xs uppercase px-6 py-3 rounded-full hover:bg-primary-container transition-colors">
+          Explore Collection
+        </a>
+      </div>
+    {% else %}
+      {% for item in cart.items %}
+        <div class="flex gap-4 py-4 border-b border-surface-container items-center">
+          <div class="w-16 h-20 bg-surface-container-low rounded-xl p-1.5 flex items-center justify-center flex-shrink-0">
+            {% if item.image %}
+              <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.title | escape }}" class="max-h-full max-w-full object-contain" />
+            {% endif %}
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 class="text-xs text-on-surface font-semibold truncate">{{ item.product.title }}</h4>
+            {% unless item.product.has_only_default_variant %}
+              <p class="text-[11px] text-on-surface-variant">{{ item.variant.title }}</p>
+            {% endunless %}
+            <div class="flex items-center justify-between mt-2">
+              <span class="text-xs font-bold text-on-surface">{{ item.final_line_price | money }}</span>
+              <span class="text-xs text-on-surface-variant">Qty: {{ item.quantity }}</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <!-- Footer / Checkout -->
+  <div class="p-4 bg-surface-container-lowest border-t border-surface-container space-y-3">
+    <div class="flex items-center justify-between">
+      <span class="text-on-surface font-semibold text-sm">Subtotal</span>
+      <span class="text-on-surface font-bold text-base">{{ cart.total_price | money }}</span>
+    </div>
+    <p class="text-[11px] text-on-surface-variant text-center">Taxes & shipping calculated at checkout</p>
+    <a href="/checkout" class="w-full bg-primary text-on-primary py-3.5 px-6 rounded-full text-xs font-bold uppercase tracking-wider shadow-md hover:bg-primary-container transition-all flex items-center justify-center gap-2">
+      <span>PROCEED TO CHECKOUT</span>
+      <span class="material-symbols-outlined text-[18px]">lock</span>
+    </a>
+  </div>
+</aside>

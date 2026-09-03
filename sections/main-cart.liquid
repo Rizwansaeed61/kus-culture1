@@ -1,0 +1,131 @@
+<section class="w-full bg-surface py-12 lg:py-16 min-h-[60vh]">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="border-b border-surface-container pb-6 mb-8">
+      <h1 class="font-serif text-3xl sm:text-4xl text-on-surface font-semibold">Your Hair Care Ritual Bag</h1>
+      <p class="text-xs text-on-surface-variant mt-1">Review your clinical formulas before proceeding to encrypted checkout.</p>
+    </div>
+
+    {% if cart.item_count > 0 %}
+      <!-- Free Shipping Goal -->
+      <div class="rounded-2xl bg-secondary-container/40 p-4 mb-8 border border-secondary-container flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-surface flex-shrink-0">
+          <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+        </div>
+        <p class="text-xs text-on-surface font-semibold">
+          {% if cart.total_price >= 5000 %}
+            🎉 You have unlocked <span class="text-secondary font-bold">FREE Express Courier Delivery</span>!
+          {% else %}
+            Add <span class="font-bold">{{ 5000 | minus: cart.total_price | money }}</span> more to unlock <span class="font-bold">FREE Express Delivery</span>.
+          {% endif %}
+        </p>
+      </div>
+
+      <form action="{{ routes.cart_url }}" method="post" id="cart">
+        <div class="space-y-4 mb-8">
+          {% for item in cart.items %}
+            <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-6 shadow-sm border border-surface-container flex items-center justify-between gap-4">
+              <div class="flex items-center gap-4">
+                <div class="w-20 h-20 bg-surface-container-low rounded-xl overflow-hidden flex items-center justify-center p-2 flex-shrink-0 border border-surface-container">
+                  {% if item.image %}
+                    <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" class="max-h-full max-w-full object-contain" />
+                  {% endif %}
+                </div>
+                <div>
+                  <h3 class="font-serif text-base font-semibold text-on-surface">
+                    <a href="{{ item.url }}" class="hover:text-secondary transition-colors">{{ item.product.title }}</a>
+                  </h3>
+                  {% unless item.variant.title contains 'Default' %}
+                    <p class="text-xs text-on-surface-variant font-medium mt-0.5">{{ item.variant.title }}</p>
+                  {% endunless %}
+                  <p class="text-xs text-on-surface font-bold mt-1">{{ item.price | money }}</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="flex items-center rounded-full bg-surface-container px-2 py-1 text-xs">
+                  <span class="px-2 font-bold">{{ item.quantity }}</span>
+                </div>
+                <span class="font-serif text-base font-bold text-on-surface min-w-[70px] text-right">{{ item.final_line_price | money }}</span>
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:text-error hover:bg-surface-container transition-colors" title="Remove item">
+                  <span class="material-symbols-outlined text-[18px]">delete</span>
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-sm border border-surface-container space-y-4">
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-on-surface-variant">Subtotal</span>
+            <span class="font-serif text-2xl font-bold text-on-surface">{{ cart.total_price | money }}</span>
+          </div>
+          <p class="text-[11px] text-on-surface-variant">Taxes and shipping calculated at checkout.</p>
+          <div class="pt-2 flex flex-col sm:flex-row items-center gap-4">
+            <a href="{{ routes.all_products_collection_url }}" class="w-full sm:w-auto text-center px-6 py-3.5 rounded-full bg-surface-container text-on-surface font-bold text-xs uppercase hover:bg-surface-container-high transition-colors">
+              Continue Shopping
+            </a>
+            <button type="submit" name="checkout" class="w-full sm:flex-1 py-3.5 rounded-full bg-primary text-on-primary font-bold text-xs uppercase tracking-wider hover:bg-primary-container transition-all shadow-md flex items-center justify-center gap-2">
+              <span>Proceed to Checkout</span>
+              <span class="material-symbols-outlined text-[16px]">lock</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    {% else %}
+      <div class="bg-surface-container-lowest rounded-3xl p-12 text-center shadow-sm border border-surface-container space-y-4">
+        <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mx-auto text-on-surface">
+          <span class="material-symbols-outlined text-[32px]">shopping_bag</span>
+        </div>
+        <h2 class="font-serif text-2xl font-semibold text-on-surface">Your Ritual Bag is Empty</h2>
+        <p class="text-xs text-on-surface-variant max-w-sm mx-auto">Discover our targeted Australian active formulations to begin your 21-day hair density journey.</p>
+        <div class="pt-4">
+          <a href="{{ routes.all_products_collection_url }}" class="bg-primary text-on-primary font-bold text-xs uppercase tracking-wider px-8 py-3.5 rounded-full hover:bg-primary-container transition-all shadow-md inline-flex items-center gap-2">
+            <span>Explore The Collection</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your Hair Care Ritual Bag"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Review your clinical formulas before proceeding to encrypted checkout."
+    },
+    {
+      "type": "text",
+      "id": "empty_title",
+      "label": "Empty Cart Title",
+      "default": "Your Ritual Bag is Empty"
+    },
+    {
+      "type": "textarea",
+      "id": "empty_text",
+      "label": "Empty Cart Description",
+      "default": "Discover our targeted Australian active formulations to begin your 21-day hair density journey."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    }
+  ]
+}
+{% endschema %}

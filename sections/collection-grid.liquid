@@ -1,0 +1,356 @@
+<section class="w-full bg-surface py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Hero Header -->
+    <div class="space-y-4 pb-8 border-b border-surface-container">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-surface-container text-on-surface text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+          Clinical Laboratory Series
+        </span>
+        <span class="text-xs text-on-surface-variant">• Melbourne, Australia</span>
+      </div>
+      <h1 class="font-serif text-3xl sm:text-5xl text-on-surface font-semibold tracking-tight">
+        {{ collection.title | default: 'Hair Care Collection & Shop' }}
+      </h1>
+      <p class="text-sm sm:text-base text-on-surface-variant max-w-2xl leading-relaxed">
+        {{ collection.description | default: 'Targeted follicular trichology, microbiome-safe scalp balms, and cold-pressed Australian native botanicals formulated to halt shedding and restore density.' }}
+      </p>
+
+      <!-- Category Filter Tabs -->
+      <div class="pt-4 flex flex-wrap items-center gap-2" id="collectionFilterTabs">
+        <button type="button" onclick="filterCategory('all', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-primary text-on-primary shadow-sm">
+          All Formulas
+        </button>
+        <button type="button" onclick="filterCategory('fall', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
+          Anti Hair Fall Series
+        </button>
+        <button type="button" onclick="filterCategory('scalp', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
+          Scalp Microbiome
+        </button>
+        <button type="button" onclick="filterCategory('hydrate', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
+          Deep Hydration
+        </button>
+        <button type="button" onclick="filterCategory('bundle', this)" class="collection-tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-surface-container-low hover:bg-surface-container text-on-surface shadow-sm">
+          Clinical Regimen Bundles
+        </button>
+      </div>
+    </div>
+
+    <!-- Collection Products Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-10" id="collectionProductsGrid">
+      {% if collection.products.size > 0 %}
+        {% for product in collection.products %}
+          <div class="shop-product-card bg-surface-container-lowest rounded-3xl p-6 shadow-sm hover:shadow-md transition-all border border-surface-container flex flex-col justify-between" data-cat="all">
+            <div>
+              <div class="relative w-full aspect-square bg-surface-container-low rounded-2xl flex items-center justify-center p-6 overflow-hidden mb-4 border border-surface-container">
+                {% if product.featured_image %}
+                  <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300"/>
+                {% endif %}
+                <span class="absolute top-3 left-3 bg-surface-container-lowest/90 px-2.5 py-0.5 rounded-full text-[10px] font-bold text-on-surface shadow-sm">
+                  {{ product.type | default: 'Clinical Formula' }}
+                </span>
+              </div>
+
+              <div class="flex items-center gap-1.5 text-tertiary-container mb-2">
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="text-xs font-bold text-on-surface ml-1">5.0</span>
+              </div>
+
+              <h3 class="font-serif text-lg font-semibold text-on-surface leading-snug">
+                <a href="{{ product.url }}" class="hover:text-secondary transition-colors">{{ product.title }}</a>
+              </h3>
+              <p class="text-xs text-on-surface-variant line-clamp-2 mt-1">{{ product.description | strip_html | truncate: 90 }}</p>
+            </div>
+
+            <div class="pt-4 mt-4 border-t border-surface-container flex items-center justify-between">
+              <span class="font-serif text-xl font-bold text-on-surface">{{ product.price | money }}</span>
+              <button type="button" onclick="shopifyAddToCart('{{ product.selected_or_first_available_variant.id }}')" class="bg-primary text-on-primary font-bold text-xs uppercase px-5 py-2.5 rounded-full hover:bg-primary-container transition-colors shadow-sm">
+                Add to Bag
+              </button>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <!-- Default KUS CULTURE Product Suite (Ensures storefront is never blank before CSV import) -->
+        <!-- Product 1: HairRevive Shampoo -->
+        <div class="shop-product-card bg-surface-container-lowest rounded-3xl p-6 shadow-sm hover:shadow-md transition-all border border-surface-container flex flex-col justify-between" data-cat="fall">
+          <div>
+            <div class="relative w-full aspect-square bg-surface-container-low rounded-2xl flex items-center justify-center p-6 overflow-hidden mb-4 border border-surface-container">
+              <img class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300" alt="HairRevive Shampoo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFCR5RYUEWtEvP01b_APRd4TmRQCmm8fj7LR5TxKDIlAprC8TLOJyYpDD6xW_tulRoQF95ZTZ1e6Q877YaiYcjBaPWej6RAzcP592WD7MOJcFMxzM6_l1U-8GzXNzUcHybWbYWCSmLAFSV16Zv5ZCtJswcIrt2uaOObILBILYed2uXtBbmev8dfKQY4ClNfwVb00DexL7sdyJ6HASj-qxWwTaYp7xevk3DXjpPGYL_rbxietzICsZA"/>
+              <span class="absolute top-3 left-3 bg-primary text-on-primary px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase shadow-sm">Bestseller #1</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-tertiary-container mb-2">
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="text-xs font-bold text-on-surface ml-1">5.0 (2,341)</span>
+            </div>
+            <h3 class="font-serif text-lg font-semibold text-on-surface leading-snug">
+              <a href="/products/hairrevive-anti-hair-fall-shampoo" class="hover:text-secondary transition-colors">HairRevive™ Anti Hair Fall Shampoo</a>
+            </h3>
+            <p class="text-xs text-on-surface-variant line-clamp-2 mt-1">Fortified with Biotinoyl Tripeptide-1 and organic Australian rosemary to stop shedding.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-surface-container flex items-center justify-between">
+            <span class="font-serif text-xl font-bold text-on-surface">$24.99</span>
+            <a href="/products/hairrevive-anti-hair-fall-shampoo" class="bg-primary text-on-primary font-bold text-xs uppercase px-5 py-2.5 rounded-full hover:bg-primary-container transition-colors shadow-sm">
+              View & Buy
+            </a>
+          </div>
+        </div>
+
+        <!-- Product 2: HydraGloss Conditioner -->
+        <div class="shop-product-card bg-surface-container-lowest rounded-3xl p-6 shadow-sm hover:shadow-md transition-all border border-surface-container flex flex-col justify-between" data-cat="hydrate">
+          <div>
+            <div class="relative w-full aspect-square bg-surface-container-low rounded-2xl flex items-center justify-center p-6 overflow-hidden mb-4 border border-surface-container">
+              <img class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300" alt="HydraGloss Conditioner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6Ch6JhvqWpjEmLKH3RnIYV5p4b0-yw8smXCXncRroeKINvitHZaaMtw5T21jm_5bBb9Ox_zkVz8z83cALejUyo1b0ZEWhe8gG98OHujcCacXGIJZZOhtYyKMMQP1EJvWTbCpVBNufggQYh6O5hC_diTEjf2J_JMyzh02gAie_3JmRG8ehCTaUk3FzGhvDDGHEhMcJ-ZfPIga7rihYyFdPLquroeRm3Fr-7kJ_0IXzH94b6OJ_qZRf"/>
+              <span class="absolute top-3 left-3 bg-surface-container text-on-surface px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase shadow-sm">Silicone-Free</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-tertiary-container mb-2">
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="text-xs font-bold text-on-surface ml-1">4.9 (812)</span>
+            </div>
+            <h3 class="font-serif text-lg font-semibold text-on-surface leading-snug">HydraGloss™ Botanical Conditioner</h3>
+            <p class="text-xs text-on-surface-variant line-clamp-2 mt-1">Lightweight lipid balm infused with Macadamia nut oil and Australian Kakadu Plum.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-surface-container flex items-center justify-between">
+            <span class="font-serif text-xl font-bold text-on-surface">$24.99</span>
+            <button type="button" onclick="openCartDrawer()" class="bg-primary text-on-primary font-bold text-xs uppercase px-5 py-2.5 rounded-full hover:bg-primary-container transition-colors shadow-sm">
+              Add to Bag
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3: FolliGlow Serum -->
+        <div class="shop-product-card bg-surface-container-lowest rounded-3xl p-6 shadow-sm hover:shadow-md transition-all border border-surface-container flex flex-col justify-between" data-cat="scalp">
+          <div>
+            <div class="relative w-full aspect-square bg-surface-container-low rounded-2xl flex items-center justify-center p-6 overflow-hidden mb-4 border border-surface-container">
+              <img class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300" alt="FolliGlow Serum" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVNzjwzlMRN0DczAP2JeEJYV7ZDAAyU1lyoeILwo_8tzFPAHO52jhGOC08dtWfFoysw5Z-PMn-rXMr4HHnVfgyI0pvwpEo-YV51hrQXyc0kC2yPE5iqRfRSrSUtsbXdksgh5ZASI-cMiZQVFT1auQWklpT9kUQNs_fr6GZBiAHVonokHLHRPaMMiHDS2Dg2AiY2QFFvcBNDVYLR5LZTgqTYmrCVEC6s4eHbClaQDsiOaDWQf1I1Pfk"/>
+              <span class="absolute top-3 left-3 bg-secondary-container text-on-surface px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase shadow-sm">Peptide Complex</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-tertiary-container mb-2">
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="text-xs font-bold text-on-surface ml-1">4.9 (650)</span>
+            </div>
+            <h3 class="font-serif text-lg font-semibold text-on-surface leading-snug">FolliGlow™ Peptide Scalp Serum</h3>
+            <p class="text-xs text-on-surface-variant line-clamp-2 mt-1">High-potency cellular leave-in elixir featuring Copper GHK-Cu peptides.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-surface-container flex items-center justify-between">
+            <span class="font-serif text-xl font-bold text-on-surface">$34.99</span>
+            <button type="button" onclick="openCartDrawer()" class="bg-primary text-on-primary font-bold text-xs uppercase px-5 py-2.5 rounded-full hover:bg-primary-container transition-colors shadow-sm">
+              Add to Bag
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 4: The 4-Step Regimen Bundle -->
+        <div class="shop-product-card bg-surface-container-lowest rounded-3xl p-6 shadow-sm hover:shadow-md transition-all border-2 border-primary flex flex-col justify-between relative" data-cat="bundle">
+          <span class="absolute -top-3 left-6 bg-primary text-on-primary px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider shadow-md">
+            Save $18.00 (19% OFF)
+          </span>
+          <div>
+            <div class="relative w-full aspect-square bg-surface-container-low rounded-2xl flex items-center justify-center p-6 overflow-hidden mb-4 border border-surface-container mt-1">
+              <img class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300" alt="4-Step Bundle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1gL6-mVaui9-B30BwpFevBZq386tp8sjM5-DEyCDOLpa5zmIx2Bvwdxgu0uj7T3n60Ew0D8aJfhdX3pLhXWGAtgMd9NLiuIjbWwoHI4S8HGEotY01AXc-kSnrHsVPjTsgIkQHH6KxtynYE9X2k3ZCMM7yHsk0ay3ay5axRLx-Fu2f0OEQ4P-31xWFefDq5v8FyXn8Fe1ZXHJmleYe8pHBuB3pCjC0Ck3-RtYoh95k2OxCYtOZdCxn"/>
+            </div>
+            <div class="flex items-center gap-1.5 text-tertiary-container mb-2">
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="text-xs font-bold text-on-surface ml-1">5.0 (1,120)</span>
+            </div>
+            <h3 class="font-serif text-lg font-semibold text-on-surface leading-snug">The 4-Step Regimen Bundle</h3>
+            <p class="text-xs text-on-surface-variant line-clamp-2 mt-1">Full synergistic protocol: Shampoo, Conditioner, Serum, and Scalp Treatment.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-surface-container flex items-center justify-between">
+            <div>
+              <span class="text-xs text-outline line-through block">$97.99</span>
+              <span class="font-serif text-xl font-bold text-on-surface">$79.99</span>
+            </div>
+            <button type="button" onclick="openCartDrawer()" class="bg-primary text-on-primary font-bold text-xs uppercase px-5 py-2.5 rounded-full hover:bg-primary-container transition-colors shadow-sm">
+              Buy Routine
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 5: ScalpPure Treatment -->
+        <div class="shop-product-card bg-surface-container-lowest rounded-3xl p-6 shadow-sm hover:shadow-md transition-all border border-surface-container flex flex-col justify-between" data-cat="scalp">
+          <div>
+            <div class="relative w-full aspect-square bg-surface-container-low rounded-2xl flex items-center justify-center p-6 overflow-hidden mb-4 border border-surface-container">
+              <img class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300" alt="ScalpPure Treatment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ0BD35Xcufmf5UrQjeAtwMs90jWTsuS763ho15iKiCfE7Sn7WCZFhyRz19ZmtGidASZlsXiwKo5D5qir84AUB9GuOX0xxgpTH8FT_1t0FyfmHIRtaQW0UH62o6Fpyol5p_5Mzqol2_Cq8884l6CxrnkBkPKPjFEUMVdTScLbAEyy9v1GVkOPsPK8UVlbPi55zsB0pih3tOIyZsXkMuVRZ4OhZnreUyl7D911AZj12rvwITbF9w_fh"/>
+            </div>
+            <div class="flex items-center gap-1.5 text-tertiary-container mb-2">
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="text-xs font-bold text-on-surface ml-1">4.8 (430)</span>
+            </div>
+            <h3 class="font-serif text-lg font-semibold text-on-surface leading-snug">ScalpPure™ Exfoliating Treatment</h3>
+            <p class="text-xs text-on-surface-variant line-clamp-2 mt-1">Fruit AHAs and tea tree hydrosol clear dead skin cells and buildup.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-surface-container flex items-center justify-between">
+            <span class="font-serif text-xl font-bold text-on-surface">$28.99</span>
+            <button type="button" onclick="openCartDrawer()" class="bg-primary text-on-primary font-bold text-xs uppercase px-5 py-2.5 rounded-full hover:bg-primary-container transition-colors shadow-sm">
+              Add to Bag
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 6: Duo Power Pack -->
+        <div class="shop-product-card bg-surface-container-lowest rounded-3xl p-6 shadow-sm hover:shadow-md transition-all border border-surface-container flex flex-col justify-between" data-cat="bundle">
+          <div>
+            <div class="relative w-full aspect-square bg-surface-container-low rounded-2xl flex items-center justify-center p-6 overflow-hidden mb-4 border border-surface-container">
+              <img class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300" alt="Duo Pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAyGZyDTaBPqqbr5mqoKMdrWI282v2mca-Nze1_lZPuIDuzO3W1rwHJ9imDLbj-VRcFnHPwjqliYxsnQn8092BdKau_BrzQz-I46onNrM1_8CIP4L3A1Ocw6fAix6C9OenDlrj-cH9C8zxk0Bttdr96oxmv5exkAVMPc4F-0Rz_rrZ8v3DEH5V8LWy7dVCFpN6dgLUJCjmLtwNhNMJ0VNd8wJ07u4Y6XTk8gfqFXm7dlpueMUE6Y_Y"/>
+              <span class="absolute top-3 left-3 bg-tertiary-fixed text-on-tertiary-fixed px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase shadow-sm">Save 10%</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-tertiary-container mb-2">
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="text-xs font-bold text-on-surface ml-1">4.9 (780)</span>
+            </div>
+            <h3 class="font-serif text-lg font-semibold text-on-surface leading-snug">Duo Power Pack: Cleanse & Hydrate</h3>
+            <p class="text-xs text-on-surface-variant line-clamp-2 mt-1">Includes full-sized 500ml Shampoo and 500ml Conditioner.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-surface-container flex items-center justify-between">
+            <div>
+              <span class="text-xs text-outline line-through block">$49.98</span>
+              <span class="font-serif text-xl font-bold text-on-surface">$44.99</span>
+            </div>
+            <button type="button" onclick="openCartDrawer()" class="bg-primary text-on-primary font-bold text-xs uppercase px-5 py-2.5 rounded-full hover:bg-primary-container transition-colors shadow-sm">
+              Add to Bag
+            </button>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+function filterCategory(cat, button) {
+  document.querySelectorAll('.collection-tab-btn').forEach(btn => {
+    btn.classList.remove('bg-primary', 'text-on-primary');
+    btn.classList.add('bg-surface-container-low', 'text-on-surface');
+  });
+  button.classList.remove('bg-surface-container-low', 'text-on-surface');
+  button.classList.add('bg-primary', 'text-on-primary');
+
+  document.querySelectorAll('.shop-product-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat || card.dataset.cat === 'all') {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+{% schema %}
+{
+  "name": "Collection grid",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hair Care Collection & Shop"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Description",
+      "default": "Targeted follicular trichology, microbiome-safe scalp balms, and cold-pressed Australian native botanicals formulated to halt shedding and restore density."
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Clinical Laboratory Series"
+    },
+    {
+      "type": "text",
+      "id": "origin_text",
+      "label": "Origin location text",
+      "default": "Melbourne, Australia"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 6,
+      "max": 36,
+      "step": 3,
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "category_tab",
+      "name": "Category Filter Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab Label",
+          "default": "New Category"
+        },
+        {
+          "type": "text",
+          "id": "filter_key",
+          "label": "Filter Tag/Key",
+          "default": "all"
+        }
+      ]
+    },
+    {
+      "type": "promo_card",
+      "name": "Promo Banner Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Promo Title",
+          "default": "Special Offer"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Promo Text",
+          "default": "Get 15% off your first clinical routine."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Promo Link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

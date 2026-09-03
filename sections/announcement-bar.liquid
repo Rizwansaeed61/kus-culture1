@@ -1,0 +1,27 @@
+<div class="w-full bg-primary-container text-surface px-4 py-2">
+  <div class="max-w-7xl mx-auto flex items-center justify-center">
+    <p class="text-xs uppercase tracking-wider text-center text-surface font-semibold flex items-center gap-2">
+      <span class="inline-block w-1.5 h-1.5 rounded-full bg-tertiary-fixed animate-ping"></span>
+      {{ section.settings.text | default: 'DERMATOLOGIST APPROVED • FREE SHIPPING OVER $50 • 30-DAY MONEY-BACK GUARANTEE' }}
+    </p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement Text",
+      "default": "DERMATOLOGIST APPROVED • FREE SHIPPING OVER $50 • 30-DAY MONEY-BACK GUARANTEE"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar"
+    }
+  ]
+}
+{% endschema %}

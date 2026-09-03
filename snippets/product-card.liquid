@@ -1,0 +1,51 @@
+{% comment %}
+  Renders a luxury perfume product card
+  Usage: {% render 'product-card', product: product %}
+{% endcomment %}
+
+<div class="product-item flex flex-col bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-xl border border-outline-variant/60 transition-all duration-300 relative group">
+  <div class="flex items-center justify-between gap-space-xs mb-space-xs">
+    <div class="flex flex-wrap gap-1">
+      <span class="bg-primary text-on-primary font-label-caps text-[9px] px-space-xs py-0.5 rounded-full uppercase tracking-wider">
+        {{ product.type | default: 'Extrait de Parfum' }}
+      </span>
+    </div>
+    <button class="text-outline hover:text-error transition-colors" title="Save to wishlist">
+      <span class="material-symbols-outlined text-[20px]">favorite</span>
+    </button>
+  </div>
+
+  <a href="{{ product.url }}" class="h-60 w-full bg-gradient-to-b from-surface-bright to-surface-container-low rounded-lg overflow-hidden flex items-center justify-center relative p-space-xs mb-space-sm border border-outline-variant/30 block">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title | escape }}" class="h-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
+    {% else %}
+      <div class="w-full h-full flex items-center justify-center text-primary"><span class="material-symbols-outlined text-[48px]">local_florist</span></div>
+    {% endif %}
+    <span class="absolute bottom-2 left-2 bg-surface-container-lowest/90 px-space-xs py-0.5 rounded font-label-caps text-[10px] text-primary border border-outline-variant/40 uppercase tracking-wider">Extrait 35%</span>
+  </a>
+
+  <div class="flex-1 flex flex-col">
+    <div class="flex items-center gap-1 text-primary mb-1">
+      <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+      <span class="font-label-caps text-xs text-on-surface font-semibold">4.9</span>
+      <span class="font-body-md text-on-surface-variant text-xs">(840+ reviews)</span>
+    </div>
+    <h3 class="font-serif text-on-surface mb-1 text-lg font-bold">
+      <a href="{{ product.url }}" class="hover:text-primary transition-colors">{{ product.title }}</a>
+    </h3>
+    <p class="font-body-md text-on-surface-variant line-clamp-2 mb-space-xs text-xs">
+      {{ product.description | strip_html | truncatewords: 15 }}
+    </p>
+
+    <div class="mt-auto pt-space-xs flex items-center justify-between border-t border-outline-variant/30">
+      <span class="font-serif text-primary font-bold text-base">{{ product.price | money }}</span>
+      <button 
+        onclick="window.luxuryCart.addItem({id: '{{ product.id }}', title: '{{ product.title | escape }}', price: {{ product.price | divided_by: 100 }}, image: '{{ product.featured_image | image_url: width: 200 }}'})"
+        class="bg-primary hover:bg-primary-container text-on-primary font-label-caps text-xs px-3 py-1.5 rounded-full flex items-center gap-1 uppercase tracking-wider transition-colors"
+      >
+        <span class="material-symbols-outlined text-[16px]">shopping_bag</span>
+        <span>Add</span>
+      </button>
+    </div>
+  </div>
+</div>

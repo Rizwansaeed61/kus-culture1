@@ -1,0 +1,90 @@
+{% render 'about-content' %}
+
+{% schema %}
+{
+  "name": "About page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_badge",
+      "label": "Hero Badge",
+      "default": "Australian Clean Trichology"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero Heading",
+      "default": "Rooted in Botany. Proven by Science."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subheading",
+      "label": "Hero Subheading",
+      "default": "KUS CULTURE was born in Melbourne from a simple realization: conventional hair care too often strips the scalp microbiome with sulfates or coats it in heavy silicones. We bio-engineered a clinical clean alternative."
+    },
+    {
+      "type": "text",
+      "id": "founder_name",
+      "label": "Founder Name",
+      "default": "Dr. Elena Karras, Ph.D."
+    },
+    {
+      "type": "text",
+      "id": "founder_title",
+      "label": "Founder Title",
+      "default": "Founder & Chief Trichologist"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "pillar",
+      "name": "Scientific Pillar",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Pillar Title",
+          "default": "Targeted Peptides"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Pillar Description",
+          "default": "We formulate with Biotinoyl Tripeptide-1 and Copper GHK-Cu peptides that strengthen the laminin-5 sheath."
+        }
+      ]
+    },
+    {
+      "type": "timeline_phase",
+      "name": "Timeline Phase",
+      "settings": [
+        {
+          "type": "text",
+          "id": "days",
+          "label": "Days Range",
+          "default": "Days 1–7"
+        },
+        {
+          "type": "text",
+          "id": "phase_name",
+          "label": "Phase Name",
+          "default": "Scalp Biome Reset"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Gentle coconut-derived surfactants dissolve lipid impurities and chemical build-up."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

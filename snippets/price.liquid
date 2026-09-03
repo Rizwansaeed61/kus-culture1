@@ -1,0 +1,21 @@
+{% comment %}
+  Renders a price element
+  Usage: {% render 'price', product: product, use_variant: true %}
+{% endcomment %}
+{%- liquid
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+  else
+    assign target = product
+  endif
+
+  assign compare_at_price = target.compare_at_price
+  assign price = target.price | default: 245000
+-%}
+
+<div class="price flex items-baseline gap-2">
+  <span class="font-serif font-bold text-primary text-xl sm:text-2xl">{{ price | money }}</span>
+  {%- if compare_at_price > price -%}
+    <span class="font-body-md text-xs text-outline line-through">{{ compare_at_price | money }}</span>
+  {%- endif -%}
+</div>

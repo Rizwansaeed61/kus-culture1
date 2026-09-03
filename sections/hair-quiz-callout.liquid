@@ -1,0 +1,29 @@
+<section class="w-full bg-surface-container-low py-16 border-y border-surface-container" id="hair-quiz">
+  <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
+    <span class="text-xs uppercase tracking-widest text-secondary font-bold">Personalized Trichology</span>
+    <h2 class="font-serif text-3xl sm:text-4xl text-on-surface font-semibold">{{ section.settings.heading | default: 'Find Your Custom Hair Care Regimen' }}</h2>
+    <p class="text-sm sm:text-base text-on-surface-variant max-w-xl mx-auto leading-relaxed">
+      {{ section.settings.subheading | default: 'Take our 60-second diagnostic formulated by Australian dermatologists to pinpoint your scalp type, shed factors, and targeted active botanical balance.' }}
+    </p>
+
+    <div class="pt-2">
+      <button type="button" onclick="HairQuiz.openQuiz()" class="bg-primary text-on-primary font-bold text-xs sm:text-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-lg hover:bg-primary-container transition-all inline-flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">quiz</span>
+        <span>Start 60-Second Diagnostic</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hair quiz banner",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Find Your Custom Hair Care Regimen" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Take our 60-second diagnostic formulated by Australian dermatologists to pinpoint your scalp type, shed factors, and targeted active botanical balance." }
+  ],
+  "presets": [
+    { "name": "Hair quiz banner" }
+  ]
+}
+{% endschema %}

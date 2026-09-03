@@ -1,0 +1,61 @@
+<section class="w-full bg-surface py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-2xl mx-auto pb-10 space-y-2">
+      <span class="text-xs uppercase text-secondary font-bold tracking-wider">{{ section.settings.eyebrow | default: 'Cellular Trichology' }}</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-on-surface font-semibold">{{ section.settings.heading | default: 'Pure Australian Actives & Clinical Peptides' }}</h2>
+      <p class="text-sm text-on-surface-variant">{{ section.settings.subheading | default: 'Every droplet is calibrated to nourish without stripping or suffocating the scalp microbiome.' }}</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
+        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+          <span class="material-symbols-outlined text-[22px]">nature</span>
+        </div>
+        <h4 class="font-bold text-on-surface text-base">Organic Rosemary Oil</h4>
+        <p class="text-xs text-on-surface-variant leading-relaxed">Clinically demonstrated to promote hair micro-circulation equivalent to 2% minoxidil without systemic side effects.</p>
+        <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Roots Vitality • Micro-Circulation</span>
+      </div>
+
+      <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
+        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+          <span class="material-symbols-outlined text-[22px]">biotech</span>
+        </div>
+        <h4 class="font-bold text-on-surface text-base">Biotinoyl Tripeptide-1</h4>
+        <p class="text-xs text-on-surface-variant leading-relaxed">Reinforces structural anchoring of the follicle sheath, mitigating early shedding and mechanical brush breakage.</p>
+        <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Sheath Anchoring • Zero Breakage</span>
+      </div>
+
+      <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
+        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+          <span class="material-symbols-outlined text-[22px]">energy_savings_leaf</span>
+        </div>
+        <h4 class="font-bold text-on-surface text-base">Kakadu Plum Extract</h4>
+        <p class="text-xs text-on-surface-variant leading-relaxed">The world's richest known source of Vitamin C. Scavenges environmental free radicals to preserve youthful scalp collagen matrix.</p>
+        <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Antioxidant Guard • Collagen Shield</span>
+      </div>
+
+      <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container space-y-3">
+        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm">
+          <span class="material-symbols-outlined text-[22px]">water_drop</span>
+        </div>
+        <h4 class="font-bold text-on-surface text-base">Aloe Vera Hydrosol</h4>
+        <p class="text-xs text-on-surface-variant leading-relaxed">Restores physiological 5.5 pH balance to irritated scalps, eliminating dry flake inflammation and balancing excess natural oils.</p>
+        <span class="text-[11px] text-on-surface font-bold block pt-2 border-t border-surface-container">Soothing pH 5.5 • Anti-Irritation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Science actives",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow Text", "default": "Cellular Trichology" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Pure Australian Actives & Clinical Peptides" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Every droplet is calibrated to nourish without stripping or suffocating the scalp microbiome." }
+  ],
+  "presets": [
+    { "name": "Science actives" }
+  ]
+}
+{% endschema %}

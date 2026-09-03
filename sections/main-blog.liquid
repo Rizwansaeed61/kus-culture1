@@ -1,0 +1,187 @@
+<section class="w-full bg-surface-container-low py-12 lg:py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+      <div class="inline-flex items-center gap-2 bg-secondary-container px-4 py-1.5 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-secondary"></span>
+        <span class="text-xs uppercase tracking-wider text-on-secondary-container font-bold">Hair Science & Clinical Journal</span>
+      </div>
+      <h1 class="font-serif text-4xl sm:text-5xl text-on-surface font-semibold tracking-tight">
+        {{ blog.title | default: 'The Hair Journal & Scalp Science' }}
+      </h1>
+      <p class="text-base sm:text-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+        Explore clinical dermatology research, native Australian active botanicals, and empirical guides for restoring follicular density.
+      </p>
+    </div>
+
+    <!-- Featured Lead Article -->
+    <div class="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm border border-surface-container mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 h-[360px] lg:h-[460px] relative overflow-hidden">
+        <img class="w-full h-full object-cover" alt="Australian clean hair laboratory setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuOzQJAprR21e9b7ZsQlPat1jBeUELXr0TqBUVPAAaIQs_zxgzxIbOy42d4YovZwda--QqnrmyDrj1BfxmopcImK6VZuMXnbQ0lnXJRIxdKixAg_xcgNWcjXgfgzRc_sdWDAQ0Mp6p8gRhb0_iaFuZ074vkggN9GvIDUHXOqfQfwk0G_vfPrBzyEFRaiCk-q4Sw_VTsvUWvbHPXGht-sdcS0TMT-Vitn4JmzOVr7kQIuCSeS4d0tL2" />
+        <div class="absolute top-4 left-4 bg-primary text-on-primary text-[10px] uppercase font-bold tracking-wider px-3.5 py-1 rounded-full shadow-md">
+          FEATURED PROTOCOL
+        </div>
+      </div>
+      <div class="lg:col-span-5 p-6 lg:p-8 space-y-4">
+        <div class="flex items-center gap-3 text-xs text-on-surface-variant">
+          <span>6 min read</span>
+          <span>•</span>
+          <span>Clinical Guide</span>
+          <span>•</span>
+          <span class="bg-surface-container-high text-on-surface px-2.5 py-0.5 rounded-full text-[10px] font-bold">PEER REVIEWED</span>
+        </div>
+        <h2 class="font-serif text-2xl lg:text-3xl text-on-surface font-semibold leading-snug">
+          The Truth About Hair Fall: How Clinical Actives & Botanical Scalp Care Restore Density in 21 Days
+        </h2>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+          Modern clinical dermatology proves that restoring density begins within the first two millimeters beneath the scalp. Learn how biocompatible peptides reset the anagen growth cycle.
+        </p>
+        <div class="pt-2 flex items-center gap-4">
+          <a href="/blogs/hair-journal/the-truth-about-hair-fall" class="bg-primary text-on-primary font-bold text-xs uppercase tracking-wider px-7 py-3.5 rounded-full hover:bg-primary-container transition-all shadow-sm flex items-center gap-2">
+            <span>Read Article</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="space-y-6">
+      <div class="flex items-center justify-between">
+        <h3 class="font-serif text-2xl text-on-surface font-semibold">Latest Scientific Guides</h3>
+        <span class="text-xs uppercase tracking-wider text-secondary font-bold">3 Guides Available</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Article 1 -->
+        <div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-surface-container flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div class="relative h-48 w-full overflow-hidden">
+            <img class="w-full h-full object-cover" alt="Pipette dropping golden scalp serum" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAih3MCDCHt3SxtWNSs3DrYE2O1g64JLAfo5HS46z44S8AIAugY5a_QrExUUSByqB3hCxrjq486Kz_4jKNn6Fyf8InmmRKY1H0MUtDkrFJh2diCR_jhqF71w8KhgNliV69rVVuacgpRF7hPuTcIbLz5Q1Z7S6gqoQHQf1T9ej8glweGAxin7Jge0fAHGMPXzfOtaiqO11D4PGbMjrUUVZkyap5OjV_GFxtBib-Boo1gX9T-HQ46trbS" />
+            <span class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm text-on-surface text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">SERUM SCIENCE</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <span class="text-xs text-on-surface-variant">4 min read • Nov 2025</span>
+              <h4 class="font-serif text-lg font-semibold text-on-surface leading-snug">How to Layer Scalp Serums: AM vs PM Bioactive Routines</h4>
+              <p class="text-xs text-on-surface-variant line-clamp-2">Why water-based peptide formulas must precede botanical oil concentrates to guarantee trans-dermal delivery.</p>
+            </div>
+            <a href="/blogs/hair-journal/the-truth-about-hair-fall" class="text-xs font-bold text-on-surface flex items-center gap-1.5 hover:text-secondary">
+              Read Guide <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-surface-container flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div class="relative h-48 w-full overflow-hidden">
+            <img class="w-full h-full object-cover" alt="Color treated dyed hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlMsHtp8g6UusojZ2MKGxF35S5M0ElO5A9CA4ddSD4BAHQR7m1_552rvevSnif3d_e8340giUSJ-utcUQ0JHuq-yXq4y6wVt5EuYKlXgDfj6zWh71cHakZJ0LnL--V8UC_3Vx-WVdW3e5ftytUh2yq1ollwhMwI-0d_mDTQgkwdmHxNdhevUQz6EsFarnM_XPY5XhAb6X4iS9ZAy4koMWwxtkTMoWOJe6UTKIm_hWamE_R483zKxPi" />
+            <span class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm text-on-surface text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">COLOR CARE</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <span class="text-xs text-on-surface-variant">5 min read • Oct 2025</span>
+              <h4 class="font-serif text-lg font-semibold text-on-surface leading-snug">Why Sulfate-Free is Non-Negotiable for Color-Treated Hair</h4>
+              <p class="text-xs text-on-surface-variant line-clamp-2">Spectroscopic analysis shows sulfates strip pigment molecules 3.8x faster while lifting cuticle scales.</p>
+            </div>
+            <a href="/blogs/hair-journal/the-truth-about-hair-fall" class="text-xs font-bold text-on-surface flex items-center gap-1.5 hover:text-secondary">
+              Read Guide <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-surface-container flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div class="relative h-48 w-full overflow-hidden">
+            <img class="w-full h-full object-cover" alt="Kakadu plum and macadamia nuts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaZTFtTb-JL-KqXokuQ8fD62SIXISvOO81h8K48G1Ci6qR9lKn7Ly48pAKZvEagdIHtpVFJ7Z0v3KxbSc8IhRsas9OWzQ7SYzRCfHFJJ_1P7wJRBObCyuMG81yugkVpKnR4VIAJ_CJr_yquZOjXYoKiNc2aMPtqI0EoOnItYcgmXnh9UmUPzCJR8npX58Rw9TUBktqeO3zddAsiaNZ_yQG07_uGrVK6msZmQI9IUg2IuwnH8d3ZhvG" />
+            <span class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm text-on-surface text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">INGREDIENTS</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <span class="text-xs text-on-surface-variant">7 min read • Sep 2025</span>
+              <h4 class="font-serif text-lg font-semibold text-on-surface leading-snug">Wild-Harvested Kakadu Plum: The World's Richest Vitamin C Source</h4>
+              <p class="text-xs text-on-surface-variant line-clamp-2">Discover how cellular antioxidants protect delicate follicular matrix DNA against UV photo-oxidation.</p>
+            </div>
+            <a href="/blogs/hair-journal/the-truth-about-hair-fall" class="text-xs font-bold text-on-surface flex items-center gap-1.5 hover:text-secondary">
+              Read Guide <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog listing",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Hair Journal & Scalp Science"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Explore clinical dermatology research, native Australian active botanicals, and empirical guides for restoring follicular density."
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Hair Science & Clinical Journal"
+    },
+    {
+      "type": "text",
+      "id": "featured_label",
+      "label": "Featured Article Label",
+      "default": "FEATURED PROTOCOL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "article_card",
+      "name": "Scientific Guide Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Guide Title",
+          "default": "How to Layer Scalp Serums: AM vs PM Routines"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category Tag",
+          "default": "SERUM SCIENCE"
+        },
+        {
+          "type": "text",
+          "id": "read_time",
+          "label": "Reading Time",
+          "default": "4 min read"
+        },
+        {
+          "type": "textarea",
+          "id": "excerpt",
+          "label": "Excerpt",
+          "default": "Why water-based peptide formulas must precede botanical oil concentrates."
+        },
+        {
+          "type": "url",
+          "id": "article_url",
+          "label": "Article Link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

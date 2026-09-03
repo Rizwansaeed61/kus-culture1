@@ -1,0 +1,419 @@
+<div class="flex flex-col w-full">
+<!-- Interactive & Search Filter Script -->
+<script>
+    function switchTab(category) {
+      document.querySelectorAll('[data-faq-cat]').forEach(card => {
+        if (category === 'all' || card.getAttribute('data-faq-cat') === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-target') === category) {
+          btn.classList.add('bg-primary', 'text-on-primary', 'shadow-md');
+          btn.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+        } else {
+          btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-md');
+          btn.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+        }
+      });
+    }
+
+    function toggleAccordion(btn) {
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector('.accordion-icon');
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+      if (isExpanded) {
+        btn.setAttribute('aria-expanded', 'false');
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      } else {
+        btn.setAttribute('aria-expanded', 'true');
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    }
+
+    function filterFaqs() {
+      const query = document.getElementById('faq-search-input').value.toLowerCase();
+      document.querySelectorAll('[data-faq-cat]').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(query)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    function copyPromoCode(btn, code) {
+      navigator.clipboard.writeText(code);
+      const originalHtml = btn.innerHTML;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[16px]">check</span> Copied!`;
+      setTimeout(() => {
+        btn.innerHTML = originalHtml;
+      }, 2000);
+    }
+  </script>
+<!-- Hero Section: Clinical Science Header & Search Focus -->
+<section class="relative w-full bg-surface-container-low py-spacing-3xl overflow-hidden">
+<div class="absolute -right-16 -top-20 w-96 h-96 rounded-full bg-surface-variant/40 blur-3xl pointer-events-none"></div>
+<div class="absolute left-10 bottom-0 w-72 h-72 rounded-full bg-secondary-fixed/40 blur-2xl pointer-events-none"></div>
+<div class="max-w-5xl mx-auto px-screen-margin relative z-10 text-center space-y-spacing-lg">
+<div class="inline-flex items-center gap-spacing-xs bg-surface-container-lowest px-spacing-md py-spacing-xs rounded-full shadow-sm mx-auto">
+<span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span>
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant tracking-wider">Clinical Care Concierge & Knowledge Base</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight max-w-3xl mx-auto">
+        Answers to Your Scalp Ecology & Routine Questions
+      </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+        Everything you need to know about our dermatologist-developed Australian clean formulas, active dosages, order tracking, and 30-day efficacy trial.
+      </p>
+<!-- Search Input Container -->
+<div class="max-w-2xl mx-auto pt-spacing-sm">
+<div class="relative flex items-center bg-surface-container-lowest rounded-full shadow-md p-spacing-xs pl-spacing-lg">
+<span class="material-symbols-outlined text-outline text-[24px] mr-spacing-xs">search</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none" id="faq-search-input" onkeyup="filterFaqs()" placeholder="Search questions about ingredients, orders, shipping, routine..." type="text"/>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-spacing-xl py-spacing-sm rounded-full hover:bg-primary-container transition-all flex items-center gap-spacing-xs" onclick="filterFaqs()" type="button">
+<span>Search</span>
+</button>
+</div>
+<div class="flex items-center justify-center gap-spacing-md pt-spacing-sm text-center">
+<span class="font-label-sm text-label-sm uppercase text-outline">Popular searches:</span>
+<button class="font-body-sm text-body-sm text-secondary hover:text-on-surface underline" onclick="document.getElementById('faq-search-input').value='shampoo frequency'; filterFaqs();">shampoo frequency</button>
+<button class="font-body-sm text-body-sm text-secondary hover:text-on-surface underline" onclick="document.getElementById('faq-search-input').value='color treated'; filterFaqs();">color treated</button>
+<button class="font-body-sm text-body-sm text-secondary hover:text-on-surface underline" onclick="document.getElementById('faq-search-input').value='HAIR15'; filterFaqs();">HAIR15 promo</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Accordion & Category Section -->
+<section class="w-full py-spacing-3xl max-w-6xl mx-auto px-screen-margin">
+<!-- Category Tabs -->
+<div class="flex flex-wrap items-center justify-center gap-spacing-sm mb-spacing-2xl">
+<button class="tab-btn bg-primary text-on-primary shadow-md font-label-md text-label-md px-spacing-xl py-spacing-sm rounded-full transition-all duration-200" data-target="all" onclick="switchTab('all')">
+        All Inquiries
+      </button>
+<button class="tab-btn bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md px-spacing-xl py-spacing-sm rounded-full shadow-sm hover:text-on-surface transition-all duration-200" data-target="routine" onclick="switchTab('routine')">
+        Hair Fall & Routine
+      </button>
+<button class="tab-btn bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md px-spacing-xl py-spacing-sm rounded-full shadow-sm hover:text-on-surface transition-all duration-200" data-target="ingredients" onclick="switchTab('ingredients')">
+        Ingredients & Safety
+      </button>
+<button class="tab-btn bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md px-spacing-xl py-spacing-sm rounded-full shadow-sm hover:text-on-surface transition-all duration-200" data-target="shipping" onclick="switchTab('shipping')">
+        Shipping & Delivery
+      </button>
+<button class="tab-btn bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md px-spacing-xl py-spacing-sm rounded-full shadow-sm hover:text-on-surface transition-all duration-200" data-target="guarantee" onclick="switchTab('guarantee')">
+        Returns & 30-Day Guarantee
+      </button>
+</div>
+<!-- 2-Column Bento Layout for Desktop Reading Ease -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-spacing-2xl items-start">
+<!-- Left Column: Core Product Highlights & Visual Anchor -->
+<div class="lg:col-span-4 space-y-spacing-lg sticky top-32">
+<!-- Featured Product Snapshot Card -->
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg shadow-sm space-y-spacing-md">
+<div class="relative bg-surface-container rounded-lg overflow-hidden p-spacing-md flex items-center justify-center">
+<span class="absolute top-3 left-3 bg-primary text-on-primary font-caption-caps text-caption-caps px-spacing-sm py-spacing-2xs rounded-full">
+              CLINICAL BENCHMARK
+            </span>
+<img class="h-56 w-auto object-contain transition-transform duration-300 hover:scale-105" data-alt="Minimalist clean studio shot of KUS CULTURE HairRevive Anti Hair Fall Shampoo bottle on a pale sky blue pedestal, surrounded by botanical mist and soft light reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz1twY8MAZFtFAoQJ9UMCpEB67dQUdrrhwymYrVcUVdcEpAJcKCODvjc3clMoCjwCYiki4zAFT74DmlakCDrETBDqjb-Wm0xgrXE3aB0oZ8NA40ChKABHdeLp7BmV2140ghxKpxVYPzprTTLP-9jihp5qDwvGu6Gj37UQebOnj_1btFoFYLlT8vN3W_6Wi32ycc3GAD0pwSPwFFuUVDX2DXeNy3DNzSW-anO2BnjvAiZdCtesamVDa"/>
+</div>
+<div>
+<div class="flex items-center gap-spacing-xs mb-spacing-2xs">
+<span class="material-symbols-outlined text-tertiary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant ml-1">4.9 / 5 (2,341 reviews)</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">HairRevive™ Anti Hair Fall Shampoo</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-spacing-2xs">
+              Engineered with Australian Kakadu Plum, caffeine, and peptide micro-emulsions to anchor hair bulbs.
+            </p>
+</div>
+<!-- Promo Highlight Box (Matching Image Item #7) -->
+<div class="bg-[#FEEFAD] rounded-lg p-spacing-md text-[#544600] flex items-start gap-spacing-sm shadow-sm">
+<div class="w-8 h-8 rounded-full bg-[#f6df7d] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px] text-[#544600]">local_offer</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md font-bold">Bundle & Save 15%</p>
+<p class="font-body-sm text-body-sm leading-tight text-[#544600]">Use code <span class="font-bold">HAIR15</span> at checkout on 3+ items.</p>
+<button class="mt-spacing-xs inline-flex items-center gap-spacing-2xs bg-surface-container-lowest text-on-surface font-label-sm text-label-sm uppercase px-spacing-sm py-spacing-2xs rounded-full shadow-xs hover:bg-surface transition-colors" onclick="copyPromoCode(this, 'HAIR15')" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+                Copy Code
+              </button>
+</div>
+</div>
+</div>
+<!-- Quick Help Tile -->
+<div class="bg-surface-container-high rounded-xl p-spacing-lg space-y-spacing-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-[22px]">medical_services</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Dermatology Panel</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Have scalp symptoms or chronic sensitivity questions? Our trichological consultation team responds within 24 business hours.
+          </p>
+<a class="inline-flex items-center gap-spacing-2xs font-label-md text-label-md text-primary font-bold hover:underline pt-spacing-2xs" href="#">
+<span>Email clinical triage</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Right Column: Interactive Accordion List -->
+<div class="lg:col-span-8 space-y-spacing-md">
+<!-- Item 1: How often should I use it? -->
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg shadow-sm transition-all duration-200" data-faq-cat="routine">
+<button aria-expanded="true" class="w-full flex items-center justify-between text-left gap-spacing-md focus:outline-none" onclick="toggleAccordion(this)" type="button">
+<div class="flex items-center gap-spacing-md">
+<span class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[18px]">calendar_today</span>
+</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">How often should I use the HairRevive Shampoo?</span>
+</div>
+<span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300 rotate-180">expand_more</span>
+</button>
+<div class="pt-spacing-md pl-12 pr-spacing-xs space-y-spacing-sm">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              3–4 times per week is optimal for most hair profiles. Because our formula is sulfate-free and formulated with plant-derived non-stripping surfactants, it is also gentle enough for daily cleansing if you exercise heavily or manage an oily scalp climate.
+            </p>
+<div class="bg-surface-container-low rounded-lg p-spacing-sm flex items-center gap-spacing-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">science</span>
+<span class="font-body-sm text-body-sm text-on-surface">
+                Clinical Tip: Allow the lather to sit on your scalp for 120 seconds before rinsing to maximize peptide and caffeine absorption.
+              </span>
+</div>
+</div>
+</div>
+<!-- Item 2: Color-treated hair -->
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg shadow-sm transition-all duration-200" data-faq-cat="ingredients">
+<button aria-expanded="false" class="w-full flex items-center justify-between text-left gap-spacing-md focus:outline-none" onclick="toggleAccordion(this)" type="button">
+<div class="flex items-center gap-spacing-md">
+<span class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[18px]">palette</span>
+</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Is it suitable for color-treated or chemically treated hair?</span>
+</div>
+<span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+</button>
+<div class="pt-spacing-md pl-12 pr-spacing-xs space-y-spacing-sm hidden">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Yes, 100%. HairRevive is completely free of sodium lauryl sulfate (SLS), sodium laureth sulfate (SLES), parabens, and harsh salts that strip hair dye or degrade keratin treatments. Its physiological pH balance (5.2 - 5.5) helps seal the hair cuticle, locking in color pigment vibrancy while reducing chemical breakage.
+            </p>
+</div>
+</div>
+<!-- Item 3: Visible Results Timeline -->
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg shadow-sm transition-all duration-200" data-faq-cat="routine">
+<button aria-expanded="false" class="w-full flex items-center justify-between text-left gap-spacing-md focus:outline-none" onclick="toggleAccordion(this)" type="button">
+<div class="flex items-center gap-spacing-md">
+<span class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[18px]">hourglass_top</span>
+</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">When can I expect to see visible results?</span>
+</div>
+<span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+</button>
+<div class="pt-spacing-md pl-12 pr-spacing-xs space-y-spacing-md hidden">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Hair growth and follicular stabilization happen in distinct cellular cycles:
+            </p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-spacing-sm">
+<div class="bg-surface-container-low p-spacing-sm rounded-lg">
+<p class="font-label-sm text-label-sm uppercase text-primary">Weeks 1–2</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Reduced shower shedding, scalp hydration equilibrium, and improved fiber volume.</p>
+</div>
+<div class="bg-surface-container-low p-spacing-sm rounded-lg">
+<p class="font-label-sm text-label-sm uppercase text-primary">Weeks 3–4</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Significant reduction in breakage during styling; hair feels tangibly denser at the roots.</p>
+</div>
+<div class="bg-surface-container-low p-spacing-sm rounded-lg">
+<p class="font-label-sm text-label-sm uppercase text-primary">Weeks 8–12</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Activation of dormant anagen phase follicles, promoting visible new baby hair growth.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 4: Sensitive, Dandruff, Eczema Scalps -->
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg shadow-sm transition-all duration-200" data-faq-cat="ingredients">
+<button aria-expanded="false" class="w-full flex items-center justify-between text-left gap-spacing-md focus:outline-none" onclick="toggleAccordion(this)" type="button">
+<div class="flex items-center gap-spacing-md">
+<span class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[18px]">verified_user</span>
+</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Is it safe for sensitive, dandruff-prone or eczema scalps?</span>
+</div>
+<span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+</button>
+<div class="pt-spacing-md pl-12 pr-spacing-xs space-y-spacing-sm hidden">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Our products undergo rigorous independent Human Repeat Insult Patch Testing (HRIPT) under dermatological supervision. The formula contains soothing prebiotic botanicals, Australian tea tree extract in therapeutic micro-doses, and aloe vera leaf juice to calm irritation, control microbial buildup, and hydrate flaky scalp barriers without triggering eczema flare-ups.
+            </p>
+</div>
+</div>
+<!-- Item 5: Bundle Discounts & Codes -->
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg shadow-sm transition-all duration-200" data-faq-cat="shipping">
+<button aria-expanded="false" class="w-full flex items-center justify-between text-left gap-spacing-md focus:outline-none" onclick="toggleAccordion(this)" type="button">
+<div class="flex items-center gap-spacing-md">
+<span class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[18px]">sell</span>
+</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">How do the bundle discounts work (HAIR15 code)?</span>
+</div>
+<span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+</button>
+<div class="pt-spacing-md pl-12 pr-spacing-xs space-y-spacing-sm hidden">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              We offer automatic tier volume discounts for continuous routine treatments:
+            </p>
+<ul class="list-disc pl-5 space-y-1 font-body-md text-body-md text-on-surface-variant">
+<li><strong class="text-on-surface">Buy 2:</strong> Save 10% automatically at cart.</li>
+<li><strong class="text-on-surface">Buy 3:</strong> Save 15% with promo coupon <code class="bg-surface-container px-1 py-0.5 rounded font-mono">HAIR15</code>.</li>
+<li><strong class="text-on-surface">Buy 5 (Family/Complete Routine):</strong> Save 20% applied instantly.</li>
+</ul>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Promotional codes cannot be combined with clearance items or wholesale partner pricing.
+            </p>
+</div>
+</div>
+<!-- Item 6: 30-Day Money-Back Guarantee -->
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg shadow-sm transition-all duration-200" data-faq-cat="guarantee">
+<button aria-expanded="false" class="w-full flex items-center justify-between text-left gap-spacing-md focus:outline-none" onclick="toggleAccordion(this)" type="button">
+<div class="flex items-center gap-spacing-md">
+<span class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[18px]">published_with_changes</span>
+</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">What is the 30-Day Money-Back Guarantee policy?</span>
+</div>
+<span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+</button>
+<div class="pt-spacing-md pl-12 pr-spacing-xs space-y-spacing-sm hidden">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              We stand behind our clean science formulas with a 100% risk-free trial. If after 30 days of consistent use you are unsatisfied with shedding reduction, scent, or texture, simply reach out to our concierge team with your order number. We will authorize an immediate refund to your original payment method—even if the bottle is fully emptied.
+            </p>
+</div>
+</div>
+<!-- Item 7: Shipping Options & Free Delivery Threshold -->
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg shadow-sm transition-all duration-200" data-faq-cat="shipping">
+<button aria-expanded="false" class="w-full flex items-center justify-between text-left gap-spacing-md focus:outline-none" onclick="toggleAccordion(this)" type="button">
+<div class="flex items-center gap-spacing-md">
+<span class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[18px]">local_shipping</span>
+</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">What are the shipping times and free delivery conditions?</span>
+</div>
+<span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+</button>
+<div class="pt-spacing-md pl-12 pr-spacing-xs space-y-spacing-sm hidden">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              All orders over $50 qualify for complimentary Express Tracked Shipping. Orders are dispatched directly from our Melbourne lab warehouse within 24 hours. Metro deliveries typically arrive within 2–4 business days, while regional and global orders take approximately 5–8 business days.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Science & Routine Proof Section -->
+<section class="w-full bg-surface-container-low py-spacing-3xl">
+<div class="max-w-6xl mx-auto px-screen-margin">
+<div class="text-center max-w-2xl mx-auto mb-spacing-2xl">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant tracking-wider">The KUS Protocol</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-spacing-2xs">Clean Formulation Standards</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-spacing-xs">
+          Built for maximum botanical biodisponibility with zero compromises on cellular integrity.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-spacing-lg">
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg text-center space-y-spacing-sm shadow-sm">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mx-auto text-primary">
+<span class="material-symbols-outlined text-[28px]">eco</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Sulfate & Paraben Free</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Protects fragile hair cuticle envelopes from harsh industrial surfactant stripping.</p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg text-center space-y-spacing-sm shadow-sm">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mx-auto text-primary">
+<span class="material-symbols-outlined text-[28px]">biotech</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Bioactive Botanicals</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Wild-harvested Australian native extracts rich in stabilizing antioxidants.</p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg text-center space-y-spacing-sm shadow-sm">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mx-auto text-primary">
+<span class="material-symbols-outlined text-[28px]">sanitizer</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Microbiome Neutral</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Maintains a healthy lipid barrier and acidic mantle between pH 5.2 and 5.5.</p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-spacing-lg text-center space-y-spacing-sm shadow-sm">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mx-auto text-primary">
+<span class="material-symbols-outlined text-[28px]">cruelty_free</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">PETA Certified Cruelty-Free</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Strict zero animal testing policy through every manufacturing step.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Still Have Questions / Help Desk Bento Box -->
+<section class="w-full py-spacing-3xl max-w-6xl mx-auto px-screen-margin">
+<div class="bg-primary text-on-primary rounded-2xl p-spacing-2xl lg:p-spacing-3xl relative overflow-hidden shadow-xl">
+<!-- Decorative Backdrop Blurs -->
+<div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-on-primary/10 blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-on-primary/5 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-spacing-2xl items-center">
+<div class="lg:col-span-8 space-y-spacing-md">
+<div class="inline-flex items-center gap-spacing-xs bg-on-primary/10 px-spacing-md py-spacing-2xs rounded-full">
+<span class="material-symbols-outlined text-[16px]">support_agent</span>
+<span class="font-caption-caps text-caption-caps uppercase tracking-wider text-on-primary">Live Concierge Service</span>
+</div>
+<h2 class="font-display-sm text-display-sm tracking-tight text-on-primary">
+            Still Have Unanswered Questions?
+          </h2>
+<p class="font-body-lg text-body-lg text-on-primary/80 max-w-xl">
+            Our Australian scalp specialists are available Monday through Friday (8:00 AM – 6:00 PM AEST) to review routine pairings, ingredient sensitivities, or pending tracking numbers.
+          </p>
+<div class="flex flex-wrap items-center gap-spacing-md pt-spacing-sm">
+<a class="bg-surface text-on-surface font-label-md text-label-md px-spacing-xl py-spacing-md rounded-full shadow-md hover:bg-surface-container transition-all inline-flex items-center gap-spacing-xs" href="#">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>Start Live Chat</span>
+</a>
+<a class="bg-transparent border border-on-primary text-on-primary font-label-md text-label-md px-spacing-xl py-spacing-md rounded-full hover:bg-on-primary/10 transition-all inline-flex items-center gap-spacing-xs" href="#">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+<span>Email Support Concierge</span>
+</a>
+</div>
+</div>
+<div class="lg:col-span-4 bg-on-primary/5 p-spacing-lg rounded-xl space-y-spacing-md backdrop-blur-sm">
+<h4 class="font-headline-sm text-headline-sm text-on-primary">Customer Care SLA</h4>
+<div class="space-y-spacing-sm">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-primary/70">Average Chat Reply</span>
+<span class="font-label-md text-label-md font-bold">< 3 minutes</span>
+</div>
+<div class="w-full bg-on-primary/10 rounded-full h-1.5 overflow-hidden">
+<div class="bg-surface w-11/12 h-full rounded-full"></div>
+</div>
+</div>
+<div class="space-y-spacing-sm">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-primary/70">First Email Resolution</span>
+<span class="font-label-md text-label-md font-bold">96.4%</span>
+</div>
+<div class="w-full bg-on-primary/10 rounded-full h-1.5 overflow-hidden">
+<div class="bg-surface w-full h-full rounded-full"></div>
+</div>
+</div>
+<div class="pt-spacing-xs">
+<span class="font-body-sm text-body-sm text-on-primary/60 block">Available via SMS, Live Chat, and Email.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>

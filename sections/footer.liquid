@@ -1,0 +1,96 @@
+<footer class="w-full bg-surface-container-lowest border-t border-surface-container py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12 border-b border-surface-container">
+      <div class="lg:col-span-4 space-y-4">
+        {% if section.settings.footer_logo != blank %}
+          <img src="{{ section.settings.footer_logo | image_url: width: 240 }}" alt="{{ shop.name }}" class="h-8 w-auto object-contain"/>
+        {% else %}
+          <span class="font-serif text-2xl font-bold tracking-wider text-on-surface">KUS•CULTURE</span>
+        {% endif %}
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          {{ section.settings.bio | default: 'Australian Clean Hair Care engineered with botanical actives. Dermatologist-developed formulas crafted to revive, balance, and sustain scalp ecology and cellular hair vitality.' }}
+        </p>
+      </div>
+
+      <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-on-surface">Shop</h4>
+          <ul class="space-y-2 text-xs text-on-surface-variant">
+            <li><a href="{{ routes.all_products_collection_url }}" class="hover:text-on-surface">All Products</a></li>
+            <li><a href="/products/hairrevive-anti-hair-fall-shampoo" class="hover:text-on-surface">HairRevive™ Shampoo</a></li>
+            <li><a href="{{ routes.all_products_collection_url }}" class="hover:text-on-surface">Conditioners</a></li>
+            <li><a href="{{ routes.all_products_collection_url }}" class="hover:text-on-surface">Serums</a></li>
+          </ul>
+        </div>
+
+        {% assign about_url = '/pages/about' %}
+        {% if pages['about-us'].url != blank %}
+          {% assign about_url = pages['about-us'].url %}
+        {% elsif pages['about'].url != blank %}
+          {% assign about_url = pages['about'].url %}
+        {% endif %}
+
+        {% assign faq_url = '/pages/faq' %}
+        {% if pages['faqs'].url != blank %}
+          {% assign faq_url = pages['faqs'].url %}
+        {% elsif pages['faq'].url != blank %}
+          {% assign faq_url = pages['faq'].url %}
+        {% endif %}
+
+        {% assign contact_url = '/pages/contact' %}
+        {% if pages['contact-us'].url != blank %}
+          {% assign contact_url = pages['contact-us'].url %}
+        {% elsif pages['contact'].url != blank %}
+          {% assign contact_url = pages['contact'].url %}
+        {% endif %}
+
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-on-surface">Science</h4>
+          <ul class="space-y-2 text-xs text-on-surface-variant">
+            <li><a href="{{ about_url }}" class="hover:text-on-surface">About Us</a></li>
+            <li><a href="{{ about_url }}" class="hover:text-on-surface">Clinical Trials</a></li>
+            <li><a href="{{ about_url }}" class="hover:text-on-surface">Native Botanicals</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-on-surface">Support</h4>
+          <ul class="space-y-2 text-xs text-on-surface-variant">
+            <li><a href="{{ faq_url }}" class="hover:text-on-surface">FAQs</a></li>
+            <li><a href="{{ contact_url }}" class="hover:text-on-surface">Contact Us</a></li>
+            <li><a href="#hair-quiz" onclick="HairQuiz.openQuiz()" class="hover:text-on-surface">Hair Diagnostic</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-on-surface">Legal</h4>
+          <ul class="space-y-2 text-xs text-on-surface-variant">
+            <li><a href="/policies/terms-of-service" class="hover:text-on-surface">Terms of Service</a></li>
+            <li><a href="/policies/privacy-policy" class="hover:text-on-surface">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-on-surface-variant">© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+      <div class="flex items-center gap-1.5 flex-wrap">
+        <span class="px-2.5 py-1 rounded bg-surface-container-low text-[10px] font-bold text-on-surface-variant">VISA</span>
+        <span class="px-2.5 py-1 rounded bg-surface-container-low text-[10px] font-bold text-on-surface-variant">MASTERCARD</span>
+        <span class="px-2.5 py-1 rounded bg-surface-container-low text-[10px] font-bold text-on-surface-variant">APPLE PAY</span>
+        <span class="px-2.5 py-1 rounded bg-surface-container-low text-[10px] font-bold text-on-surface-variant">GOOGLE PAY</span>
+        <span class="px-2.5 py-1 rounded bg-surface-container-low text-[10px] font-bold text-on-surface-variant">AFTERPAY</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "image_picker", "id": "footer_logo", "label": "Footer Logo" },
+    { "type": "textarea", "id": "bio", "label": "Brand Summary", "default": "Australian Clean Hair Care engineered with botanical actives. Dermatologist-developed formulas crafted to revive, balance, and sustain scalp ecology and cellular hair vitality." }
+  ]
+}
+{% endschema %}

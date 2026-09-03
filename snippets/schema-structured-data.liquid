@@ -1,0 +1,127 @@
+{% comment %}
+  Scents 'N Stories - Rich Google Schema.org JSON-LD Structured Data
+  Supports Organization, Product, and BreadcrumbList schemas.
+{% endcomment %}
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ canonical_url | json }},
+  {% if settings.logo_image != blank %}
+    "logo": {{ settings.logo_image | image_url: width: 600 | prepend: "https:" | json }},
+  {% endif %}
+  "description": "Haute Parfumerie born from romantic narratives and classical artisanal compounding. Extrait de Parfum creations engineered for dramatic presence and intimate memories.",
+  "sameAs": [
+    {{ settings.social_instagram_link | default: "https://instagram.com" | json }},
+    {{ settings.social_facebook_link | default: "https://facebook.com" | json }},
+    {{ settings.social_tiktok_link | default: "https://tiktok.com" | json }}
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": {{ settings.social_whatsapp_number | default: "+923001234567" | json }},
+    "contactType": "VIP Customer Concierge",
+    "areaServed": "PK",
+    "availableLanguage": ["English", "Urdu"]
+  }
+}
+</script>
+
+{% if template.name == 'product' %}
+  <!-- Product Schema with Aggregate Rating -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": {{ product.title | default: "Honey Trap — Extrait De Parfum" | json }},
+    "image": [
+      {% if product.featured_image != blank %}
+        {{ product.featured_image | image_url: width: 1000 | prepend: "https:" | json }}
+      {% else %}
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuAH2xpaxVreku72Hu1SBlcRsGzYjJBnJ4k7uYqOdyLzi5Rr34NVMYB4w89c1CbqV9w-ho0GQZeODiuZqazD2UTXa9u2gFtkEeLiHSdZa8Xj3so_EgjsmZ1SQ_vJz18DoJz8ivolyw7Hi6t2cGiyCEhmKtTQUlRbv5Qpd2L4gboQkzzMKrRCKzr011kcxkIERZ2DOCkPglTrELHGuMQ3Z67d0WJmkm8AD9PYOeN_GwnRYVW39QsLtHR_Zh3apz7JdPIudew"
+      {% endif %}
+    ],
+    "description": {{ product.description | default: "An intoxicating, sensual symphony of raw golden wild honey, spiced cocoa truffle, orange blossom, and warm Ceylon cinnamon." | strip_html | json }},
+    "sku": {{ product.selected_or_first_available_variant.sku | default: "SNS-HT-50ML" | json }},
+    "brand": {
+      "@type": "Brand",
+      "name": "Scents 'N Stories"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "840",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": {{ canonical_url | json }},
+      "priceCurrency": "PKR",
+      "price": {{ product.price | default: 245000 | divided_by: 100.0 | json }},
+      "priceValidUntil": "2027-12-31",
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Scents 'N Stories"
+      }
+    }
+  }
+  </script>
+{% endif %}
+
+<!-- BreadcrumbList Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ routes.root_url | prepend: shop.url | json }}
+    }
+    {% if template.name == 'collection' and collection.handle %}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ collection.title | json }},
+        "item": {{ collection.url | prepend: shop.url | json }}
+      }
+    {% elsif template.name == 'product' %}
+      {% if collection.handle %}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": {{ collection.url | prepend: shop.url | json }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ product.title | json }},
+          "item": {{ product.url | prepend: shop.url | json }}
+        }
+      {% else %}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ product.title | json }},
+          "item": {{ product.url | prepend: shop.url | json }}
+        }
+      {% endif %}
+    {% elsif template.name == 'page' %}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ page.title | json }},
+        "item": {{ page.url | prepend: shop.url | json }}
+      }
+    {% endif %}
+  ]
+}
+</script>

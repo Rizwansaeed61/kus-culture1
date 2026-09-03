@@ -1,0 +1,26 @@
+<!-- Hair Diagnostic Quiz Modal -->
+<div id="hair-quiz-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-primary-container/60 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+  <div class="relative w-full max-w-xl bg-surface rounded-3xl p-6 sm:p-8 shadow-2xl border border-surface-container transform scale-95 transition-transform duration-300 overflow-hidden" id="quiz-modal-box">
+    
+    <!-- Close Button -->
+    <button type="button" onclick="HairQuiz.closeQuiz()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-surface-container-low hover:bg-surface-container flex items-center justify-center text-on-surface transition-colors shadow-sm z-10" aria-label="Close quiz">
+      <span class="material-symbols-outlined text-[20px]">close</span>
+    </button>
+
+    <!-- Quiz Header & Progress -->
+    <div class="space-y-3 pb-6 border-b border-surface-container">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] uppercase tracking-wider text-secondary font-bold" id="quiz-step-tag">Step 1 of 5</span>
+        <span class="text-xs font-bold text-on-surface" id="quiz-pct-tag">20% Completed</span>
+      </div>
+      <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+        <div id="quiz-progress-bar" class="bg-primary h-full rounded-full transition-all duration-300" style="width: 20%;"></div>
+      </div>
+    </div>
+
+    <!-- Quiz Step Content Stage -->
+    <div class="py-6" id="quiz-dynamic-stage">
+      <!-- Injected by quiz.js -->
+    </div>
+  </div>
+</div>
